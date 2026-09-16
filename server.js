@@ -118,6 +118,7 @@ function composeBrief(fields) {
   const lines = [
     "Заявка на разбор с сайта",
     "",
+    `Имя: ${fields.name}`,
     `Контакт: ${fields.contact}`,
     `Задача: ${fields.task}`,
   ];
@@ -206,12 +207,17 @@ async function handleBrief(req, res) {
   }
 
   const fields = {
+    name: clean(body.name),
     contact: clean(body.contact),
     task: clean(body.task),
     pain: clean(body.pain),
     limits: clean(body.limits),
   };
 
+  if (fields.name.length < 2) {
+    send(res, 400, { error: "Напишите, как к вам обращаться." }, headers);
+    return;
+  }
   if (fields.contact.length < 2) {
     send(res, 400, { error: "Напишите, как с вами связаться." }, headers);
     return;

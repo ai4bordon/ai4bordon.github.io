@@ -472,6 +472,7 @@
       event.preventDefault();
 
       const trap = form.elements.trap ? form.elements.trap.value.trim() : "";
+      const who = form.elements.name.value.trim();
       const contact = form.elements.contact.value.trim();
       const task = form.elements.task.value.trim();
       const pain = form.elements.pain.value.trim();
@@ -481,6 +482,10 @@
       if (fallback) fallback.setAttribute("hidden", "");
       if (sent) sent.setAttribute("hidden", "");
 
+      if (!who) {
+        fail("Напишите, как к вам обращаться.", form.elements.name);
+        return;
+      }
       if (!contact) {
         fail("Напишите, как с вами связаться.", form.elements.contact);
         return;
@@ -492,6 +497,7 @@
 
       const lines = [
         "Заявка на разбор",
+        "Имя: " + who,
         "Контакт: " + contact,
         "Задача: " + task,
       ];
@@ -515,7 +521,7 @@
       fetch(API_BASE + "/api/brief", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ contact, task, pain, limits, trap }),
+        body: JSON.stringify({ name: who, contact, task, pain, limits, trap }),
       })
         .then(async (response) => {
           const data = await response.json().catch(() => ({}));

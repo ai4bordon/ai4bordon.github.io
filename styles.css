@@ -501,10 +501,27 @@ main,
   padding: var(--s6);
   transition: border-color 200ms ease-out;
 }
-.mini:hover {
-  border-color: var(--line-2);
+/* одна подсветка на все блоки страницы */
+.mini,
+.case,
+.step,
+.plan,
+.qa__item,
+.offer,
+.flow,
+.field {
+  position: relative;
+  overflow: hidden;
 }
-.mini::before {
+
+.mini::before,
+.case::before,
+.step::before,
+.plan::before,
+.qa__item::before,
+.offer::before,
+.flow::before,
+.field::before {
   content: "";
   position: absolute;
   inset-block-start: 0;
@@ -514,14 +531,39 @@ main,
   background: linear-gradient(90deg, transparent, var(--acid), transparent);
   animation: sweep 5s linear infinite;
 }
-.mini:nth-child(2)::before {
+
+.mini:hover,
+.case:hover,
+.step:hover,
+.plan:hover,
+.qa__item:hover,
+.offer:hover,
+.flow:hover,
+.field:hover {
+  border-color: var(--line-2);
+}
+
+.mini:nth-child(2)::before,
+.step:nth-child(2)::before,
+.field:nth-child(3)::before {
   animation-delay: 1.2s;
 }
-.mini:nth-child(3)::before {
+.mini:nth-child(3)::before,
+.step:nth-child(3)::before,
+.field:nth-child(4)::before {
   animation-delay: 2.4s;
 }
-.mini:nth-child(4)::before {
+.mini:nth-child(4)::before,
+.step:nth-child(4)::before {
   animation-delay: 3.6s;
+}
+.case:nth-child(2n)::before,
+.qa__item:nth-child(2n)::before {
+  animation-delay: 2.1s;
+}
+.case:nth-child(3n)::before,
+.qa__item:nth-child(3n)::before {
+  animation-delay: 3.4s;
 }
 @keyframes sweep {
   from {

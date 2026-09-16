@@ -40,10 +40,10 @@ PAIRS = [
   '<h1 class="hero__title">AI agents<br>and products<br>that ship</h1>',
  ),
  (
-  """          Мультиагентные сценарии, интеграции с LLM и продукт вокруг них:
-          веб-приложения, админ-панели, трекеры, Telegram-боты и лендинги.""",
-  """          Multi-agent pipelines, LLM integrations and the product around them:
-          web apps, admin panels, trackers, Telegram bots and landing pages.""",
+  """          Мультиагентные сценарии, интеграции с LLM и продукт:<br>
+          веб-приложения, админ-панели, трекеры, Telegram-боты и ТМА, лендинги.""",
+  """          Multi-agent pipelines, LLM integrations and the product:<br>
+          web apps, admin panels, trackers, Telegram bots and TMAs, landing pages.""",
  ),
  (
   '<a class="btn btn--primary" href="#brief">Оставить заявку на разбор</a>',
@@ -565,6 +565,11 @@ CASE_PAIRS = [
           состав работ, оценку и дату. Материалы остаются у вас, даже если работать не будем.""",
   """          Describe the task in your own words, no technical terms needed. You get acceptance criteria,
           scope, an estimate and a date. The material stays with you even if we never work together.""",
+ ),
+ ('<label for="b-name">Ваше имя</label>', '<label for="b-name">Your name</label>'),
+ (
+  '<input id="b-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required>',
+  '<input id="b-name" name="name" type="text" autocomplete="name" placeholder="What should I call you" required>',
  ),
  (
   '<label for="b-contact">Как с вами связаться</label>',
