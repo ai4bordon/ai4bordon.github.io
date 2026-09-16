@@ -20,15 +20,21 @@
 <header class="bar">
   <div class="bar__inner">
     <a class="brand" href="#top"><span class="brand__dot" aria-hidden="true"></span>Bordon</a>
-    <nav class="nav" aria-label="Основная навигация">
+
+    <nav class="nav" id="nav" aria-label="Основная навигация">
       <a href="#do">Что делаю</a>
       <a href="#works">Работы</a>
+      <a href="#shots">Экраны</a>
       <a href="#formats">Цены</a>
       <a href="#faq">Вопросы</a>
     </nav>
+
     <div class="bar__side">
-      <span class="avail"><span class="avail__dot" aria-hidden="true"></span>Доступен, удалённо</span>
+      <span class="avail"><span class="avail__dot" aria-hidden="true"></span>Доступен</span>
       <a class="bar__tg" href="https://t.me/bordon_ai">Telegram</a>
+      <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
     </div>
   </div>
 </header>
@@ -36,32 +42,58 @@
 <main id="top">
 
   <section class="hero">
-    <div class="hero__grid" aria-hidden="true"><canvas id="hero-canvas"></canvas></div>
+    <div class="hero__bg" aria-hidden="true"><canvas id="hero-canvas"></canvas></div>
 
     <div class="hero__inner">
-      <h1 class="hero__title">ИИ-агенты<br>и продукты,<br>которые работают</h1>
+      <div class="hero__text">
+        <h1 class="hero__title">ИИ-агенты<br>и продукты,<br>которые работают</h1>
+        <p class="hero__lead">
+          Проектирую мультиагентные сценарии и интеграции с LLM. Вокруг них собираю продукт:
+          веб-дашборды, мини-CRM, трекеры, Telegram-боты и мини-аппы, лендинги.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="https://t.me/bordon_ai">
+            <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M21.6 4.3 2.9 11.5c-.8.3-.8 1.4.1 1.6l4.4 1.4 1.7 5.2c.2.7 1.1.9 1.6.3l2.4-2.6 4.5 3.3c.6.4 1.4.1 1.6-.6l3.1-14.6c.2-.9-.7-1.6-1.7-1.2Zm-3.4 3.1-7.4 6.6c-.2.2-.3.4-.3.6l-.3 2.6-1.2-3.7 9-6.7c.4-.3.6.2.2.6Z"/>
+            </svg>
+            Обсудить задачу
+          </a>
+          <a class="link" href="#works">Посмотреть работы</a>
+        </div>
+      </div>
 
-      <p class="hero__lead">
-        Проектирую мультиагентные сценарии и интеграции с LLM. Вокруг них собираю продукт:
-        веб-дашборды, мини-CRM, трекеры, Telegram-боты и мини-аппы, лендинги.
-        Веду от архитектуры до домена с сертификатом и отдаю код с инструкцией запуска.
-      </p>
-
-      <div class="hero__actions">
-        <a class="btn btn--primary" href="https://t.me/bordon_ai">
-          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M21.6 4.3 2.9 11.5c-.8.3-.8 1.4.1 1.6l4.4 1.4 1.7 5.2c.2.7 1.1.9 1.6.3l2.4-2.6 4.5 3.3c.6.4 1.4.1 1.6-.6l3.1-14.6c.2-.9-.7-1.6-1.7-1.2Zm-3.4 3.1-7.4 6.6c-.2.2-.3.4-.3.6l-.3 2.6-1.2-3.7 9-6.7c.4-.3.6.2.2.6Z"/>
-          </svg>
-          Обсудить задачу
-        </a>
-        <a class="hero__alt" href="#works">Сначала посмотреть работы</a>
+      <div class="flow" aria-hidden="true">
+        <p class="flow__title">Как устроен агентный конвейер</p>
+        <ol class="flow__list">
+          <li class="flow__stage" data-stage="0">
+            <span class="flow__dot"></span>
+            <span class="flow__name">Источник</span>
+            <span class="flow__meta">форма, почта, API</span>
+          </li>
+          <li class="flow__stage" data-stage="1">
+            <span class="flow__dot"></span>
+            <span class="flow__name">Разбор</span>
+            <span class="flow__meta">нормализация данных</span>
+          </li>
+          <li class="flow__stage" data-stage="2">
+            <span class="flow__dot"></span>
+            <span class="flow__name">Оценка</span>
+            <span class="flow__meta">скоринг и приоритет</span>
+          </li>
+          <li class="flow__stage" data-stage="3">
+            <span class="flow__dot"></span>
+            <span class="flow__name">Очередь</span>
+            <span class="flow__meta">решение оператора</span>
+          </li>
+        </ol>
+        <span class="flow__packet"></span>
       </div>
 
       <dl class="hero__stats">
-        <div><dt>Живых проектов на доменах</dt><dd>9</dd></div>
-        <div><dt>Тестов в трёх веб-продуктах</dt><dd>49</dd></div>
-        <div><dt>Публичных репозиториев</dt><dd>35</dd></div>
-        <div><dt>Готов начать</dt><dd>с этой недели</dd></div>
+        <div><dt>Живых проектов</dt><dd>9</dd></div>
+        <div><dt>Тестов в продуктах</dt><dd>49</dd></div>
+        <div><dt>Репозиториев</dt><dd>35</dd></div>
+        <div><dt>Начать можно</dt><dd>на этой неделе</dd></div>
       </dl>
     </div>
   </section>
@@ -76,77 +108,124 @@
     <div class="wrap">
       <header class="sec">
         <h2>Что делаю</h2>
-        <p class="sec__lead">
-          Основное направление: агентные системы и LLM. Вокруг них собираю то, чем пользуются люди.
-        </p>
+        <p class="sec__lead">Пять направлений. Основное: агентные системы и LLM.</p>
       </header>
 
-      <div class="do__main">
-        <article class="block">
-          <h3>Мультиагентные сценарии</h3>
-          <p>Разбиваю процесс на роли и строю конвейер, где агенты передают работу друг другу. Каждый шаг можно проверить отдельно, а не гадать, что случилось внутри одного большого промпта.</p>
-          <p class="block__case">Пример: входящий поток заявок превращается в приоритизированную очередь. Источник читается, сигнал нормализуется, лид получает оценку и попадает в очередь с приоритетом. Оператор видит карточку и решает: принять, отклонить, отложить.</p>
-        </article>
+      <div class="tabs" id="do-tabs">
+        <div class="tabs__list" role="tablist" aria-label="Направления работы">
+          <button class="tabs__tab is-on" role="tab" id="tab-ai" aria-controls="panel-ai" aria-selected="true" tabindex="0">Агенты и LLM</button>
+          <button class="tabs__tab" role="tab" id="tab-web" aria-controls="panel-web" aria-selected="false" tabindex="-1">Веб-продукты</button>
+          <button class="tabs__tab" role="tab" id="tab-tg" aria-controls="panel-tg" aria-selected="false" tabindex="-1">Telegram</button>
+          <button class="tabs__tab" role="tab" id="tab-landing" aria-controls="panel-landing" aria-selected="false" tabindex="-1">Лендинги</button>
+          <button class="tabs__tab" role="tab" id="tab-infra" aria-controls="panel-infra" aria-selected="false" tabindex="-1">Инфраструктура</button>
+        </div>
 
-        <article class="block">
-          <h3>Интеграции с LLM</h3>
-          <p>Подключаю OpenAI и Gemini к вашим данным и процессам. Модель работает по вашим правилам, а не по своему усмотрению.</p>
-          <p class="block__case">Пример: сначала разбор страницы или документа, потом текст. Контент опирается на факты из источника, а не на общие слова про продукт.</p>
-        </article>
+        <div class="tabs__panels">
+          <div class="tabs__panel is-on" role="tabpanel" id="panel-ai" aria-labelledby="tab-ai" tabindex="0">
+            <div class="cards">
+              <article class="mini">
+                <h3>Мультиагентные сценарии</h3>
+                <p>Процесс разбивается на роли, агенты передают работу друг другу. Каждый шаг проверяется отдельно.</p>
+              </article>
+              <article class="mini">
+                <h3>Интеграции с LLM</h3>
+                <p>OpenAI и Gemini, подключённые к вашим данным. Модель работает по вашим правилам.</p>
+              </article>
+              <article class="mini">
+                <h3>Поиск по своим данным</h3>
+                <p>Индексация документов и ответы со ссылками на источники. Видно, на чём основан ответ.</p>
+              </article>
+              <article class="mini">
+                <h3>Надёжность агентов</h3>
+                <p>Тесты промптов и регрессия в CI. Правка промпта не ломает прежние ответы тихо.</p>
+              </article>
+            </div>
+          </div>
 
-        <article class="block">
-          <h3>Поиск по своим данным</h3>
-          <p>Индексирую документы и отдаю ответы со ссылками на фрагменты-источники. Видно, на чём основан ответ и где он мог ошибиться.</p>
-          <p class="block__case">Индексация одобренных записей, векторный поиск, выдача с номерами источников и оценкой релевантности.</p>
-        </article>
+          <div class="tabs__panel" role="tabpanel" id="panel-web" aria-labelledby="tab-web" tabindex="0" hidden>
+            <div class="cards">
+              <article class="mini">
+                <h3>Дашборды</h3>
+                <p>Воронки, сроки, загрузка исполнителей, сравнение периодов.</p>
+              </article>
+              <article class="mini">
+                <h3>Мини-CRM</h3>
+                <p>Контакты, сделки, этапы, история касаний, права по ролям.</p>
+              </article>
+              <article class="mini">
+                <h3>Трекеры</h3>
+                <p>Задачи, канбан с перетаскиванием, сроки, уведомления, поиск.</p>
+              </article>
+              <article class="mini">
+                <h3>Роли и права</h3>
+                <p>Администратор, менеджер, исполнитель. Каждый видит только своё.</p>
+              </article>
+            </div>
+          </div>
 
-        <article class="block">
-          <h3>Надёжность агентов</h3>
-          <p>Промпты и сценарии ломаются тихо: ответ стал хуже, но никто не заметил. Закрываю это тестами и регрессией в CI.</p>
-          <p class="block__case">Стенд прогоняет промпт на наборе входов и сравнивает с прошлыми ответами. Поломка видна до выката, а не через неделю от клиента.</p>
-        </article>
-      </div>
+          <div class="tabs__panel" role="tabpanel" id="panel-tg" aria-labelledby="tab-tg" tabindex="0" hidden>
+            <div class="cards">
+              <article class="mini">
+                <h3>Боты</h3>
+                <p>Кэш, логирование, воронки анонсов, уведомления по событиям и срокам.</p>
+              </article>
+              <article class="mini">
+                <h3>Мини-аппы</h3>
+                <p>Интерфейс внутри Telegram: без установки приложения и без отдельного аккаунта.</p>
+              </article>
+              <article class="mini">
+                <h3>Связка с бэкендом</h3>
+                <p>Бот работает с вашим API, базой и внешними сервисами, а не живёт отдельно.</p>
+              </article>
+              <article class="mini">
+                <h3>Доступы</h3>
+                <p>Роли и ограничения прямо в боте: кто видит заявки, кто меняет статусы.</p>
+              </article>
+            </div>
+          </div>
 
-      <div class="do__grid">
-        <article class="block block--sm">
-          <h3>Веб-продукты</h3>
-          <ul class="ticks">
-            <li>Дашборды: воронки, сроки, загрузка, сравнение периодов</li>
-            <li>Мини-CRM: контакты, сделки, этапы, история, роли</li>
-            <li>Трекеры: задачи, канбан, сроки, уведомления, поиск</li>
-            <li>Роли и права: администратор, менеджер, исполнитель</li>
-          </ul>
-        </article>
+          <div class="tabs__panel" role="tabpanel" id="panel-landing" aria-labelledby="tab-landing" tabindex="0" hidden>
+            <div class="cards">
+              <article class="mini">
+                <h3>Структура под нишу</h3>
+                <p>Порядок блоков и аргументы подбираются под аудиторию, а не берутся одни на всё.</p>
+              </article>
+              <article class="mini">
+                <h3>Форма заявки</h3>
+                <p>Заявка с уведомлением и выгрузкой. Проверено на пяти живых страницах.</p>
+              </article>
+              <article class="mini">
+                <h3>Адаптив</h3>
+                <p>От 320 пикселей, с проверкой в Safari и на реальном телефоне.</p>
+              </article>
+              <article class="mini">
+                <h3>Скорость</h3>
+                <p>Без тяжёлых конструкторов: страница грузится быстро на мобильном интернете.</p>
+              </article>
+            </div>
+          </div>
 
-        <article class="block block--sm">
-          <h3>Telegram</h3>
-          <ul class="ticks">
-            <li>Боты: кэш, логирование, воронки, уведомления по событиям</li>
-            <li>Мини-аппы: интерфейс внутри Telegram, без установки</li>
-            <li>Связка бота с вашим API, базой и внешними сервисами</li>
-            <li>Права доступа и роли прямо в боте</li>
-          </ul>
-        </article>
-
-        <article class="block block--sm">
-          <h3>Лендинги</h3>
-          <ul class="ticks">
-            <li>Структура и оффер под конкретную услугу или товар</li>
-            <li>Форма заявки с уведомлением и выгрузкой</li>
-            <li>Адаптив от 320 пикселей, проверка в Safari</li>
-            <li>Быстрая загрузка: без тяжёлых конструкторов</li>
-          </ul>
-        </article>
-
-        <article class="block block--sm">
-          <h3>Инфраструктура</h3>
-          <ul class="ticks">
-            <li>Контейнеры и обратный прокси</li>
-            <li>Домены и сертификаты Let's Encrypt</li>
-            <li>Развёртывание одной командой, без простоя</li>
-            <li>Логи, мониторинг состояния, резервные копии</li>
-          </ul>
-        </article>
+          <div class="tabs__panel" role="tabpanel" id="panel-infra" aria-labelledby="tab-infra" tabindex="0" hidden>
+            <div class="cards">
+              <article class="mini">
+                <h3>Контейнеры</h3>
+                <p>Приложение упаковано и запускается одной командой на любом сервере.</p>
+              </article>
+              <article class="mini">
+                <h3>Домены и сертификаты</h3>
+                <p>Let's Encrypt с автоматическим продлением. HTTPS без ручных шагов.</p>
+              </article>
+              <article class="mini">
+                <h3>Обновление без простоя</h3>
+                <p>Пересборка и перезапуск скриптом: старый контейнер живёт до готовности нового.</p>
+              </article>
+              <article class="mini">
+                <h3>Логи и состояние</h3>
+                <p>Эндпоинты здоровья, логи контейнера, резервные копии базы.</p>
+              </article>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -155,9 +234,7 @@
     <div class="wrap">
       <header class="sec">
         <h2>Работы</h2>
-        <p class="sec__lead">
-          Отфильтруйте по направлению. У каждого кейса видно, что сделано и зачем это заказчику.
-        </p>
+        <p class="sec__lead">Фильтр по направлению. Строка раскрывается в детали.</p>
       </header>
 
       <div class="filters" role="group" aria-label="Фильтр кейсов">
@@ -167,113 +244,163 @@
         <button class="chip" data-filter="landing" aria-pressed="false">Лендинги</button>
       </div>
 
-      <ol class="cases" id="cases">
+      <div class="cases" id="cases">
 
-        <li class="case" data-cat="ai">
-          <div class="case__meta"><span class="case__year">2026</span><span>Мультиагентная система</span></div>
+        <details class="case" data-cat="ai">
+          <summary class="case__head">
+            <span class="case__year">2026</span>
+            <span class="case__title">UI/UX Agent Analyse</span>
+            <span class="case__cat">Мультиагентная система</span>
+            <span class="case__sum">Разбор лендинга несколькими агентами: юзабилити, структура, тексты</span>
+            <span class="case__more" aria-hidden="true"></span>
+          </summary>
           <div class="case__body">
-            <h3 class="case__title">UI/UX Agent Analyse</h3>
-            <p class="case__what">Система разбирает лендинг по частям: юзабилити, структура, конверсионные места, тексты. Несколько агентов с разными ролями, результат складывается в один разбор с привязкой к месту на странице.</p>
-            <p class="case__value"><span class="case__label">Зачем заказчику</span> Аудит страницы без ручного просмотра. Замечания привязаны к конкретным блокам, а не к общим ощущениям «надо улучшить».</p>
-            <ul class="tags"><li>Python</li><li>мультиагентная оркестрация</li><li>LLM</li><li>Docker</li></ul>
+            <p class="case__what">Система разбирает страницу по частям: юзабилити, структура, конверсионные места, тексты. Несколько агентов с разными ролями, результат складывается в один разбор.</p>
+            <p class="case__value"><span class="case__label">Зачем заказчику</span>Аудит без ручного просмотра. Замечания привязаны к конкретным блокам, а не к общим ощущениям.</p>
+            <ul class="tags"><li>Python</li><li>оркестрация агентов</li><li>LLM</li><li>Docker</li></ul>
+            <a class="case__go" href="https://github.com/ai4bordon/ui-ux-agent-analise">Открыть на GitHub</a>
           </div>
-          <a class="case__link" href="https://github.com/ai4bordon/ui-ux-agent-analise" aria-label="UI/UX Agent Analyse на GitHub"></a>
-        </li>
+        </details>
 
-        <li class="case" data-cat="ai">
-          <div class="case__meta"><span class="case__year">2026</span><span>Мультиагентный конвейер</span></div>
+        <details class="case" data-cat="ai">
+          <summary class="case__head">
+            <span class="case__year">2026</span>
+            <span class="case__title">CrewAI Advertising Agency</span>
+            <span class="case__cat">Мультиагентный конвейер</span>
+            <span class="case__sum">Рекламная кампания собирается агентами по цепочке ролей</span>
+            <span class="case__more" aria-hidden="true"></span>
+          </summary>
           <div class="case__body">
-            <h3 class="case__title">CrewAI Advertising Agency</h3>
-            <p class="case__what">Рекламное агентство на агентах: у каждого своя роль и своя зона ответственности, работа передаётся по цепочке от стратегии к текстам и креативам.</p>
-            <p class="case__value"><span class="case__label">Зачем заказчику</span> Сборка кампании разложена на роли и идёт конвейером. Видно, на каком шаге получилось плохо, и можно заменить один шаг, не переделывая всё.</p>
+            <p class="case__what">У каждого агента своя роль и зона ответственности. Работа передаётся по цепочке от стратегии к текстам и креативам.</p>
+            <p class="case__value"><span class="case__label">Зачем заказчику</span>Видно, на каком шаге получилось плохо. Можно заменить один шаг, не переделывая весь процесс.</p>
             <ul class="tags"><li>CrewAI</li><li>Python</li><li>LLM</li></ul>
+            <a class="case__go" href="https://github.com/ai4bordon/crewai-advertising-agency">Открыть на GitHub</a>
           </div>
-          <a class="case__link" href="https://github.com/ai4bordon/crewai-advertising-agency" aria-label="CrewAI Advertising Agency на GitHub"></a>
-        </li>
+        </details>
 
-        <li class="case" data-cat="ai">
-          <div class="case__meta"><span class="case__year">2026</span><span>Инструмент для агентов</span></div>
+        <details class="case" data-cat="ai">
+          <summary class="case__head">
+            <span class="case__year">2026</span>
+            <span class="case__title">Hermes Context Optimizer</span>
+            <span class="case__cat">Инструмент для агентов</span>
+            <span class="case__sum">Детерминированная оптимизация контекста: агент не тратит окно на мусор</span>
+            <span class="case__more" aria-hidden="true"></span>
+          </summary>
           <div class="case__body">
-            <h3 class="case__title">Hermes Context Optimizer</h3>
-            <p class="case__what">Плагин для Hermes Agent. Оптимизирует контекст инструментов детерминированно: одинаковый вход даёт одинаковый результат, без случайности в поведении.</p>
-            <p class="case__value"><span class="case__label">Зачем заказчику</span> Агент не тратит окно на мусор, а его поведение воспроизводимо от запуска к запуску. Это то, из-за чего агенты в проде ведут себя по-разному на одинаковых запросах.</p>
+            <p class="case__what">Плагин для Hermes Agent. Оптимизирует контекст инструментов так, что одинаковый вход даёт одинаковый результат.</p>
+            <p class="case__value"><span class="case__label">Зачем заказчику</span>Именно из-за этого агенты в проде ведут себя по-разному на одинаковых запросах. Здесь поведение воспроизводимо.</p>
             <ul class="tags"><li>Python</li><li>Hermes Agent</li><li>Apache-2.0</li><li>тесты</li></ul>
+            <a class="case__go" href="https://github.com/ai4bordon/hermes-context-optimizer">Открыть на GitHub</a>
           </div>
-          <a class="case__link" href="https://github.com/ai4bordon/hermes-context-optimizer" aria-label="Hermes Context Optimizer на GitHub"></a>
-        </li>
+        </details>
 
-        <li class="case" data-cat="ai">
-          <div class="case__meta"><span class="case__year">2026</span><span>Продукт на агентах</span></div>
+        <details class="case" data-cat="ai">
+          <summary class="case__head">
+            <span class="case__year">2026</span>
+            <span class="case__title">LeadOps AI</span>
+            <span class="case__cat">Продукт на агентах</span>
+            <span class="case__sum">Входящие заявки становятся приоритизированной очередью с историей решений</span>
+            <span class="case__more" aria-hidden="true"></span>
+          </summary>
           <div class="case__body">
-            <h3 class="case__title">LeadOps AI</h3>
-            <p class="case__what">Конвейер обработки входящих лидов: источники, сырые сигналы, скоринг, очередь и операторские действия на одном API. Отдельный слой поиска по базе знаний с выдачей источников.</p>
-            <p class="case__value"><span class="case__label">Зачем заказчику</span> Поток заявок превращается в приоритизированную очередь, а решения оператора фиксируются в истории. Не нужно листать почту и таблицы, чтобы понять, что делать первым.</p>
+            <p class="case__what">Конвейер обработки лидов: источники, сырые сигналы, скоринг, очередь и операторские действия на одном API. Отдельный слой поиска по базе знаний с выдачей источников.</p>
+            <p class="case__value"><span class="case__label">Зачем заказчику</span>Не нужно листать почту и таблицы, чтобы понять, что делать первым. Решения оператора фиксируются в истории.</p>
             <p class="case__note">Стенд развёрнут на отдельном сервере и закрыт от публичного доступа. Покажу на созвоне или пришлю доступ по запросу.</p>
             <ul class="tags"><li>NestJS</li><li>Prisma</li><li>PostgreSQL</li><li>LightRAG</li><li>Docker</li></ul>
           </div>
-        </li>
+        </details>
 
-        <li class="case" data-cat="ai">
-          <div class="case__meta"><span class="case__year">2025</span><span>Надёжность LLM</span></div>
+        <details class="case" data-cat="ai">
+          <summary class="case__head">
+            <span class="case__year">2025</span>
+            <span class="case__title">Prompt Test Lab</span>
+            <span class="case__cat">Надёжность LLM</span>
+            <span class="case__sum">Стенд сравнения промптов: регрессии ловятся в CI, а не клиентом</span>
+            <span class="case__more" aria-hidden="true"></span>
+          </summary>
           <div class="case__body">
-            <h3 class="case__title">Prompt Test Lab</h3>
-            <p class="case__what">Стенд для прогона и сравнения промптов. Ответы сохраняются и сравниваются между версиями, регрессии ловятся автоматически, проверка идёт в CI.</p>
-            <p class="case__value"><span class="case__label">Зачем заказчику</span> Правка промпта не ломает прежние ответы. Поломка видна до выката, а не через неделю от клиента, который заметил странность.</p>
+            <p class="case__what">Ответы сохраняются и сравниваются между версиями промпта. Проверка идёт автоматически, при каждом изменении.</p>
+            <p class="case__value"><span class="case__label">Зачем заказчику</span>Правка промпта не ломает прежние ответы тихо. Поломка видна до выката.</p>
             <ul class="tags"><li>Python</li><li>GitHub Actions</li><li>тесты</li></ul>
+            <a class="case__go" href="https://github.com/ai4bordon/prompt_test">Открыть на GitHub</a>
           </div>
-          <a class="case__link" href="https://github.com/ai4bordon/prompt_test" aria-label="Prompt Test Lab на GitHub"></a>
-        </li>
+        </details>
 
-        <li class="case" data-cat="ai">
-          <div class="case__meta"><span class="case__year">2025</span><span>Генерация контента</span></div>
+        <details class="case" data-cat="ai">
+          <summary class="case__head">
+            <span class="case__year">2025</span>
+            <span class="case__title">AI Web Analysis</span>
+            <span class="case__cat">Генерация контента</span>
+            <span class="case__sum">Тексты по фактам со страницы, а не по общим словам про продукт</span>
+            <span class="case__more" aria-hidden="true"></span>
+          </summary>
           <div class="case__body">
-            <h3 class="case__title">AI Web Analysis</h3>
-            <p class="case__what">Генерация рекламных постов из разбора веб-страницы через OpenAI API. Сначала факты со страницы, потом текст по этим фактам.</p>
-            <p class="case__value"><span class="case__label">Зачем заказчику</span> Тексты опираются на содержание страницы, а не на общие слова. Меньше правок после того, как клиент прочитал «инновационные решения».</p>
+            <p class="case__what">Сначала разбор веб-страницы, потом генерация постов через OpenAI API по extracted фактам.</p>
+            <p class="case__value"><span class="case__label">Зачем заказчику</span>Меньше правок после того, как клиент прочитал очередные «инновационные решения».</p>
             <ul class="tags"><li>Python</li><li>OpenAI API</li></ul>
+            <a class="case__go" href="https://github.com/ai4bordon/aI_web_analysis">Открыть на GitHub</a>
           </div>
-          <a class="case__link" href="https://github.com/ai4bordon/aI_web_analysis" aria-label="AI Web Analysis на GitHub"></a>
-        </li>
+        </details>
 
-        <li class="case" data-cat="web">
-          <div class="case__meta"><span class="case__year">2026</span><span>Веб-продукт</span></div>
+        <details class="case" data-cat="web">
+          <summary class="case__head">
+            <span class="case__year">2026</span>
+            <span class="case__title">NordFlow Tasks</span>
+            <span class="case__cat">Веб-продукт</span>
+            <span class="case__sum">Три роли, канбан с перетаскиванием, история и уведомления. 15 тестов</span>
+            <span class="case__more" aria-hidden="true"></span>
+          </summary>
           <div class="case__body">
-            <h3 class="case__title">NordFlow Tasks</h3>
-            <p class="case__what">Трекер проектов и задач: три роли с разной видимостью данных, канбан с перетаскиванием карточек, история изменений, уведомления, поиск с учётом буквы «ё».</p>
-            <p class="case__value"><span class="case__label">Зачем заказчику</span> Команда видит задачи, сроки и загрузку в одном месте. 15 тестов на бизнес-логику, ноль внешних зависимостей: только стандартная библиотека Node.</p>
-            <ul class="tags"><li>Node.js</li><li>SQLite</li><li>тесты</li></ul>
+            <p class="case__what">Трекер проектов и задач: разная видимость данных для трёх ролей, канбан, история изменений, уведомления, поиск с учётом буквы «ё».</p>
+            <p class="case__value"><span class="case__label">Зачем заказчику</span>Команда видит задачи, сроки и загрузку в одном месте. Ноль внешних зависимостей: только стандартная библиотека Node.</p>
+            <ul class="tags"><li>Node.js</li><li>SQLite</li><li>15 тестов</li></ul>
+            <a class="case__go" href="https://nordflow.veynx.xyz/">Открыть живой стенд</a>
           </div>
-          <a class="case__link" href="https://nordflow.veynx.xyz/" aria-label="NordFlow Tasks, живой стенд"></a>
-        </li>
+        </details>
 
-        <li class="case" data-cat="web">
-          <div class="case__meta"><span class="case__year">2026</span><span>Веб-продукт</span></div>
+        <details class="case" data-cat="web">
+          <summary class="case__head">
+            <span class="case__year">2026</span>
+            <span class="case__title">HabitFlow</span>
+            <span class="case__cat">Веб-продукт</span>
+            <span class="case__sum">Серии, проценты, тепловая карта. 16 тестов на краевые случаи</span>
+            <span class="case__more" aria-hidden="true"></span>
+          </summary>
           <div class="case__body">
-            <h3 class="case__title">HabitFlow</h3>
-            <p class="case__what">Трекер привычек: серии и проценты, тепловая карта по дням, архив с сохранением истории. Отмена отметки пересчитывает статистику, серия не рвётся, пока день не закончился.</p>
-            <p class="case__value"><span class="case__label">Зачем заказчику</span> Видно, где привычка ломается и что именно с этим делать. 16 тестов, включая краевые случаи серий и часовые пояса.</p>
-            <ul class="tags"><li>Node.js</li><li>Web</li><li>тесты</li></ul>
+            <p class="case__what">Трекер привычек: отметка одним нажатием, текущая и лучшая серия, тепловая карта по дням, архив с историей. Отмена отметки пересчитывает статистику.</p>
+            <p class="case__value"><span class="case__label">Зачем заказчику</span>Видно, где привычка ломается. Серия не рвётся, пока день не закончился, поэтому статистика не врёт.</p>
+            <ul class="tags"><li>Node.js</li><li>Web</li><li>16 тестов</li></ul>
+            <a class="case__go" href="https://habitflow.veynx.xyz/">Открыть живой стенд</a>
           </div>
-          <a class="case__link" href="https://habitflow.veynx.xyz/" aria-label="HabitFlow, живой стенд"></a>
-        </li>
+        </details>
 
-        <li class="case" data-cat="web">
-          <div class="case__meta"><span class="case__year">2026</span><span>Веб-продукт</span></div>
+        <details class="case" data-cat="web">
+          <summary class="case__head">
+            <span class="case__year">2026</span>
+            <span class="case__title">ТендерПульс</span>
+            <span class="case__cat">Веб-продукт</span>
+            <span class="case__sum">Пайплайн этапов и отчёты. Просрочка видна до срыва срока. 18 тестов</span>
+            <span class="case__more" aria-hidden="true"></span>
+          </summary>
           <div class="case__body">
-            <h3 class="case__title">ТендерПульс</h3>
-            <p class="case__what">Трекер этапов заказов: фиксированный пайплайн с историей переходов, назначение исполнителей, отчёты по воронке, времени этапа и загрузке. Просрочка считается по сроку этапа, а не заказа целиком.</p>
-            <p class="case__value"><span class="case__label">Зачем заказчику</span> Просрочка видна до того, как сорван срок. 18 тестов на переходы этапов, права ролей и краевые случаи.</p>
-            <ul class="tags"><li>Node.js</li><li>Web</li><li>тесты</li></ul>
+            <p class="case__what">Трекер этапов заказов: фиксированный пайплайн с историей переходов, назначение исполнителей, отчёты по воронке, времени этапа и загрузке.</p>
+            <p class="case__value"><span class="case__label">Зачем заказчику</span>Просрочка считается по сроку этапа, а не заказа целиком, поэтому видна заранее.</p>
+            <ul class="tags"><li>Node.js</li><li>Web</li><li>18 тестов</li></ul>
+            <a class="case__go" href="https://tenderpulse.veynx.xyz/">Открыть живой стенд</a>
           </div>
-          <a class="case__link" href="https://tenderpulse.veynx.xyz/" aria-label="ТендерПульс, живой стенд"></a>
-        </li>
+        </details>
 
-        <li class="case" data-cat="landing">
-          <div class="case__meta"><span class="case__year">2026</span><span>Лендинги, пять ниш</span></div>
+        <details class="case" data-cat="landing">
+          <summary class="case__head">
+            <span class="case__year">2026</span>
+            <span class="case__title">Пять лендингов</span>
+            <span class="case__cat">Страницы под услугу</span>
+            <span class="case__sum">Разные ниши: от психолога до мотошколы. У каждой своя структура</span>
+            <span class="case__more" aria-hidden="true"></span>
+          </summary>
           <div class="case__body">
-            <h3 class="case__title">Страницы под услугу и товар</h3>
-            <p class="case__what">Пять страниц: психолог и коуч, кофейня с заказом онлайн, приём платежей в LatAm, маркетинговая поддержка на английском, мотошкола в Санкт-Петербурге. У каждой своя структура, оффер и форма заявки.</p>
-            <p class="case__value"><span class="case__label">Зачем заказчику</span> Быстрый способ проверить спрос: страница, форма, заявки. Разные ниши показывают, что структура подбирается под аудиторию, а не берётся одна на всё.</p>
+            <p class="case__what">Психолог и коуч, кофейня с заказом онлайн, приём платежей в LatAm, маркетинговая поддержка на английском, мотошкола в Санкт-Петербурге.</p>
+            <p class="case__value"><span class="case__label">Зачем заказчику</span>Быстрый способ проверить спрос: страница, форма, заявки. Разные ниши показывают, что структура подбирается под аудиторию.</p>
             <ul class="tags links">
               <li><a href="https://l1.veynx.xyz/">Психолог</a></li>
               <li><a href="https://l2.veynx.xyz/">Кофейня</a></li>
@@ -282,89 +409,44 @@
               <li><a href="https://l5.veynx.xyz/">Мотошкола</a></li>
             </ul>
           </div>
-        </li>
+        </details>
 
-      </ol>
+      </div>
     </div>
   </section>
 
   <section class="shots" id="shots">
     <div class="wrap">
       <header class="sec">
-        <h2>Как это выглядит</h2>
-        <p class="sec__lead">
-          Скриншоты с работающих стендов. Каждая подпись ведёт на живой проект.
-        </p>
+        <h2>Экраны</h2>
+        <p class="sec__lead">Одиннадцать экранов с работающих стендов. Листайте стрелками или свайпом.</p>
       </header>
 
-      <ul class="gallery">
-        <li>
-          <a href="https://nordflow.veynx.xyz/">
-            <img src="img/nordflow.png" alt="NordFlow Tasks, дашборд с графиками и счётчиками" loading="lazy">
-            <span class="gallery__cap"><b>NordFlow Tasks</b> Дашборд: счётчики, графики по статусам, лента изменений</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://nordflow.veynx.xyz/">
-            <img src="img/nordflow-board.png" alt="NordFlow Tasks, канбан-доска с пятью колонками" loading="lazy">
-            <span class="gallery__cap"><b>NordFlow Tasks</b> Канбан: пять колонок, карточки перетаскиваются мышью</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://habitflow.veynx.xyz/">
-            <img src="img/habitflow.png" alt="HabitFlow, экран Сегодня с отметками привычек" loading="lazy">
-            <span class="gallery__cap"><b>HabitFlow</b> Экран «Сегодня»: отметка одним нажатием</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://habitflow.veynx.xyz/">
-            <img src="img/habitflow-detail.png" alt="HabitFlow, карточка привычки с тепловой картой" loading="lazy">
-            <span class="gallery__cap"><b>HabitFlow</b> Карточка привычки: серии, проценты, тепловая карта</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://tenderpulse.veynx.xyz/">
-            <img src="img/tenderpulse.png" alt="ТендерПульс, дашборд с воронкой этапов" loading="lazy">
-            <span class="gallery__cap"><b>ТендерПульс</b> Дашборд: воронка этапов с суммами и загрузка</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://tenderpulse.veynx.xyz/">
-            <img src="img/tenderpulse-orders.png" alt="ТендерПульс, список заказов с фильтрами" loading="lazy">
-            <span class="gallery__cap"><b>ТендерПульс</b> Заказы: фильтры по этапу, исполнителю и клиенту</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://l1.veynx.xyz/">
-            <img src="img/l1.png" alt="Лендинг психолога и коуча" loading="lazy">
-            <span class="gallery__cap"><b>Психолог и коуч</b> Личная страница специалиста с формой записи</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://l2.veynx.xyz/">
-            <img src="img/l2.png" alt="Лендинг кофейни с заказом онлайн" loading="lazy">
-            <span class="gallery__cap"><b>Кофейня «Аромат»</b> Заказ онлайн и забор через 15 минут</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://l3.veynx.xyz/">
-            <img src="img/l3.png" alt="Лендинг приёма платежей в LatAm" loading="lazy">
-            <span class="gallery__cap"><b>RutaPay</b> Приём платежей: география, методы, покрытие</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://l4.veynx.xyz/">
-            <img src="img/l4.png" alt="Лендинг маркетинговой поддержки на английском" loading="lazy">
-            <span class="gallery__cap"><b>Northern Monkey</b> Англоязычная страница под зарубежного клиента</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://l5.veynx.xyz/">
-            <img src="img/l5.png" alt="Лендинг мотошколы" loading="lazy">
-            <span class="gallery__cap"><b>Мотошкола «Трек»</b> Набор на обучение: программа и запись</span>
-          </a>
-        </li>
-      </ul>
+      <div class="carousel" id="carousel">
+        <ul class="carousel__track" id="carousel-track">
+          <li class="slide"><a href="https://nordflow.veynx.xyz/"><img src="img/nordflow.png" alt="NordFlow Tasks, дашборд" loading="lazy"><span class="slide__cap"><b>NordFlow Tasks</b>Дашборд: счётчики, графики, лента изменений</span></a></li>
+          <li class="slide"><a href="https://nordflow.veynx.xyz/"><img src="img/nordflow-board.png" alt="NordFlow Tasks, канбан" loading="lazy"><span class="slide__cap"><b>NordFlow Tasks</b>Канбан: карточки перетаскиваются мышью</span></a></li>
+          <li class="slide"><a href="https://habitflow.veynx.xyz/"><img src="img/habitflow.png" alt="HabitFlow, экран Сегодня" loading="lazy"><span class="slide__cap"><b>HabitFlow</b>Экран «Сегодня»: отметка одним нажатием</span></a></li>
+          <li class="slide"><a href="https://habitflow.veynx.xyz/"><img src="img/habitflow-detail.png" alt="HabitFlow, карточка привычки" loading="lazy"><span class="slide__cap"><b>HabitFlow</b>Серии, проценты, тепловая карта</span></a></li>
+          <li class="slide"><a href="https://tenderpulse.veynx.xyz/"><img src="img/tenderpulse.png" alt="ТендерПульс, дашборд" loading="lazy"><span class="slide__cap"><b>ТендерПульс</b>Воронка этапов с суммами</span></a></li>
+          <li class="slide"><a href="https://tenderpulse.veynx.xyz/"><img src="img/tenderpulse-orders.png" alt="ТендерПульс, список заказов" loading="lazy"><span class="slide__cap"><b>ТендерПульс</b>Заказы: фильтры и просрочка</span></a></li>
+          <li class="slide"><a href="https://l1.veynx.xyz/"><img src="img/l1.png" alt="Лендинг психолога" loading="lazy"><span class="slide__cap"><b>Психолог и коуч</b>Личная страница с записью</span></a></li>
+          <li class="slide"><a href="https://l2.veynx.xyz/"><img src="img/l2.png" alt="Лендинг кофейни" loading="lazy"><span class="slide__cap"><b>Кофейня «Аромат»</b>Заказ онлайн, забор через 15 минут</span></a></li>
+          <li class="slide"><a href="https://l3.veynx.xyz/"><img src="img/l3.png" alt="Лендинг приёма платежей" loading="lazy"><span class="slide__cap"><b>RutaPay</b>Приём платежей в LatAm</span></a></li>
+          <li class="slide"><a href="https://l4.veynx.xyz/"><img src="img/l4.png" alt="Лендинг Northern Monkey" loading="lazy"><span class="slide__cap"><b>Northern Monkey</b>Англоязычная страница</span></a></li>
+          <li class="slide"><a href="https://l5.veynx.xyz/"><img src="img/l5.png" alt="Лендинг мотошколы" loading="lazy"><span class="slide__cap"><b>Мотошкола «Трек»</b>Набор на обучение</span></a></li>
+        </ul>
+
+        <div class="carousel__nav">
+          <button class="cbtn" id="prev" type="button" aria-label="Предыдущий экран">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>
+          </button>
+          <div class="dots" id="dots" role="group" aria-label="Переход к экрану"></div>
+          <button class="cbtn" id="next" type="button" aria-label="Следующий экран">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -372,16 +454,16 @@
     <div class="wrap">
       <header class="sec">
         <h2>Чем подтверждается</h2>
-        <p class="sec__lead">Не словами про качество, а тем, что можно проверить.</p>
+        <p class="sec__lead">Проверяемые факты, а не слова про качество.</p>
       </header>
 
       <ul class="facts">
-        <li><b>49 тестов</b> в трёх веб-продуктах, все проходят. Тесты бьют в бизнес-логику напрямую, без поднятия порта.</li>
-        <li><b>9 проектов</b> открыты по ссылкам с этой страницы. Домены и сертификаты Let's Encrypt настроены, продление автоматическое.</li>
-        <li><b>Ноль внешних зависимостей</b> в трекерах: только стандартная библиотека Node. Меньше поводов для поломок при обновлениях.</li>
-        <li><b>README в каждом проекте</b> с запуском одной командой, таблицей эндпоинтов и примерами запросов.</li>
-        <li><b>Список того, что не вошло</b> есть в каждом кейсе. Вы заранее знаете границы того, что получили, а не находите их в процессе.</li>
-        <li><b>Открытые лицензии</b> там, где это уместно: Apache-2.0 и MIT. Код агентных инструментов можно читать и переиспользовать.</li>
+        <li><b>49 тестов</b> в трёх веб-продуктах, все проходят</li>
+        <li><b>9 проектов</b> открыты по ссылкам с этой страницы</li>
+        <li><b>HTTPS с автоматическим продлением</b> на каждом домене</li>
+        <li><b>Ноль внешних зависимостей</b> в трекерах</li>
+        <li><b>README с запуском одной командой</b> в каждом проекте</li>
+        <li><b>Список того, что не вошло</b> есть в каждом кейсе</li>
       </ul>
     </div>
   </section>
@@ -390,29 +472,29 @@
     <div class="wrap">
       <header class="sec">
         <h2>Как идёт работа</h2>
-        <p class="sec__lead">Четыре шага. На каждом вы получаете что-то, что можно потрогать.</p>
+        <p class="sec__lead">Четыре шага. На каждом вы получаете то, что можно потрогать.</p>
       </header>
 
       <ol class="steps">
         <li class="step">
           <h3>Разбор задачи</h3>
-          <p>Читаю описание, задаю вопросы, которые обычно не задают. Разбираем, что именно должно работать, чтобы результат считался готовым.</p>
-          <p class="step__out">На выходе: критерии приёмки, оценка по объёму и дата.</p>
+          <p>Читаю описание, задаю вопросы, которые обычно не задают.</p>
+          <p class="step__out">На выходе: критерии приёмки, объём, дата</p>
         </li>
         <li class="step">
           <h3>Прототип</h3>
-          <p>Собираю рабочую версию, а не макет. Она уже хранит данные, считает и показывает. Дальше правки обсуждаем по факту, а не по описанию.</p>
-          <p class="step__out">На выходе: живая ссылка, которую можно открыть и потрогать.</p>
+          <p>Рабочая версия, а не макет: хранит данные, считает, показывает.</p>
+          <p class="step__out">На выходе: живая ссылка</p>
         </li>
         <li class="step">
           <h3>Доработка</h3>
-          <p>Собираю замечания списком, правлю по нему. Спорные места разбираем: иногда замечание лечится не тем, о чём просили.</p>
-          <p class="step__out">На выходе: список правок с отметкой, что сделано и что решено иначе.</p>
+          <p>Замечания собираю списком и правлю по нему, спорное обсуждаем.</p>
+          <p class="step__out">На выходе: список правок и решений</p>
         </li>
         <li class="step">
           <h3>Сдача</h3>
-          <p>Передаю репозиторий с доступом, инструкцию запуска, схему данных. Показываю, как развернуть у себя и как обновлять.</p>
-          <p class="step__out">На выходе: код, README, схема, список границ и месяц поддержки.</p>
+          <p>Передаю репозиторий с доступом и показываю, как развернуть у себя.</p>
+          <p class="step__out">На выходе: код, README, схема, месяц поддержки</p>
         </li>
       </ol>
     </div>
@@ -422,22 +504,19 @@
     <div class="wrap">
       <header class="sec">
         <h2>Сколько стоит</h2>
-        <p class="sec__lead">
-          Две нижние границы. Точная цена после разбора задачи: она зависит от объёма, а не от настроения.
-        </p>
+        <p class="sec__lead">Нижние границы. Точная цена после разбора задачи.</p>
       </header>
 
       <div class="plans">
         <article class="plan">
           <h3>Сценарий или агент</h3>
           <p class="plan__price">от 130 000 ₽</p>
-          <p class="plan__what">Когда нужен один агент, конвейер или интеграция LLM в существующий процесс.</p>
+          <p class="plan__what">Один агент или конвейер, интеграция LLM в текущий процесс.</p>
           <ul>
-            <li>Один агент или конвейер: роли, оркестрация, промпты</li>
-            <li>Интеграция с вашими данными или сервисом</li>
+            <li>Роли, оркестрация, промпты</li>
+            <li>Интеграция с вашими данными</li>
             <li>Тесты на краевых случаях</li>
-            <li>Контейнер и деплой на поддомене с сертификатом</li>
-            <li>Код и README с запуском</li>
+            <li>Деплой на поддомене с сертификатом</li>
           </ul>
           <p class="plan__time">5–10 дней</p>
         </article>
@@ -445,22 +524,21 @@
         <article class="plan">
           <h3>Продукт целиком</h3>
           <p class="plan__price">от 250 000 ₽</p>
-          <p class="plan__what">Когда кроме агента нужен интерфейс, база и доступы для команды.</p>
+          <p class="plan__what">Кроме агента нужен интерфейс, база и доступы для команды.</p>
           <ul>
-            <li>Архитектура, API, интерфейс, база данных</li>
-            <li>Роли и права, отчётность, интеграции</li>
+            <li>Архитектура, API, интерфейс, база</li>
+            <li>Роли, права, отчётность</li>
             <li>Агентный слой внутри продукта</li>
-            <li>Инфраструктура: контейнеры, домен, сертификат, бэкапы</li>
-            <li>Месяц поддержки после сдачи</li>
+            <li>Инфраструктура, домен, бэкапы</li>
           </ul>
           <p class="plan__time">2–4 недели</p>
         </article>
       </div>
 
       <p class="plans__note">
-        Что входит в цену всегда: разбор задачи, критерии приёмки, тесты, деплой, инструкция запуска
+        В цену всегда входит: разбор задачи, критерии приёмки, тесты, деплой, инструкция запуска
         и правки в рамках согласованных критериев. Домен, сервер и платные API оплачиваются отдельно,
-        я показываю реальные суммы до старта.
+        реальные суммы показываю до старта.
       </p>
     </div>
   </section>
@@ -468,39 +546,39 @@
   <section class="faq" id="faq">
     <div class="wrap">
       <header class="sec">
-        <h2>Вопросы, которые обычно задают</h2>
+        <h2>Вопросы</h2>
       </header>
 
-      <dl class="qa">
-        <div class="qa__item">
-          <dt>Кому принадлежит код?</dt>
-          <dd>Вам. Передаю репозиторий с доступом и правами на ваш аккаунт или организацию. Сторонних лицензий, которые мешают распоряжаться кодом, не использую.</dd>
-        </div>
-        <div class="qa__item">
-          <dt>Почему не сделать это нейросетью за вечер?</dt>
-          <dd>Можно, и я работаю именно так. Разница в проверке. Нейросеть выдаёт первое похожее решение, а работа состоит в том, чтобы найти краевые случаи, закрыть их тестами и сделать поведение воспроизводимым. Промпт за вечер не выдержит потока заявок и не подскажет, что сломалось, когда ответы стали хуже.</dd>
-        </div>
-        <div class="qa__item">
-          <dt>Что если результат не понравится?</dt>
-          <dd>Правки в рамках согласованных критериев входят в цену. Если на прототипе видно, что задумка не работает, мы это признаём и меняем подход, а не доводим до сдачи. Разбор задачи бесплатный и без обязательств.</dd>
-        </div>
-        <div class="qa__item">
-          <dt>Нужен дизайн. Вы его делаете?</dt>
-          <dd>Дизайн с нуля не рисую. Собираю по вашему макету, по Figma или по техническому заданию для дизайнера. Если макета нет, работаю с готовой дизайн-системой, чтобы не изобретать визуал на ходу.</dd>
-        </div>
-        <div class="qa__item">
-          <dt>Что с поддержкой после сдачи?</dt>
-          <dd>Месяц входит в цену: правлю то, что сломалось по моей вине, и отвечаю на вопросы по запуску. Дальше по часам или по подписке, считаем отдельно и заранее.</dd>
-        </div>
-        <div class="qa__item">
-          <dt>Работаете по NDA?</dt>
-          <dd>Да. Коммерческие проекты и работы под NDA покажу по запросу, публично их не выкладываю.</dd>
-        </div>
-        <div class="qa__item">
-          <dt>Как быстро начнёте?</dt>
-          <dd>Готов начать с этой недели. Дату сдачи называю после разбора задачи и не двигаю молча: если срок поедет, вы узнаете об этом сразу, а не в день сдачи.</dd>
-        </div>
-      </dl>
+      <div class="qa">
+        <details class="qa__item">
+          <summary>Кому принадлежит код?</summary>
+          <p>Вам. Передаю репозиторий с доступом и правами на ваш аккаунт или организацию. Лицензий, которые мешают распоряжаться кодом, не использую.</p>
+        </details>
+        <details class="qa__item">
+          <summary>Почему не сделать это нейросетью за вечер?</summary>
+          <p>Можно, я так и работаю. Разница в проверке: нейросеть выдаёт первое похожее решение, а работа состоит в том, чтобы найти краевые случаи, закрыть их тестами и сделать поведение воспроизводимым.</p>
+        </details>
+        <details class="qa__item">
+          <summary>Что если результат не понравится?</summary>
+          <p>Правки в рамках согласованных критериев входят в цену. Если на прототипе видно, что задумка не работает, мы это признаём и меняем подход.</p>
+        </details>
+        <details class="qa__item">
+          <summary>Нужен дизайн. Вы его делаете?</summary>
+          <p>С нуля не рисую. Собираю по вашему макету, по Figma или по техническому заданию для дизайнера.</p>
+        </details>
+        <details class="qa__item">
+          <summary>Что с поддержкой после сдачи?</summary>
+          <p>Месяц входит: правлю то, что сломалось по моей вине, и отвечаю по запуску. Дальше по часам или подписке.</p>
+        </details>
+        <details class="qa__item">
+          <summary>Работаете по NDA?</summary>
+          <p>Да. Коммерческие проекты и работы под NDA покажу по запросу, публично не выкладываю.</p>
+        </details>
+        <details class="qa__item">
+          <summary>Как быстро начнёте?</summary>
+          <p>Готов начать на этой неделе. Дату сдачи называю после разбора задачи и не двигаю молча.</p>
+        </details>
+      </div>
     </div>
   </section>
 
@@ -508,10 +586,7 @@
     <div class="wrap">
       <header class="sec">
         <h2>Опишите задачу</h2>
-        <p class="sec__lead">
-          Двух предложений достаточно: что нужно и для кого. Дальше задам вопросы и скажу,
-          реально ли это в ваши сроки и сколько будет стоить.
-        </p>
+        <p class="sec__lead">Двух предложений достаточно: что нужно и для кого.</p>
       </header>
 
       <div class="contact__row">
@@ -521,10 +596,8 @@
           </svg>
           Написать в Telegram
         </a>
-        <a class="contact__alt" href="https://github.com/ai4bordon">github.com/ai4bordon</a>
+        <a class="link" href="https://github.com/ai4bordon">github.com/ai4bordon</a>
       </div>
-
-      <p class="contact__note">Отвечаю в тот же день. Переписку начинаю с вопросов, а не с прайса.</p>
     </div>
   </section>
 
@@ -534,10 +607,13 @@
   <div class="wrap foot__inner">
     <span>© 2026 Bordon</span>
     <span>Удалённо, часовой пояс EU</span>
-    <span>Страница собрана вручную: HTML, CSS, GSAP</span>
     <a href="#top">Наверх</a>
   </div>
 </footer>
+
+<button class="totop" id="totop" type="button" aria-label="Наверх" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>
+</button>
 
 <script src="vendor/gsap/gsap.min.js"></script>
 <script src="vendor/gsap/ScrollTrigger.min.js"></script>
