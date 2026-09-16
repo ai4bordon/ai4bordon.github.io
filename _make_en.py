@@ -40,30 +40,30 @@ PAIRS = [
   '<h1 class="hero__title">AI agents<br>and products<br>that ship</h1>',
  ),
  (
-  """          Проектирую мультиагентные сценарии и интеграции с LLM. Вокруг них собираю продукт:
-          веб-приложения и админ-панели, трекеры, Telegram-боты и мини-аппы, лендинги.""",
-  """          I design multi-agent pipelines and LLM integrations, then build the product around them:
-          web apps and admin panels, trackers, Telegram bots and mini apps, landing pages.""",
+  """          Мультиагентные сценарии, интеграции с LLM и продукт вокруг них:
+          веб-приложения, админ-панели, трекеры, Telegram-боты и лендинги.""",
+  """          Multi-agent pipelines, LLM integrations and the product around them:
+          web apps, admin panels, trackers, Telegram bots and landing pages.""",
  ),
- ("            Оставить заявку на разбор", "            Request a free review"),
+ (
+  '<a class="btn btn--primary" href="#brief">Оставить заявку на разбор</a>',
+  '<a class="btn btn--primary" href="#brief">Request a free review</a>',
+ ),
  (
   '<a class="link" href="https://t.me/bordon_ai">Или написать в Telegram</a>',
   '<a class="link" href="https://t.me/bordon_ai">Or message me on Telegram</a>',
  ),
-
-
-             (
+ (
   '<p class="offer__badge">Разбор задачи бесплатно</p>',
   '<p class="offer__badge">Free task review</p>',
  ),
  (
-  """          Присылаете два предложения о задаче, получаете критерии приёмки, состав работ и дату сдачи.
-          Материалы остаются у вас, даже если работать не будем. Если задача не моя, скажу сразу и подскажу, к кому идти.""",
-  """          Send two sentences about your task and get acceptance criteria, scope of work and a delivery date.
-          The material stays with you even if we never work together. If the task is not mine, I say so and point you to someone who fits.""",
+  """            Присылаете два предложения о задаче, получаете критерии приёмки, состав работ и дату.
+            Материалы остаются у вас. Если задача не моя, скажу сразу.""",
+  """            Send two sentences about your task and get acceptance criteria, scope and a delivery date.
+            The material stays with you. If the task is not mine, I say so up front.""",
  ),
  ("<h2>Что делаю</h2>", "<h2>What I do</h2>"),
-
  ('aria-label="Направления работы"', 'aria-label="Work directions"'),
  (">Агенты и LLM</button>", ">Agents and LLM</button>"),
  (">Веб-продукты</button>", ">Web products</button>"),
@@ -598,8 +598,6 @@ CASE_PAIRS = [
   'placeholder="Например: до конца месяца, до 100 000 ₽"',
   'placeholder="For example: by the end of the month, up to €1 000"',
  ),
-
-
  (
   '<p class="brief__next-title">Заявка готова</p>',
   '<p class="brief__next-title">Request is ready</p>',
@@ -675,8 +673,10 @@ PAIRS += [
 ]
 
 PAIRS += [
-    ('<p class="cta-row"><a class="btn btn--primary" href="#brief">Заявка на бесплатный разбор</a></p>',
-     '<p class="cta-row"><a class="btn btn--primary" href="#brief">Request a free review</a></p>'),
+ (
+  '<p class="cta-row"><a class="btn btn--primary" href="#brief">Заявка на бесплатный разбор</a></p>',
+  '<p class="cta-row"><a class="btn btn--primary" href="#brief">Request a free review</a></p>',
+ ),
 ]
 
 ALL = PAIRS + CASE_PAIRS
@@ -700,44 +700,37 @@ print(f"записано: {OUT}")
 
 # --- финальный проход: подписи схемы и заголовок блока
 FINAL = {
-    ">Источник</text>": ">Source</text>",
-    ">форма, почта, API</text>": ">form, email, API</text>",
-    ">Координатор</text>": ">Coordinator</text>",
-    ">ставит задачи</text>": ">assigns work</text>",
-    ">Агент: разбор</text>": ">Agent: parse</text>",
-    ">достаёт данные</text>": ">extracts data</text>",
-    ">Агент: скоринг</text>": ">Agent: scoring</text>",
-    ">считает приоритет</text>": ">sets priority</text>",
-    ">Агент: поиск</text>": ">Agent: search</text>",
-    ">похожие случаи</text>": ">similar cases</text>",
-    ">Свод</text>": ">Merge</text>",
-    ">приоритет и причина</text>": ">priority and reason</text>",
-    ">Оператор</text>": ">Operator</text>",
-    ">решает по карточке</text>": ">decides on card</text>",
-    '<p class="flow__title">Пример мультиагентного конвейера</p>':
-        '<p class="flow__title">Example of a multi-agent pipeline</p>',
-    'aria-label="Схема конвейера: источник, координатор, три агента, свод и оператор"':
-        'aria-label="Pipeline diagram: source, coordinator, three agents, merge and operator"',
-    '<p class="cta-row"><a class="btn btn--primary" href="#brief">Заявка на бесплатный разбор</a></p>':
-        '<p class="cta-row"><a class="btn btn--primary" href="#brief">Request a free review</a></p>',
-    ">Отправить заявку</button>": ">Send the request</button>",
-    '<p class="brief__hint">Заявка уходит напрямую мне в Telegram. Ничего лишнего не собираю.</p>':
-        '<p class="brief__hint">The request goes straight to my Telegram. Nothing extra is collected.</p>',
-    '<label for="b-trap">Не заполняйте это поле</label>':
-        '<label for="b-trap">Do not fill this field</label>',
-    '<p class="brief__next-title">Заявка отправлена</p>':
-        '<p class="brief__next-title">Request sent</p>',
-    '<p class="brief__next-text">Разберу её и отвечу в тот же день. Если удобнее в Telegram, напишите туда же.</p>':
-        '<p class="brief__next-text">I will review it and reply the same day. If Telegram is easier, message me there.</p>',
+ # подписи схемы в карточке
+ ">Источник</text>": ">Source</text>",
+ ">форма, почта, API</text>": ">form, email, API</text>",
+ ">Координатор</text>": ">Coordinator</text>",
+ ">распределяет задачи</text>": ">splits the work</text>",
+ ">Агент: разбор</text>": ">Agent: parse</text>",
+ ">Агент: скоринг</text>": ">Agent: scoring</text>",
+ ">Агент: поиск</text>": ">Agent: search</text>",
+ ">агент</text>": ">agent</text>",
+ ">Свод</text>": ">Merge</text>",
+ ">приоритет и причина</text>": ">priority and reason</text>",
+ ">Очередь</text>": ">Queue</text>",
+ ">порядок работы</text>": ">order of work</text>",
+ ">Оператор</text>": ">Operator</text>",
+ ">решает по карточке</text>": ">decides from the card</text>",
+ '<p class="flow__title">Пример мультиагентного конвейера</p>': '<p class="flow__title">Example of a multi-agent pipeline</p>',
+ 'aria-label="Схема конвейера: источник, координатор, три агента, свод, очередь и оператор"': 'aria-label="Pipeline diagram: source, coordinator, three agents, merge, queue and operator"',
+ '<p class="cta-row"><a class="btn btn--primary" href="#brief">Заявка на бесплатный разбор</a></p>': '<p class="cta-row"><a class="btn btn--primary" href="#brief">Request a free review</a></p>',
+ ">Отправить заявку</button>": ">Send the request</button>",
+ '<p class="brief__hint">Уходит мне в Telegram.</p>': '<p class="brief__hint">Goes straight to my Telegram.</p>',
+ '<p class="brief__next-title">Заявка отправлена</p>': '<p class="brief__next-title">Request sent</p>',
+ '<p class="brief__next-text">Разберу её и отвечу в тот же день. Если удобнее в Telegram, напишите туда же.</p>': '<p class="brief__next-text">I will review it and reply the same day. If Telegram is easier, message me there.</p>',
 }
 for ru, en in FINAL.items():
-    src = src.replace(ru, en)
+ src = src.replace(ru, en)
 
 left2 = re.findall(r"[А-Яа-яЁё]+", src)
 if left2:
-    print("осталось после финального прохода:", sorted(set(left2))[:20])
+ print("осталось после финального прохода:", sorted(set(left2))[:20])
 else:
-    print("после финального прохода кириллицы нет")
+ print("после финального прохода кириллицы нет")
 
 OUT.write_text(src, encoding="utf-8")
 print("перезаписано:", OUT)

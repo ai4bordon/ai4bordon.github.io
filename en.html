@@ -46,102 +46,113 @@
 
   <section class="hero">
     <div class="hero__inner">
-      <div class="hero__text">
+      <div class="hero__left">
         <h1 class="hero__title">AI agents<br>and products<br>that ship</h1>
         <p class="hero__lead">
-          I design multi-agent pipelines and LLM integrations, then build the product around them:
-          web apps and admin panels, trackers, Telegram bots and mini apps, landing pages.
+          Multi-agent pipelines, LLM integrations and the product around them:
+          web apps, admin panels, trackers, Telegram bots and landing pages.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="#brief">
-            Request a free review
-          </a>
+          <a class="btn btn--primary" href="#brief">Request a free review</a>
           <a class="link" href="https://t.me/bordon_ai">Or message me on Telegram</a>
+        </div>
+
+        <div class="offer">
+          <p class="offer__badge">Free task review</p>
+          <p class="offer__text">
+            Send two sentences about your task and get acceptance criteria, scope and a delivery date.
+            The material stays with you. If the task is not mine, I say so up front.
+          </p>
         </div>
       </div>
 
       <div class="flow">
         <p class="flow__title">Example of a multi-agent pipeline</p>
-        <svg class="flowmap" viewBox="0 0 1100 170" role="img" aria-label="Pipeline diagram: source, coordinator, three agents, merge and operator">
+        <svg class="flowmap" viewBox="0 0 320 728" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Pipeline diagram: source, coordinator, three agents, merge, queue and operator">
           <defs>
-            <path id="h1" d="M128 85 H 164"/>
-            <path id="h2" d="M284 85 H 320"/>
-            <path id="h3" d="M440 85 H 476"/>
-            <path id="h4" d="M596 85 H 632"/>
-            <path id="h5" d="M752 85 H 788"/>
-            <path id="h6" d="M908 85 H 944"/>
+            <path id="v1" d="M160 72 V 124"/>
+            <path id="v2" d="M160 180 C 160 218, 55 222, 55 288"/>
+            <path id="v3" d="M160 180 V 288"/>
+            <path id="v4" d="M160 180 C 160 218, 265 222, 265 288"/>
+            <path id="v5" d="M55 348 C 55 400, 160 392, 160 424"/>
+            <path id="v6" d="M160 348 V 424"/>
+            <path id="v7" d="M265 348 C 265 400, 160 392, 160 424"/>
+            <path id="v8" d="M160 480 V 544"/>
+            <path id="v9" d="M160 600 V 664"/>
           </defs>
 
           <g class="wires">
-            <use href="#h1"/><use href="#h2"/><use href="#h3"/><use href="#h4"/><use href="#h5"/><use href="#h6"/>
+            <use href="#v1"/><use href="#v2"/><use href="#v3"/><use href="#v4"/><use href="#v5"/><use href="#v6"/><use href="#v7"/><use href="#v8"/><use href="#v9"/>
           </g>
 
           <g class="pulses">
-            <circle class="pulse" r="3"><animateMotion dur="0.9s" begin="0.22s" repeatCount="indefinite"><mpath href="#h1"/></animateMotion></circle>
-            <circle class="pulse" r="3"><animateMotion dur="0.9s" begin="0.44s" repeatCount="indefinite"><mpath href="#h2"/></animateMotion></circle>
-            <circle class="pulse" r="3"><animateMotion dur="0.9s" begin="0.66s" repeatCount="indefinite"><mpath href="#h3"/></animateMotion></circle>
-            <circle class="pulse" r="3"><animateMotion dur="0.9s" begin="0.88s" repeatCount="indefinite"><mpath href="#h4"/></animateMotion></circle>
-            <circle class="pulse" r="3"><animateMotion dur="0.9s" begin="1.1s" repeatCount="indefinite"><mpath href="#h5"/></animateMotion></circle>
-            <circle class="pulse" r="3"><animateMotion dur="0.9s" begin="1.32s" repeatCount="indefinite"><mpath href="#h6"/></animateMotion></circle>
+            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="0.19s" repeatCount="indefinite"><mpath href="#v1"/></animateMotion></circle>
+            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="0.38s" repeatCount="indefinite"><mpath href="#v2"/></animateMotion></circle>
+            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="0.57s" repeatCount="indefinite"><mpath href="#v3"/></animateMotion></circle>
+            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="0.76s" repeatCount="indefinite"><mpath href="#v4"/></animateMotion></circle>
+            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="0.95s" repeatCount="indefinite"><mpath href="#v5"/></animateMotion></circle>
+            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="1.14s" repeatCount="indefinite"><mpath href="#v6"/></animateMotion></circle>
+            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="1.33s" repeatCount="indefinite"><mpath href="#v7"/></animateMotion></circle>
+            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="1.52s" repeatCount="indefinite"><mpath href="#v8"/></animateMotion></circle>
+            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="1.71s" repeatCount="indefinite"><mpath href="#v9"/></animateMotion></circle>
           </g>
 
           <g class="node node--source">
-            <rect x="8" y="57" width="120" height="56" rx="4"/>
-            <rect class="node__bar" x="8" y="57" width="120" height="2"/>
-            <text x="68" y="81">Source</text>
-            <text class="node__meta" x="68" y="98">form, email, API</text>
+            <rect x="90" y="16" width="140" height="56" rx="5"/>
+            <rect class="node__bar" x="90" y="16" width="140" height="2"/>
+            <text x="160" y="42">Source</text>
+            <text class="node__meta" x="160" y="59">form, email, API</text>
           </g>
 
           <g class="node node--hub">
-            <rect x="164" y="57" width="120" height="56" rx="4"/>
-            <rect class="node__bar" x="164" y="57" width="120" height="2"/>
-            <text x="224" y="81">Coordinator</text>
-            <text class="node__meta" x="224" y="98">assigns work</text>
-          </g>
-
-          <g class="node node--agent">
-            <rect x="320" y="57" width="120" height="56" rx="4"/>
-            <rect class="node__bar" x="320" y="57" width="120" height="2"/>
-            <text x="380" y="81">Agent: parse</text>
-            <text class="node__meta" x="380" y="98">extracts data</text>
-          </g>
-
-          <g class="node node--agent">
-            <rect x="476" y="57" width="120" height="56" rx="4"/>
-            <rect class="node__bar" x="476" y="57" width="120" height="2"/>
-            <text x="536" y="81">Agent: scoring</text>
-            <text class="node__meta" x="536" y="98">sets priority</text>
-          </g>
-
-          <g class="node node--agent">
-            <rect x="632" y="57" width="120" height="56" rx="4"/>
-            <rect class="node__bar" x="632" y="57" width="120" height="2"/>
-            <text x="692" y="81">Agent: search</text>
-            <text class="node__meta" x="692" y="98">similar cases</text>
+            <rect x="90" y="124" width="140" height="56" rx="5"/>
+            <rect class="node__bar" x="90" y="124" width="140" height="2"/>
+            <text x="160" y="150">Coordinator</text>
+            <text class="node__meta" x="160" y="167">splits the work</text>
           </g>
 
           <g class="node">
-            <rect x="788" y="57" width="120" height="56" rx="4"/>
-            <rect class="node__bar" x="788" y="57" width="120" height="2"/>
-            <text x="848" y="81">Merge</text>
-            <text class="node__meta" x="848" y="98">priority and reason</text>
+            <rect x="90" y="424" width="140" height="56" rx="5"/>
+            <rect class="node__bar" x="90" y="424" width="140" height="2"/>
+            <text x="160" y="450">Merge</text>
+            <text class="node__meta" x="160" y="467">priority and reason</text>
           </g>
 
           <g class="node">
-            <rect x="944" y="57" width="120" height="56" rx="4"/>
-            <rect class="node__bar" x="944" y="57" width="120" height="2"/>
-            <text x="1004" y="81">Operator</text>
-            <text class="node__meta" x="1004" y="98">decides on card</text>
+            <rect x="90" y="544" width="140" height="56" rx="5"/>
+            <rect class="node__bar" x="90" y="544" width="140" height="2"/>
+            <text x="160" y="570">Queue</text>
+            <text class="node__meta" x="160" y="587">order of work</text>
+          </g>
+
+          <g class="node">
+            <rect x="90" y="664" width="140" height="56" rx="5"/>
+            <rect class="node__bar" x="90" y="664" width="140" height="2"/>
+            <text x="160" y="690">Operator</text>
+            <text class="node__meta" x="160" y="707">decides from the card</text>
+          </g>
+
+          <g class="node node--agent">
+            <rect x="7" y="288" width="96" height="60" rx="5"/>
+            <rect class="node__bar" x="7" y="288" width="96" height="2"/>
+            <text x="55" y="314">Agent: parse</text>
+            <text class="node__meta" x="55" y="332">agent</text>
+          </g>
+
+          <g class="node node--agent">
+            <rect x="112" y="288" width="96" height="60" rx="5"/>
+            <rect class="node__bar" x="112" y="288" width="96" height="2"/>
+            <text x="160" y="314">Agent: scoring</text>
+            <text class="node__meta" x="160" y="332">agent</text>
+          </g>
+
+          <g class="node node--agent">
+            <rect x="217" y="288" width="96" height="60" rx="5"/>
+            <rect class="node__bar" x="217" y="288" width="96" height="2"/>
+            <text x="265" y="314">Agent: search</text>
+            <text class="node__meta" x="265" y="332">agent</text>
           </g>
         </svg>
-      </div>
-
-      <div class="offer">
-        <p class="offer__badge">Free task review</p>
-        <p class="offer__text">
-          Send two sentences about your task and get acceptance criteria, scope of work and a delivery date.
-          The material stays with you even if we never work together. If the task is not mine, I say so and point you to someone who fits.
-        </p>
       </div>
     </div>
   </section>
@@ -679,7 +690,6 @@
           </div>
 
           <div class="field field--trap" aria-hidden="true">
-            <label for="b-trap">Do not fill this field</label>
             <input id="b-trap" name="trap" type="text" tabindex="-1" autocomplete="off">
           </div>
 
@@ -687,7 +697,7 @@
 
           <div class="brief__actions">
             <button class="btn btn--primary" type="submit">Send the request</button>
-            <p class="brief__hint">The request goes straight to my Telegram. Nothing extra is collected.</p>
+            <p class="brief__hint">Goes straight to my Telegram.</p>
           </div>
 
           <div class="brief__next" id="b-sent" hidden>

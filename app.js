@@ -490,7 +490,11 @@
         return;
       }
 
-      const lines = ["Заявка на разбор", "Контакт: " + contact, "Задача: " + task];
+      const lines = [
+        "Заявка на разбор",
+        "Контакт: " + contact,
+        "Задача: " + task,
+      ];
       if (pain) lines.push("Что не работает: " + pain);
       if (limits) lines.push("Сроки и бюджет: " + limits);
       const text = lines.join(String.fromCharCode(10));
@@ -515,7 +519,8 @@
       })
         .then(async (response) => {
           const data = await response.json().catch(() => ({}));
-          if (!response.ok) throw new Error(data.error || "Не получилось отправить.");
+          if (!response.ok)
+            throw new Error(data.error || "Не получилось отправить.");
           return data;
         })
         .then(() => {

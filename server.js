@@ -35,10 +35,10 @@ const MIME = {
   ".woff2": "font/woff2",
 };
 
-const MAX_BODY = 16 * 1024;      // больше заявке не нужно
-const MAX_FIELD = 1200;          // предел на одно поле
+const MAX_BODY = 16 * 1024; // больше заявке не нужно
+const MAX_FIELD = 1200; // предел на одно поле
 const RATE_WINDOW_MS = 60 * 60 * 1000;
-const RATE_MAX = 5;              // заявок с одного адреса в час
+const RATE_MAX = 5; // заявок с одного адреса в час
 
 /** @type {Map<string, number[]>} */
 const hits = new Map();
@@ -63,7 +63,9 @@ function clientIp(req) {
 
 function cors(req) {
   const origin = req.headers.origin;
-  const allow = ALLOWED_ORIGIN ? ALLOWED_ORIGIN.split(",").map((s) => s.trim()) : [];
+  const allow = ALLOWED_ORIGIN
+    ? ALLOWED_ORIGIN.split(",").map((s) => s.trim())
+    : [];
   if (origin && (allow.includes(origin) || allow.includes("*"))) {
     return {
       "Access-Control-Allow-Origin": origin,
@@ -78,7 +80,10 @@ function cors(req) {
 function send(res, code, body, extra = {}) {
   const payload = typeof body === "string" ? body : JSON.stringify(body);
   res.writeHead(code, {
-    "Content-Type": typeof body === "string" ? "text/plain; charset=utf-8" : "application/json; charset=utf-8",
+    "Content-Type":
+      typeof body === "string"
+        ? "text/plain; charset=utf-8"
+        : "application/json; charset=utf-8",
     "Cache-Control": "no-store",
     ...extra,
   });
@@ -104,11 +109,18 @@ function readBody(req) {
 }
 
 function clean(value) {
-  return String(value == null ? "" : value).trim().slice(0, MAX_FIELD);
+  return String(value == null ? "" : value)
+    .trim()
+    .slice(0, MAX_FIELD);
 }
 
 function composeBrief(fields) {
-  const lines = ["Заявка на разбор с сайта", "", `Контакт: ${fields.contact}`, `Задача: ${fields.task}`];
+  const lines = [
+    "Заявка на разбор с сайта",
+    "",
+    `Контакт: ${fields.contact}`,
+    `Задача: ${fields.task}`,
+  ];
   if (fields.pain) lines.push(`Что не работает: ${fields.pain}`);
   if (fields.limits) lines.push(`Сроки и бюджет: ${fields.limits}`);
   lines.push("", `Когда: ${new Date().toISOString()}`);
@@ -118,7 +130,11 @@ function composeBrief(fields) {
 async function remember(text, meta) {
   try {
     await mkdir(dirname(BRIEF_LOG), { recursive: true });
-    await appendFile(BRIEF_LOG, JSON.stringify({ at: new Date().toISOString(), ...meta, text }) + "\n", "utf8");
+    await appendFile(
+      BRIEF_LOG,
+      JSON.stringify({ at: new Date().toISOString(), ...meta, text }) + "\n",
+      "utf8",
+    );
   } catch {
     /* резервная запись не должна ломать отправку */
   }
@@ -129,7 +145,11 @@ async function toTelegram(text) {
   const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: CHAT_ID, text, disable_web_page_preview: true }),
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text,
+      disable_web_page_preview: true,
+    }),
     signal: AbortSignal.timeout(15000),
   });
   const data = await res.json().catch(() => ({}));
@@ -154,7 +174,12 @@ async function handleBrief(req, res) {
 
   const ip = clientIp(req);
   if (rateLimited(ip)) {
-    send(res, 429, { error: "Слишком много заявок с одного адреса. Напишите в Telegram." }, headers);
+    send(
+      res,
+      429,
+      { error: "Слишком много заявок с одного адреса. Напишите в Telegram." },
+      headers,
+    );
     return;
   }
 
@@ -192,7 +217,12 @@ async function handleBrief(req, res) {
     return;
   }
   if (fields.task.length < 5) {
-    send(res, 400, { error: "Опишите задачу хотя бы одним предложением." }, headers);
+    send(
+      res,
+      400,
+      { error: "Опишите задачу хотя бы одним предложением." },
+      headers,
+    );
     return;
   }
 
@@ -203,7 +233,12 @@ async function handleBrief(req, res) {
     await toTelegram(text);
     send(res, 200, { ok: true }, headers);
   } catch (err) {
-    send(res, 502, { error: "Не получилось отправить. Напишите в Telegram напрямую." }, headers);
+    send(
+      res,
+      502,
+      { error: "Не получилось отправить. Напишите в Telegram напрямую." },
+      headers,
+    );
     void err;
   }
 }
@@ -218,7 +253,8 @@ async function serveStatic(req, res, urlPath) {
   try {
     const file = await readFile(target);
     res.writeHead(200, {
-      "Content-Type": MIME[extname(target).toLowerCase()] || "application/octet-stream",
+      "Content-Type":
+        MIME[extname(target).toLowerCase()] || "application/octet-stream",
       "Cache-Control": "no-cache",
     });
     res.end(file);

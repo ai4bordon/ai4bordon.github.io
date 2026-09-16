@@ -266,26 +266,33 @@ main,
   width: 100%;
   max-width: var(--wrap);
   margin-inline: auto;
-  padding: clamp(1.6rem, 4vh, 3rem) var(--pad) var(--s8);
+  padding: clamp(1.2rem, 3vh, 2.2rem) var(--pad) var(--s6);
   display: grid;
   gap: var(--gap);
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
-  grid-template-rows: auto auto;
-  align-content: space-between;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-rows: auto;
+  align-content: center;
   min-height: calc(100svh - 3.9rem);
 }
-.hero__text { grid-column: 1; grid-row: 1; }
+.hero__left {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s6);
+  align-self: stretch;
+}
 
 .hero__title {
   font-family: "Unbounded", system-ui, sans-serif;
   font-weight: 500;
-  font-size: clamp(1.9rem, 5.4vw, 4.1rem);
+  font-size: clamp(1.7rem, 4.4vw, 3.3rem);
   line-height: 1.04;
   letter-spacing: -0.03em;
   margin: 0 0 var(--s4);
 }
 .hero__lead {
-  margin: 0 0 var(--s6);
+  margin: 0 0 var(--s4);
   max-width: 46ch;
   color: var(--dim);
   font-size: clamp(1rem, 1.4vw, 1.1rem);
@@ -297,9 +304,6 @@ main,
   gap: var(--s4) var(--s6);
 }
 .offer {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: start;
   padding: var(--s4) var(--s6);
   background: var(--bg-2);
   border: 1px solid var(--line-2);
@@ -321,9 +325,11 @@ main,
 /* схема агентного конвейера */
 .flow {
   position: relative;
-  grid-column: 1 / -1;
-  grid-row: 2;
-  align-self: end;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
   background: color-mix(in srgb, var(--bg-2) 90%, transparent);
   border: 1px solid var(--line);
   border-radius: var(--r);
@@ -339,8 +345,10 @@ main,
 }
 .flowmap {
   display: block;
+  flex: 1 1 auto;
   width: 100%;
-  height: auto;
+  height: 0;
+  min-height: 0;
 }
 .flowmap .wires use {
   fill: none;
@@ -361,13 +369,13 @@ main,
 .flowmap text {
   fill: var(--fg);
   font-family: "Golos Text", system-ui, sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   text-anchor: middle;
 }
 .flowmap .node__meta {
   fill: var(--dim-2);
   font-family: "Martian Mono", ui-monospace, monospace;
-  font-size: 9px;
+  font-size: 10.5px;
 }
 .flowmap .pulse {
   fill: var(--acid);
@@ -1080,6 +1088,15 @@ main,
   outline: none;
 }
 
+.field--trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .brief__actions {
   display: flex;
   flex-wrap: wrap;
@@ -1202,11 +1219,15 @@ main,
 
 /* ------------------------------------------------------------ адаптив */
 
+/* атрибут hidden всегда скрывает, чем бы ни был задан display */
+[hidden] {
+  display: none;
+}
+
 @media (max-width: 62rem) {
   .hero__inner {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto auto;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
     min-height: auto;
     padding-bottom: var(--s12);
   }
