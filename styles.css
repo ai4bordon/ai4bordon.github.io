@@ -432,6 +432,14 @@ a {
   margin: 0 0 0.9rem;
   max-width: 68ch;
 }
+.case__note {
+  margin: 0 0 0.9rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--line-2);
+  color: var(--dim-2);
+  font-size: 0.92rem;
+  max-width: 68ch;
+}
 .case__label {
   font-family: "Martian Mono", ui-monospace, monospace;
   font-size: 0.68rem;
