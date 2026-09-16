@@ -68,17 +68,17 @@
 
       <div class="flow">
         <p class="flow__title">Example of a multi-agent pipeline</p>
-        <svg class="flowmap" viewBox="0 0 320 728" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Pipeline diagram: source, coordinator, three agents, merge, queue and operator">
+        <svg class="flowmap" viewBox="0 0 320 384" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Pipeline diagram: source, coordinator, three agents, merge, queue and operator">
           <defs>
-            <path id="v1" d="M160 72 V 124"/>
-            <path id="v2" d="M160 180 C 160 218, 55 222, 55 288"/>
-            <path id="v3" d="M160 180 V 288"/>
-            <path id="v4" d="M160 180 C 160 218, 265 222, 265 288"/>
-            <path id="v5" d="M55 348 C 55 400, 160 392, 160 424"/>
-            <path id="v6" d="M160 348 V 424"/>
-            <path id="v7" d="M265 348 C 265 400, 160 392, 160 424"/>
-            <path id="v8" d="M160 480 V 544"/>
-            <path id="v9" d="M160 600 V 664"/>
+            <path id="v1" d="M160 42 V 66"/>
+            <path id="v2" d="M160 102 C 160 116, 54 112, 54 126"/>
+            <path id="v3" d="M160 102 V 126"/>
+            <path id="v4" d="M160 102 C 160 116, 266 112, 266 126"/>
+            <path id="v5" d="M54 198 C 54 212, 160 208, 160 222"/>
+            <path id="v6" d="M160 198 V 222"/>
+            <path id="v7" d="M266 198 C 266 212, 160 208, 160 222"/>
+            <path id="v8" d="M160 258 V 282"/>
+            <path id="v9" d="M160 318 V 342"/>
           </defs>
 
           <g class="wires">
@@ -86,71 +86,71 @@
           </g>
 
           <g class="pulses">
-            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="0.19s" repeatCount="indefinite"><mpath href="#v1"/></animateMotion></circle>
-            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="0.38s" repeatCount="indefinite"><mpath href="#v2"/></animateMotion></circle>
-            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="0.57s" repeatCount="indefinite"><mpath href="#v3"/></animateMotion></circle>
-            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="0.76s" repeatCount="indefinite"><mpath href="#v4"/></animateMotion></circle>
-            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="0.95s" repeatCount="indefinite"><mpath href="#v5"/></animateMotion></circle>
-            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="1.14s" repeatCount="indefinite"><mpath href="#v6"/></animateMotion></circle>
-            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="1.33s" repeatCount="indefinite"><mpath href="#v7"/></animateMotion></circle>
-            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="1.52s" repeatCount="indefinite"><mpath href="#v8"/></animateMotion></circle>
-            <circle class="pulse" r="3.4"><animateMotion dur="1.7s" begin="1.71s" repeatCount="indefinite"><mpath href="#v9"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.6s" begin="0.18s" repeatCount="indefinite"><mpath href="#v1"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.6s" begin="0.36s" repeatCount="indefinite"><mpath href="#v2"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.6s" begin="0.54s" repeatCount="indefinite"><mpath href="#v3"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.6s" begin="0.72s" repeatCount="indefinite"><mpath href="#v4"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.6s" begin="0.9s" repeatCount="indefinite"><mpath href="#v5"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.6s" begin="1.08s" repeatCount="indefinite"><mpath href="#v6"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.6s" begin="1.26s" repeatCount="indefinite"><mpath href="#v7"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.6s" begin="1.44s" repeatCount="indefinite"><mpath href="#v8"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.6s" begin="1.62s" repeatCount="indefinite"><mpath href="#v9"/></animateMotion></circle>
           </g>
 
           <g class="node node--source">
-            <rect x="90" y="16" width="140" height="56" rx="5"/>
-            <rect class="node__bar" x="90" y="16" width="140" height="2"/>
-            <text x="160" y="42">Source</text>
-            <text class="node__meta" x="160" y="59">form, email, API</text>
+            <rect x="75" y="6" width="170" height="36" rx="5"/>
+            <rect class="node__bar" x="75" y="6" width="170" height="2"/>
+            <text x="160" y="23">Source</text>
+            <text class="node__meta" x="160" y="37">form, email, API</text>
           </g>
 
           <g class="node node--hub">
-            <rect x="90" y="124" width="140" height="56" rx="5"/>
-            <rect class="node__bar" x="90" y="124" width="140" height="2"/>
-            <text x="160" y="150">Coordinator</text>
-            <text class="node__meta" x="160" y="167">splits the work</text>
+            <rect x="75" y="66" width="170" height="36" rx="5"/>
+            <rect class="node__bar" x="75" y="66" width="170" height="2"/>
+            <text x="160" y="83">Coordinator</text>
+            <text class="node__meta" x="160" y="97">splits the work</text>
           </g>
 
           <g class="node">
-            <rect x="90" y="424" width="140" height="56" rx="5"/>
-            <rect class="node__bar" x="90" y="424" width="140" height="2"/>
-            <text x="160" y="450">Merge</text>
-            <text class="node__meta" x="160" y="467">priority and reason</text>
+            <rect x="75" y="222" width="170" height="36" rx="5"/>
+            <rect class="node__bar" x="75" y="222" width="170" height="2"/>
+            <text x="160" y="239">Merge</text>
+            <text class="node__meta" x="160" y="253">priority and reason</text>
           </g>
 
           <g class="node">
-            <rect x="90" y="544" width="140" height="56" rx="5"/>
-            <rect class="node__bar" x="90" y="544" width="140" height="2"/>
-            <text x="160" y="570">Queue</text>
-            <text class="node__meta" x="160" y="587">order of work</text>
+            <rect x="75" y="282" width="170" height="36" rx="5"/>
+            <rect class="node__bar" x="75" y="282" width="170" height="2"/>
+            <text x="160" y="299">Queue</text>
+            <text class="node__meta" x="160" y="313">order of work</text>
           </g>
 
           <g class="node">
-            <rect x="90" y="664" width="140" height="56" rx="5"/>
-            <rect class="node__bar" x="90" y="664" width="140" height="2"/>
-            <text x="160" y="690">Operator</text>
-            <text class="node__meta" x="160" y="707">decides from the card</text>
+            <rect x="75" y="342" width="170" height="36" rx="5"/>
+            <rect class="node__bar" x="75" y="342" width="170" height="2"/>
+            <text x="160" y="359">Operator</text>
+            <text class="node__meta" x="160" y="373">decides from the card</text>
           </g>
 
           <g class="node node--agent">
-            <rect x="7" y="288" width="96" height="60" rx="5"/>
-            <rect class="node__bar" x="7" y="288" width="96" height="2"/>
-            <text x="55" y="314">Agent: parse</text>
-            <text class="node__meta" x="55" y="332">agent</text>
+            <rect x="4" y="126" width="100" height="72" rx="5"/>
+            <rect class="node__bar" x="4" y="126" width="100" height="2"/>
+            <text x="54" y="160">Agent: parse</text>
+            <text class="node__meta" x="54" y="178">agent</text>
           </g>
 
           <g class="node node--agent">
-            <rect x="112" y="288" width="96" height="60" rx="5"/>
-            <rect class="node__bar" x="112" y="288" width="96" height="2"/>
-            <text x="160" y="314">Agent: scoring</text>
-            <text class="node__meta" x="160" y="332">agent</text>
+            <rect x="110" y="126" width="100" height="72" rx="5"/>
+            <rect class="node__bar" x="110" y="126" width="100" height="2"/>
+            <text x="160" y="160">Agent: scoring</text>
+            <text class="node__meta" x="160" y="178">agent</text>
           </g>
 
           <g class="node node--agent">
-            <rect x="217" y="288" width="96" height="60" rx="5"/>
-            <rect class="node__bar" x="217" y="288" width="96" height="2"/>
-            <text x="265" y="314">Agent: search</text>
-            <text class="node__meta" x="265" y="332">agent</text>
+            <rect x="216" y="126" width="100" height="72" rx="5"/>
+            <rect class="node__bar" x="216" y="126" width="100" height="2"/>
+            <text x="266" y="160">Agent: search</text>
+            <text class="node__meta" x="266" y="178">agent</text>
           </g>
         </svg>
       </div>
