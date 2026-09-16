@@ -464,13 +464,15 @@
     form.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      var contact = form.elements.contact.value.trim();
-      var task = form.elements.task.value.trim();
-      var pain = form.elements.pain.value.trim();
-      var limits = form.elements.limits.value.trim();
+      const trap = form.elements.trap ? form.elements.trap.value.trim() : "";
+      const contact = form.elements.contact.value.trim();
+      const task = form.elements.task.value.trim();
+      const pain = form.elements.pain.value.trim();
+      const limits = form.elements.limits.value.trim();
 
       if (err) err.setAttribute("hidden", "");
       if (fallback) fallback.setAttribute("hidden", "");
+      if (sent) sent.setAttribute("hidden", "");
 
       if (!contact) {
         fail("Напишите, как с вами связаться.", form.elements.contact);
@@ -481,20 +483,43 @@
         return;
       }
 
-      var lines = [
-        "Заявка на разбор",
-        "Контакт: " + contact,
-        "Задача: " + task,
-      ];
+      const lines = ["Заявка на разбор", "Контакт: " + contact, "Задача: " + task];
       if (pain) lines.push("Что не работает: " + pain);
       if (limits) lines.push("Сроки и бюджет: " + limits);
-      var text = lines.join("\n");
+      const text = lines.join(String.fromCharCode(10));
 
-      /* панель показываем сразу, копирование идёт бонусом и ни на чём не висит */
-      showText(text);
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).catch(() => {});
+      const button = form.querySelector("button[type=submit]");
+      const label = button ? button.textContent : "";
+      if (button) {
+        button.disabled = true;
+        button.textContent = "Отправляю";
       }
+
+      const restore = () => {
+        if (!button) return;
+        button.disabled = false;
+        button.textContent = label;
+      };
+
+      fetch("/api/brief", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contact, task, pain, limits, trap }),
+      })
+        .then(async (response) => {
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(data.error || "Не получилось отправить.");
+          return data;
+        })
+        .then(() => {
+          if (sent) sent.removeAttribute("hidden");
+          form.reset();
+        })
+        .catch(() => {
+          /* сервер недоступен: отдаём текст, чтобы человек отправил сам */
+          showText(text);
+        })
+        .finally(restore);
     });
   }
 

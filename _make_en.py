@@ -598,14 +598,8 @@ CASE_PAIRS = [
   'placeholder="Например: до конца месяца, до 100 000 ₽"',
   'placeholder="For example: by the end of the month, up to €1 000"',
  ),
- (
-  ">Собрать заявку и открыть Telegram</button>",
-  ">Build the request and open Telegram</button>",
- ),
- (
-  '<p class="brief__hint">Заявка собирается в вашем браузере и никуда не отправляется сама.</p>',
-  '<p class="brief__hint">The request is assembled in your browser and is never sent on its own.</p>',
- ),
+
+
  (
   '<p class="brief__next-title">Заявка готова</p>',
   '<p class="brief__next-title">Request is ready</p>',
@@ -726,6 +720,15 @@ FINAL = {
         'aria-label="Pipeline diagram: source, coordinator, three agents, merge and operator"',
     '<p class="cta-row"><a class="btn btn--primary" href="#brief">Заявка на бесплатный разбор</a></p>':
         '<p class="cta-row"><a class="btn btn--primary" href="#brief">Request a free review</a></p>',
+    ">Отправить заявку</button>": ">Send the request</button>",
+    '<p class="brief__hint">Заявка уходит напрямую мне в Telegram. Ничего лишнего не собираю.</p>':
+        '<p class="brief__hint">The request goes straight to my Telegram. Nothing extra is collected.</p>',
+    '<label for="b-trap">Не заполняйте это поле</label>':
+        '<label for="b-trap">Do not fill this field</label>',
+    '<p class="brief__next-title">Заявка отправлена</p>':
+        '<p class="brief__next-title">Request sent</p>',
+    '<p class="brief__next-text">Разберу её и отвечу в тот же день. Если удобнее в Telegram, напишите туда же.</p>':
+        '<p class="brief__next-text">I will review it and reply the same day. If Telegram is easier, message me there.</p>',
 }
 for ru, en in FINAL.items():
     src = src.replace(ru, en)

@@ -678,11 +678,22 @@
             <input id="b-limits" name="limits" type="text" placeholder="Например: до конца месяца, до 100 000 ₽">
           </div>
 
+          <div class="field field--trap" aria-hidden="true">
+            <label for="b-trap">Не заполняйте это поле</label>
+            <input id="b-trap" name="trap" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
           <p class="brief__err" id="b-err" hidden></p>
 
           <div class="brief__actions">
-            <button class="btn btn--primary" type="submit">Собрать заявку и открыть Telegram</button>
-            <p class="brief__hint">Заявка собирается в вашем браузере и никуда не отправляется сама.</p>
+            <button class="btn btn--primary" type="submit">Отправить заявку</button>
+            <p class="brief__hint">Заявка уходит напрямую мне в Telegram. Ничего лишнего не собираю.</p>
+          </div>
+
+          <div class="brief__next" id="b-sent" hidden>
+            <p class="brief__next-title">Заявка отправлена</p>
+            <p class="brief__next-text">Разберу её и отвечу в тот же день. Если удобнее в Telegram, напишите туда же.</p>
+            <p><a class="btn btn--primary" href="https://t.me/bordon_ai">Открыть Telegram</a></p>
           </div>
 
           <div class="brief__next" id="b-fallback" hidden>

@@ -678,11 +678,22 @@
             <input id="b-limits" name="limits" type="text" placeholder="For example: by the end of the month, up to €1 000">
           </div>
 
+          <div class="field field--trap" aria-hidden="true">
+            <label for="b-trap">Do not fill this field</label>
+            <input id="b-trap" name="trap" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
           <p class="brief__err" id="b-err" hidden></p>
 
           <div class="brief__actions">
-            <button class="btn btn--primary" type="submit">Build the request and open Telegram</button>
-            <p class="brief__hint">The request is assembled in your browser and is never sent on its own.</p>
+            <button class="btn btn--primary" type="submit">Send the request</button>
+            <p class="brief__hint">The request goes straight to my Telegram. Nothing extra is collected.</p>
+          </div>
+
+          <div class="brief__next" id="b-sent" hidden>
+            <p class="brief__next-title">Request sent</p>
+            <p class="brief__next-text">I will review it and reply the same day. If Telegram is easier, message me there.</p>
+            <p><a class="btn btn--primary" href="https://t.me/bordon_ai">Open Telegram</a></p>
           </div>
 
           <div class="brief__next" id="b-fallback" hidden>
