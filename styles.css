@@ -213,7 +213,10 @@ main,
   padding: var(--s1) var(--s2);
   line-height: 1.4;
 }
-.lang:hover { color: var(--acid); border-color: var(--acid); }
+.lang:hover {
+  color: var(--acid);
+  border-color: var(--acid);
+}
 
 .burger {
   display: none;
@@ -263,13 +266,15 @@ main,
   width: 100%;
   max-width: var(--wrap);
   margin-inline: auto;
-  padding: clamp(2.5rem, 7vh, 5rem) var(--pad) var(--s16);
+  padding: clamp(1.6rem, 4vh, 3rem) var(--pad) var(--s8);
   display: grid;
   gap: var(--gap);
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  align-content: center;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  grid-template-rows: auto auto;
+  align-content: space-between;
   min-height: calc(100svh - 3.9rem);
 }
+.hero__text { grid-column: 1; grid-row: 1; }
 
 .hero__title {
   font-family: "Unbounded", system-ui, sans-serif;
@@ -292,9 +297,10 @@ main,
   gap: var(--s4) var(--s6);
 }
 .offer {
-  grid-column: 1 / -1;
-  margin-top: var(--s4);
-  padding: var(--s6);
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  padding: var(--s4) var(--s6);
   background: var(--bg-2);
   border: 1px solid var(--line-2);
   border-left: 2px solid var(--acid);
@@ -315,7 +321,9 @@ main,
 /* схема агентного конвейера */
 .flow {
   position: relative;
-  align-self: center;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  align-self: end;
   background: color-mix(in srgb, var(--bg-2) 90%, transparent);
   border: 1px solid var(--line);
   border-radius: var(--r);
@@ -353,7 +361,8 @@ main,
 .flowmap text {
   fill: var(--fg);
   font-family: "Golos Text", system-ui, sans-serif;
-  font-size: 12px;
+  font-size: 11px;
+  text-anchor: middle;
 }
 .flowmap .node__meta {
   fill: var(--dim-2);
@@ -856,6 +865,12 @@ main,
   color: var(--fg);
 }
 
+.cta-row {
+  margin: var(--s8) 0 0;
+  padding-top: var(--s6);
+  border-top: 1px solid var(--line);
+}
+
 /* форматы */
 .plans {
   display: grid;
@@ -1026,7 +1041,11 @@ main,
   border: 1px solid var(--line);
   border-radius: var(--r);
 }
-.field { display: flex; flex-direction: column; gap: var(--s2); }
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
 .field label {
   font-family: "Unbounded", system-ui, sans-serif;
   font-weight: 400;
@@ -1048,11 +1067,18 @@ main,
   transition: border-color 150ms ease-out;
 }
 .field input::placeholder,
-.field textarea::placeholder { color: var(--dim-2); }
+.field textarea::placeholder {
+  color: var(--dim-2);
+}
 .field input:hover,
-.field textarea:hover { border-color: var(--dim-2); }
+.field textarea:hover {
+  border-color: var(--dim-2);
+}
 .field input:focus-visible,
-.field textarea:focus-visible { border-color: var(--acid); outline: none; }
+.field textarea:focus-visible {
+  border-color: var(--acid);
+  outline: none;
+}
 
 .brief__actions {
   display: flex;
@@ -1061,7 +1087,10 @@ main,
   gap: var(--s3) var(--s4);
   margin-top: var(--s2);
 }
-.brief__actions .btn { border: 0; cursor: pointer; }
+.brief__actions .btn {
+  border: 0;
+  cursor: pointer;
+}
 .brief__hint {
   margin: 0;
   color: var(--dim-2);
@@ -1091,9 +1120,18 @@ main,
   font-weight: 500;
   font-size: 1rem;
 }
-.brief__next-text { margin: 0; color: var(--dim); font-size: 0.95rem; }
-.brief__next p { margin: 0; }
-.brief__next-label { color: var(--dim-2); font-size: 0.85rem; }
+.brief__next-text {
+  margin: 0;
+  color: var(--dim);
+  font-size: 0.95rem;
+}
+.brief__next p {
+  margin: 0;
+}
+.brief__next-label {
+  color: var(--dim-2);
+  font-size: 0.85rem;
+}
 .brief__side {
   padding: var(--s6);
   border: 1px solid var(--line);
@@ -1166,6 +1204,8 @@ main,
 
 @media (max-width: 62rem) {
   .hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
     grid-template-columns: minmax(0, 1fr);
     min-height: auto;
     padding-bottom: var(--s12);

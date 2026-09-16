@@ -481,7 +481,11 @@
         return;
       }
 
-      var lines = ["Заявка на разбор", "Контакт: " + contact, "Задача: " + task];
+      var lines = [
+        "Заявка на разбор",
+        "Контакт: " + contact,
+        "Задача: " + task,
+      ];
       if (pain) lines.push("Что не работает: " + pain);
       if (limits) lines.push("Сроки и бюджет: " + limits);
       var text = lines.join("\n");
