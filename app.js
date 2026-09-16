@@ -6,7 +6,10 @@
 (() => {
   /* На GitHub Pages бэкенда нет, поэтому форма идёт на сервер по адресу.
      На самом сервере используется относительный путь. */
-  var API_BASE = location.hostname.endsWith("github.io") ? "https://bordon.digitai.icu" : "";
+  var API_BASE = "";
+  if (location.hostname.endsWith("github.io")) {
+    API_BASE = "https://bordon.digitai.icu";
+  }
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var hasGsap = window.gsap !== undefined;
