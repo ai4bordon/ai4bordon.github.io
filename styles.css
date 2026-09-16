@@ -81,6 +81,20 @@ a { color: inherit; }
   border-radius: 2px;
 }
 
+/* анимированный фон на всю страницу */
+.bgnet {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.bgnet canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.bar, main, .foot { position: relative; z-index: 1; }
+
 /* полоса прочитанного */
 .rail {
   position: fixed;
@@ -206,16 +220,6 @@ a { color: inherit; }
   overflow: hidden;
   border-bottom: 1px solid var(--line);
 }
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-.hero__bg canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
 .hero__inner {
   position: relative;
   z-index: 1;
@@ -250,128 +254,97 @@ a { color: inherit; }
   align-items: center;
   gap: var(--s4) var(--s6);
 }
-.hero__stats {
+.offer {
   grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s6) clamp(1.5rem, 4vw, 3rem);
-  margin: var(--s4) 0 0;
-  padding-top: var(--s6);
-  border-top: 1px solid var(--line);
+  margin-top: var(--s4);
+  padding: var(--s6);
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-left: 2px solid var(--acid);
+  border-radius: var(--r);
 }
-.hero__stats dt {
-  font-family: "Martian Mono", ui-monospace, monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--dim-2);
-  margin-bottom: var(--s1);
-}
-.hero__stats dd {
-  margin: 0;
+.offer__badge {
+  margin: 0 0 var(--s2);
   font-family: "Unbounded", system-ui, sans-serif;
-  font-weight: 400;
-  font-size: 1.02rem;
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+.offer__text {
+  margin: 0;
+  color: var(--dim);
+  max-width: 68ch;
 }
 
-/* анимированный конвейер */
+/* схема агентного конвейера */
 .flow {
   position: relative;
   align-self: center;
-  background: color-mix(in srgb, var(--bg-2) 88%, transparent);
+  background: color-mix(in srgb, var(--bg-2) 90%, transparent);
   border: 1px solid var(--line);
   border-radius: var(--r);
   padding: var(--s6);
 }
 .flow__title {
-  margin: 0 0 var(--s6);
+  margin: 0 0 var(--s4);
   font-family: "Martian Mono", ui-monospace, monospace;
   font-size: 0.7rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--dim-2);
 }
-.flow__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s6);
-  position: relative;
+.flowmap { display: block; width: 100%; height: auto; }
+.flowmap .wires use {
+  fill: none;
+  stroke: var(--line-2);
+  stroke-width: 1;
 }
-.flow__list::before {
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: 6px;
-  bottom: 6px;
-  width: 1px;
-  background: var(--line-2);
+.flowmap .node rect {
+  fill: var(--bg-3);
+  stroke: var(--line-2);
+  stroke-width: 1;
 }
-.flow__stage {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0 var(--s4);
-  padding-left: var(--s8);
-  transition: opacity 250ms ease-out;
-  opacity: 0.45;
+.flowmap .node--branch rect { fill: var(--bg-2); }
+.flowmap .node__dot { fill: var(--acid); }
+.flowmap text {
+  fill: var(--fg);
+  font-family: "Golos Text", system-ui, sans-serif;
+  font-size: 12px;
 }
-.flow__stage.is-on { opacity: 1; }
-.flow__dot {
-  position: absolute;
-  left: 0;
-  top: 4px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 1px solid var(--line-2);
-  transition: background 200ms ease-out, border-color 200ms ease-out;
+.flowmap .node__meta {
+  fill: var(--dim-2);
+  font-family: "Martian Mono", ui-monospace, monospace;
+  font-size: 9px;
 }
-.flow__stage.is-on .flow__dot {
-  background: var(--acid);
-  border-color: var(--acid);
-}
-.flow__name {
-  font-family: "Unbounded", system-ui, sans-serif;
-  font-weight: 400;
-  font-size: 0.95rem;
-  grid-column: 1;
-}
-.flow__meta {
-  grid-column: 1;
-  color: var(--dim-2);
-  font-size: 0.85rem;
-}
-.flow__packet {
-  position: absolute;
-  left: calc(var(--s6) + 1px);
-  top: var(--s6);
-  width: 9px;
-  height: 9px;
-  margin-left: -4px;
-  border-radius: 50%;
-  background: var(--acid);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--acid) 18%, transparent);
-  pointer-events: none;
-}
+.flowmap .pulse { fill: var(--acid); }
+.flowmap .pulse--b { fill: var(--dim); }
 
-/* бегущая строка */
+/* бегущая строка: один ряд */
 .stack {
   border-bottom: 1px solid var(--line);
   overflow: hidden;
   padding: var(--s3) 0;
 }
+.stack__row { display: flex; }
 .stack__track {
   display: flex;
+  align-items: center;
   gap: var(--s8);
   width: max-content;
   font-family: "Martian Mono", ui-monospace, monospace;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   color: var(--dim-2);
   white-space: nowrap;
+}
+.tick {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+}
+.tick__ico {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  flex: 0 0 auto;
 }
 
 /* ------------------------------------------------------------- секции */
@@ -436,10 +409,31 @@ a { color: inherit; }
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 .mini {
+  position: relative;
+  overflow: hidden;
   background: var(--bg-2);
   border: 1px solid var(--line);
   border-radius: var(--r);
   padding: var(--s6);
+  transition: border-color 200ms ease-out;
+}
+.mini:hover { border-color: var(--line-2); }
+.mini::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 45%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--acid), transparent);
+  animation: sweep 5s linear infinite;
+}
+.mini:nth-child(2)::before { animation-delay: 1.2s; }
+.mini:nth-child(3)::before { animation-delay: 2.4s; }
+.mini:nth-child(4)::before { animation-delay: 3.6s; }
+@keyframes sweep {
+  from { transform: translateX(-110%); }
+  to { transform: translateX(330%); }
 }
 .mini h3 {
   font-family: "Unbounded", system-ui, sans-serif;
@@ -962,6 +956,10 @@ a { color: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .mini::before,
+  .flowmap .pulse {
+    display: none;
+  }
   *,
   *::before,
   *::after {

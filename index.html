@@ -17,6 +17,8 @@
 
 <div class="rail" aria-hidden="true"><span class="rail__fill" id="rail-fill"></span></div>
 
+<div class="bgnet" aria-hidden="true"><canvas id="net-canvas"></canvas></div>
+
 <header class="bar">
   <div class="bar__inner">
     <a class="brand" href="#top"><span class="brand__dot" aria-hidden="true"></span>Bordon</a>
@@ -24,7 +26,7 @@
     <nav class="nav" id="nav" aria-label="Основная навигация">
       <a href="#do">Что делаю</a>
       <a href="#works">Работы</a>
-      <a href="#shots">Экраны</a>
+      <a href="#shots">Интерфейсы</a>
       <a href="#formats">Цены</a>
       <a href="#faq">Вопросы</a>
     </nav>
@@ -42,8 +44,6 @@
 <main id="top">
 
   <section class="hero">
-    <div class="hero__bg" aria-hidden="true"><canvas id="hero-canvas"></canvas></div>
-
     <div class="hero__inner">
       <div class="hero__text">
         <h1 class="hero__title">ИИ-агенты<br>и продукты,<br>которые работают</h1>
@@ -62,45 +62,107 @@
         </div>
       </div>
 
-      <div class="flow" aria-hidden="true">
+      <div class="flow">
         <p class="flow__title">Как устроен агентный конвейер</p>
-        <ol class="flow__list">
-          <li class="flow__stage" data-stage="0">
-            <span class="flow__dot"></span>
-            <span class="flow__name">Источник</span>
-            <span class="flow__meta">форма, почта, API</span>
-          </li>
-          <li class="flow__stage" data-stage="1">
-            <span class="flow__dot"></span>
-            <span class="flow__name">Разбор</span>
-            <span class="flow__meta">нормализация данных</span>
-          </li>
-          <li class="flow__stage" data-stage="2">
-            <span class="flow__dot"></span>
-            <span class="flow__name">Оценка</span>
-            <span class="flow__meta">скоринг и приоритет</span>
-          </li>
-          <li class="flow__stage" data-stage="3">
-            <span class="flow__dot"></span>
-            <span class="flow__name">Очередь</span>
-            <span class="flow__meta">решение оператора</span>
-          </li>
-        </ol>
-        <span class="flow__packet"></span>
+        <svg class="flowmap" viewBox="0 0 360 420" role="img" aria-label="Схема конвейера: источник, разбор сигнала, две ветки обработки, очередь и оператор">
+          <defs>
+            <path id="fc1" d="M180 62 V 98" fill="none"/>
+            <path id="fc2" d="M180 142 C 180 168, 95 168, 95 193" fill="none"/>
+            <path id="fc3" d="M180 142 C 180 168, 265 168, 265 193" fill="none"/>
+            <path id="fc4" d="M95 237 C 95 262, 180 258, 180 283" fill="none"/>
+            <path id="fc5" d="M265 237 C 265 262, 180 258, 180 283" fill="none"/>
+            <path id="fc6" d="M180 327 V 363" fill="none"/>
+          </defs>
+
+          <g class="wires">
+            <use href="#fc1"/><use href="#fc2"/><use href="#fc3"/>
+            <use href="#fc4"/><use href="#fc5"/><use href="#fc6"/>
+          </g>
+
+          <g class="pulses">
+            <circle class="pulse" r="3.5"><animateMotion dur="1.6s" begin="0s" repeatCount="indefinite"><mpath href="#fc1"/></animateMotion></circle>
+            <circle class="pulse" r="3.5"><animateMotion dur="1.6s" begin="0.8s" repeatCount="indefinite"><mpath href="#fc1"/></animateMotion></circle>
+            <circle class="pulse" r="3.5"><animateMotion dur="2.2s" begin="0.3s" repeatCount="indefinite"><mpath href="#fc2"/></animateMotion></circle>
+            <circle class="pulse pulse--b" r="3.5"><animateMotion dur="2.2s" begin="0.9s" repeatCount="indefinite"><mpath href="#fc3"/></animateMotion></circle>
+            <circle class="pulse" r="3.5"><animateMotion dur="2s" begin="1.1s" repeatCount="indefinite"><mpath href="#fc4"/></animateMotion></circle>
+            <circle class="pulse pulse--b" r="3.5"><animateMotion dur="2s" begin="1.5s" repeatCount="indefinite"><mpath href="#fc5"/></animateMotion></circle>
+            <circle class="pulse" r="3.5"><animateMotion dur="1.8s" begin="0.5s" repeatCount="indefinite"><mpath href="#fc6"/></animateMotion></circle>
+          </g>
+
+          <g class="node">
+            <rect x="115" y="18" width="130" height="44" rx="4"/>
+            <circle class="node__dot" cx="133" cy="40" r="3"/>
+            <text x="145" y="36">Источник</text>
+            <text class="node__meta" x="145" y="50">форма, почта, API</text>
+          </g>
+
+          <g class="node">
+            <rect x="115" y="98" width="130" height="44" rx="4"/>
+            <circle class="node__dot" cx="133" cy="120" r="3"/>
+            <text x="145" y="116">Разбор</text>
+            <text class="node__meta" x="145" y="130">нормализация</text>
+          </g>
+
+          <g class="node node--branch">
+            <rect x="30" y="193" width="130" height="44" rx="4"/>
+            <circle class="node__dot" cx="48" cy="215" r="3"/>
+            <text x="60" y="211">Скоринг</text>
+            <text class="node__meta" x="60" y="225">оценка лида</text>
+          </g>
+
+          <g class="node node--branch">
+            <rect x="200" y="193" width="130" height="44" rx="4"/>
+            <circle class="node__dot" cx="218" cy="215" r="3"/>
+            <text x="230" y="211">Поиск по базе</text>
+            <text class="node__meta" x="230" y="225">похожие случаи</text>
+          </g>
+
+          <g class="node">
+            <rect x="115" y="283" width="130" height="44" rx="4"/>
+            <circle class="node__dot" cx="133" cy="305" r="3"/>
+            <text x="145" y="301">Очередь</text>
+            <text class="node__meta" x="145" y="315">приоритет</text>
+          </g>
+
+          <g class="node">
+            <rect x="115" y="363" width="130" height="44" rx="4"/>
+            <circle class="node__dot" cx="133" cy="385" r="3"/>
+            <text x="145" y="381">Оператор</text>
+            <text class="node__meta" x="145" y="395">решение</text>
+          </g>
+        </svg>
       </div>
 
-      <dl class="hero__stats">
-        <div><dt>Живых проектов</dt><dd>9</dd></div>
-        <div><dt>Тестов в продуктах</dt><dd>49</dd></div>
-        <div><dt>Репозиториев</dt><dd>35</dd></div>
-        <div><dt>Начать можно</dt><dd>на этой неделе</dd></div>
-      </dl>
+      <div class="offer">
+        <p class="offer__badge">Разбор задачи бесплатно</p>
+        <p class="offer__text">
+          Присылаете два предложения о задаче, получаете критерии приёмки, состав работ и дату сдачи.
+          Если задача не моя, скажу сразу и подскажу, к кому идти.
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="stack" aria-label="Стек">
-    <div class="stack__track" id="stack-track">
-      <span>Python</span><span>FastAPI</span><span>TypeScript</span><span>NestJS</span><span>CrewAI</span><span>OpenAI API</span><span>Gemini</span><span>pgvector</span><span>RAG</span><span>PostgreSQL</span><span>Prisma</span><span>Redis</span><span>Docker</span><span>Traefik</span><span>Let's Encrypt</span><span>GitHub Actions</span><span>Node.js</span><span>Telegram Bot API</span>
+    <div class="stack__row" id="stack-row">
+      <div class="stack__track" id="stack-track">
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#python"/></svg>Python</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#fastapi"/></svg>FastAPI</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#typescript"/></svg>TypeScript</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#nestjs"/></svg>NestJS</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#crewai"/></svg>CrewAI</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#openai"/></svg>OpenAI</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#googlegemini"/></svg>Gemini</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#postgresql"/></svg>PostgreSQL</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#prisma"/></svg>Prisma</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#redis"/></svg>Redis</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#docker"/></svg>Docker</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#traefikproxy"/></svg>Traefik</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#letsencrypt"/></svg>Let’s Encrypt</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#githubactions"/></svg>GitHub Actions</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#nodedotjs"/></svg>Node.js</span>
+      <span class="tick"><svg class="tick__ico" aria-hidden="true"><use href="img/icons.svg#telegram"/></svg>Telegram</span>
+      </div>
     </div>
   </section>
 
@@ -393,7 +455,7 @@
         <details class="case" data-cat="landing">
           <summary class="case__head">
             <span class="case__year">2026</span>
-            <span class="case__title">Пять лендингов</span>
+            <span class="case__title">Лендинги</span>
             <span class="case__cat">Страницы под услугу</span>
             <span class="case__sum">Разные ниши: от психолога до мотошколы. У каждой своя структура</span>
             <span class="case__more" aria-hidden="true"></span>
@@ -418,8 +480,8 @@
   <section class="shots" id="shots">
     <div class="wrap">
       <header class="sec">
-        <h2>Экраны</h2>
-        <p class="sec__lead">Одиннадцать экранов с работающих стендов. Листайте стрелками или свайпом.</p>
+        <h2>Интерфейсы продуктов</h2>
+        <p class="sec__lead">Скриншоты с работающих стендов. Лента листается сама, но можно и вручную.</p>
       </header>
 
       <div class="carousel" id="carousel">

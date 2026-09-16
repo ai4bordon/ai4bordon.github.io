@@ -1,7 +1,7 @@
 /* Bordon. ИИ-агенты, LLM и продукты под ключ.
-   Интерактив: вкладки направлений, фильтр кейсов, карусель экранов,
-   бургер-меню, кнопка наверх, анимация агентного конвейера.
-   Содержимое видно всегда: анимируются только декор и порядок блоков. */
+   Интерактив: вкладки направлений, фильтр кейсов, карусель с автопрокруткой,
+   бургер-меню, кнопка наверх, анимированный сетевой фон.
+   Содержимое видно всегда: анимируются только фон и микродвижения в блоках. */
 
 (() => {
   
@@ -25,11 +25,10 @@
         tab.tabIndex = on ? 0 : -1;
         var panelId = tab.getAttribute("aria-controls");
         var panel = panelId ? document.querySelector("#" + panelId) : null;
-        if (panel) {
-          panel.classList.toggle("is-on", on);
-          if (on) panel.removeAttribute("hidden");
-          else panel.setAttribute("hidden", "");
-        }
+        if (!panel) return;
+        panel.classList.toggle("is-on", on);
+        if (on) panel.removeAttribute("hidden");
+        else panel.setAttribute("hidden", "");
       });
     }
 
@@ -93,7 +92,7 @@
     });
   }
 
-  /* ------------------------------------------------------- карусель */
+  /* --------------------------------------------- карусель с автопрокруткой */
 
   function initCarousel() {
     var track = document.querySelector("#carousel-track");
@@ -105,6 +104,10 @@
     var slides = Array.prototype.slice.call(track.querySelectorAll(".slide"));
     if (!slides.length) return;
 
+    var AUTOPLAY_MS = 4200;
+    var timer = null;
+    var paused = false;
+
     var dots = slides.map((_, i) => {
       var dot = document.createElement("button");
       dot.type = "button";
@@ -112,6 +115,7 @@
       dot.setAttribute("aria-label", "Экран " + (i + 1));
       dot.addEventListener("click", () => {
         go(i);
+        hold();
       });
       dotsBox.append(dot);
       return dot;
@@ -129,7 +133,10 @@
     }
 
     function go(index) {
-      var target = Math.max(0, Math.min(index, slides.length - 1));
+      var last = slides.length - 1;
+      var target = index;
+      if (index > last) target = 0;
+      else if (index < 0) target = last;
       track.scrollTo({
         left: target * step(),
         behavior: reduced ? "auto" : "smooth",
@@ -147,29 +154,73 @@
       next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
     }
 
+    function advance() {
+      if (!paused) go(current() + 1);
+    }
+
+    function start() {
+      if (reduced || timer) return;
+      timer = window.setInterval(advance, AUTOPLAY_MS);
+    }
+
+    function stop() {
+      if (!timer) return;
+      window.clearInterval(timer);
+      timer = null;
+    }
+
+    /* пауза на время взаимодействия и ещё немного после него */
+    function hold() {
+      paused = true;
+      stop();
+      window.clearTimeout(hold.timer);
+      hold.timer = window.setTimeout(() => {
+        paused = false;
+        start();
+      }, AUTOPLAY_MS * 2);
+    }
+
     prev.addEventListener("click", () => {
       go(current() - 1);
+      hold();
     });
     next.addEventListener("click", () => {
       go(current() + 1);
+      hold();
     });
 
     track.addEventListener("scroll", () => {
       window.requestAnimationFrame(sync);
     }, { passive: true });
-    window.addEventListener("resize", sync);
+    track.addEventListener("pointerenter", () => {
+      paused = true;
+    });
+    track.addEventListener("pointerleave", () => {
+      paused = false;
+    });
+    track.addEventListener("focusin", () => {
+      paused = true;
+    });
+    track.addEventListener("focusout", () => {
+      paused = false;
+    });
 
     track.addEventListener("keydown", (event) => {
       if (event.key === "ArrowRight") {
         event.preventDefault();
         go(current() + 1);
+        hold();
       } else if (event.key === "ArrowLeft") {
         event.preventDefault();
         go(current() - 1);
+        hold();
       }
     });
 
+    window.addEventListener("resize", sync);
+
     sync();
+    start();
   }
 
   /* -------------------------------------------------------- бургер */
@@ -223,76 +274,106 @@
     paint();
   }
 
-  /* --------------------------------------------- конвейер в первом экране */
+  /* ------------------------------------- сетевой фон на всю страницу */
 
-  function initFlow() {
-    var flow = document.querySelector(".flow");
-    var stages = Array.prototype.slice.call(document.querySelectorAll(".flow__stage"));
-    var packet = document.querySelector(".flow__packet");
-    if (!flow || !stages.length || !packet) return;
+  function initNetwork() {
+    var canvas = document.querySelector("#net-canvas");
+    if (!canvas) return;
+    var ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    if (reduced || !hasGsap) {
-      stages.forEach((stage) => {
-        stage.classList.add("is-on");
-      });
-      packet.style.display = "none";
-      return;
+    var width = 0;
+    var height = 0;
+    var nodes = [];
+    var running = true;
+    var LINK = 150;
+
+    function resize() {
+      var ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      seed();
     }
 
-    var timeline = null;
+    function seed() {
+      var count = Math.round((width * height) / 42000);
+      count = Math.max(18, Math.min(count, 70));
+      nodes = [];
+      for (var i = 0; i < count; i += 1) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.22,
+          vy: (Math.random() - 0.5) * 0.22,
+          r: Math.random() < 0.16 ? 1.7 : 1,
+        });
+      }
+    }
 
-    function build() {
-      if (timeline) {
-        timeline.kill();
-        timeline = null;
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (var i = 0; i < nodes.length; i += 1) {
+        var a = nodes[i];
+        if (running) {
+          a.x += a.vx;
+          a.y += a.vy;
+          if (a.x < 0 || a.x > width) a.vx *= -1;
+          if (a.y < 0 || a.y > height) a.vy *= -1;
+        }
+
+        for (var j = i + 1; j < nodes.length; j += 1) {
+          var b = nodes[j];
+          var dx = a.x - b.x;
+          var dy = a.y - b.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < LINK) {
+            var alpha = (1 - dist / LINK) * 0.14;
+            ctx.strokeStyle = "rgba(233, 231, 224, " + alpha.toFixed(3) + ")";
+            ctx.lineWidth = 0.6;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
       }
 
-      var flowBox = flow.getBoundingClientRect();
-      var size = packet.offsetHeight || 9;
-      var ys = stages.map((stage) => {
-        var box = stage.getBoundingClientRect();
-        return box.top - flowBox.top + box.height / 2 - size / 2;
-      });
-
-      window.gsap.set(packet, { y: ys[0], opacity: 1 });
-
-      timeline = window.gsap.timeline({ repeat: -1, repeatDelay: 0.7 });
-
-      ys.forEach((y, index) => {
-        timeline.to(
-          packet,
-          {
-            y: y,
-            duration: 0.6,
-            ease: "power2.inOut",
-            onStart: () => {
-              stages.forEach((stage, k) => {
-                stage.classList.toggle("is-on", k <= index);
-              });
-            },
-          },
-          index === 0 ? 0 : "+=0.18",
-        );
-      });
-
-      timeline
-        .to(packet, { opacity: 0, duration: 0.35 }, "+=0.6")
-        .add(() => {
-          stages.forEach((stage) => {
-            stage.classList.remove("is-on");
-          });
-          window.gsap.set(packet, { y: ys[0] });
-        })
-        .to(packet, { opacity: 1, duration: 0.25 });
+      for (var k = 0; k < nodes.length; k += 1) {
+        var n = nodes[k];
+        ctx.fillStyle = n.r > 1.4 ? "rgba(201, 242, 78, 0.34)" : "rgba(233, 231, 224, 0.16)";
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
 
-    build();
+    function frame() {
+      if (!running && !reduced) {
+        window.requestAnimationFrame(frame);
+        return;
+      }
+      draw();
+      if (reduced) return;
+      window.requestAnimationFrame(frame);
+    }
 
-    var timer = null;
-    window.addEventListener("resize", () => {
-      window.clearTimeout(timer);
-      timer = window.setTimeout(build, 200);
+    document.addEventListener("visibilitychange", () => {
+      running = !document.hidden;
     });
+
+    var resizeTimer = null;
+    window.addEventListener("resize", () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(resize, 200);
+    });
+
+    resize();
+    if (reduced) draw();
+    else window.requestAnimationFrame(frame);
   }
 
   /* ------------------------------------------------- бегущая строка */
@@ -312,7 +393,7 @@
     window.gsap.set([track, clone], { x: 0 });
     window.gsap.to([track, clone], {
       x: -width,
-      duration: width / 44,
+      duration: width / 46,
       ease: "none",
       repeat: -1,
       modifiers: {
@@ -321,83 +402,7 @@
     });
   }
 
-  /* ------------------------------------------- поле точек и прокрутка */
-
-  function initField() {
-    var canvas = document.querySelector("#hero-canvas");
-    var host = canvas && canvas.parentElement;
-    if (!canvas || !host || reduced) return;
-
-    var ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    var step = 32;
-    var radius = 160;
-    var points = [];
-    var width = 0;
-    var height = 0;
-    var pointer = { x: -999, y: -999 };
-    var smooth = { x: -999, y: -999 };
-
-    function measure() {
-      var ratio = Math.min(window.devicePixelRatio || 1, 2);
-      width = host.clientWidth;
-      height = host.clientHeight;
-      canvas.width = Math.round(width * ratio);
-      canvas.height = Math.round(height * ratio);
-      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-
-      points = [];
-      for (var y = step / 2; y < height; y += step) {
-        for (var x = step / 2; x < width; x += step) {
-          points.push(x, y);
-        }
-      }
-    }
-
-    function frame() {
-      smooth.x += (pointer.x - smooth.x) * 0.12;
-      smooth.y += (pointer.y - smooth.y) * 0.12;
-      ctx.clearRect(0, 0, width, height);
-
-      for (var i = 0; i < points.length; i += 2) {
-        var px = points[i];
-        var py = points[i + 1];
-        var dx = px - smooth.x;
-        var dy = py - smooth.y;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        var near = dist < radius ? 1 - dist / radius : 0;
-        var size = 1 + near * 2.1;
-
-        if (near > 0.05) {
-          ctx.fillStyle = "rgba(201, 242, 78, " + (0.16 + near * 0.7).toFixed(3) + ")";
-        } else {
-          ctx.fillStyle = "rgba(233, 231, 224, 0.07)";
-        }
-        ctx.fillRect(px - size / 2, py - size / 2, size, size);
-      }
-      window.requestAnimationFrame(frame);
-    }
-
-    host.addEventListener("pointermove", (event) => {
-      var box = host.getBoundingClientRect();
-      pointer.x = event.clientX - box.left;
-      pointer.y = event.clientY - box.top;
-    });
-    host.addEventListener("pointerleave", () => {
-      pointer.x = -999;
-      pointer.y = -999;
-    });
-
-    var timer = null;
-    window.addEventListener("resize", () => {
-      window.clearTimeout(timer);
-      timer = window.setTimeout(measure, 150);
-    });
-
-    measure();
-    window.requestAnimationFrame(frame);
-  }
+  /* ---------------------------------------------------- прогресс и скролл */
 
   function initScroll() {
     var fill = document.querySelector("#rail-fill");
@@ -415,11 +420,12 @@
 
     if (!hasGsap || !window.ScrollTrigger || reduced) return;
     window.gsap.registerPlugin(window.ScrollTrigger);
-    var layer = document.querySelector(".hero__bg");
-    if (layer) {
-      window.gsap.to(layer, {
-        yPercent: 16,
-        opacity: 0.3,
+
+    /* схема конвейера слегка ведёт за прокруткой */
+    var map = document.querySelector(".flowmap");
+    if (map) {
+      window.gsap.to(map, {
+        y: -14,
         ease: "none",
         scrollTrigger: {
           trigger: ".hero",
@@ -437,9 +443,8 @@
     initCarousel();
     initBurger();
     initTop();
-    initFlow();
+    initNetwork();
     initTicker();
-    initField();
     initScroll();
   }
 
