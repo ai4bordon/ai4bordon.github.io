@@ -4,6 +4,10 @@
    Содержимое видно всегда: анимируются только фон и микродвижения в блоках. */
 
 (() => {
+  /* На GitHub Pages бэкенда нет, поэтому форма идёт на сервер по адресу.
+     На самом сервере используется относительный путь. */
+  var API_BASE = location.hostname.endsWith("github.io") ? "https://bordon.digitai.icu" : "";
+
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var hasGsap = window.gsap !== undefined;
   var hasFlip = window.Flip !== undefined;
@@ -501,7 +505,7 @@
         button.textContent = label;
       };
 
-      fetch("/api/brief", {
+      fetch(API_BASE + "/api/brief", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ contact, task, pain, limits, trap }),
