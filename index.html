@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bordon. ИИ-агенты, LLM и продукты под ключ</title>
-<meta name="description" content="Проектирую мультиагентные сценарии и LLM-интеграции. Собираю веб-дашборды, мини-CRM, трекеры, Telegram-боты и мини-аппы, лендинги. От архитектуры до домена с сертификатом.">
+<meta name="description" content="Проектирую мультиагентные сценарии и LLM-интеграции. Собираю веб-приложения, админ-панели, трекеры, Telegram-боты и мини-аппы, лендинги. Бесплатный разбор задачи.">
+<link rel="alternate" hreflang="en" href="en.html">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +17,6 @@
 <a class="skip" href="#works">К работам</a>
 
 <div class="rail" aria-hidden="true"><span class="rail__fill" id="rail-fill"></span></div>
-
 <div class="bgnet" aria-hidden="true"><canvas id="net-canvas"></canvas></div>
 
 <header class="bar">
@@ -29,11 +29,12 @@
       <a href="#shots">Интерфейсы</a>
       <a href="#formats">Цены</a>
       <a href="#faq">Вопросы</a>
+      <a href="#brief">Заявка</a>
     </nav>
 
     <div class="bar__side">
       <span class="avail"><span class="avail__dot" aria-hidden="true"></span>Доступен</span>
-      <a class="bar__tg" href="https://t.me/bordon_ai">Telegram</a>
+      <a class="lang" href="en.html" hreflang="en" lang="en">EN</a>
       <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
         <span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
@@ -49,86 +50,102 @@
         <h1 class="hero__title">ИИ-агенты<br>и продукты,<br>которые работают</h1>
         <p class="hero__lead">
           Проектирую мультиагентные сценарии и интеграции с LLM. Вокруг них собираю продукт:
-          веб-дашборды, мини-CRM, трекеры, Telegram-боты и мини-аппы, лендинги.
+          веб-приложения и админ-панели, трекеры, Telegram-боты и мини-аппы, лендинги.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="https://t.me/bordon_ai">
-            <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M21.6 4.3 2.9 11.5c-.8.3-.8 1.4.1 1.6l4.4 1.4 1.7 5.2c.2.7 1.1.9 1.6.3l2.4-2.6 4.5 3.3c.6.4 1.4.1 1.6-.6l3.1-14.6c.2-.9-.7-1.6-1.7-1.2Zm-3.4 3.1-7.4 6.6c-.2.2-.3.4-.3.6l-.3 2.6-1.2-3.7 9-6.7c.4-.3.6.2.2.6Z"/>
-            </svg>
-            Обсудить задачу
+          <a class="btn btn--primary" href="#brief">
+            Оставить заявку на разбор
           </a>
-          <a class="link" href="#works">Посмотреть работы</a>
+          <a class="link" href="https://t.me/bordon_ai">Или написать в Telegram</a>
         </div>
       </div>
 
       <div class="flow">
-        <p class="flow__title">Как устроен агентный конвейер</p>
-        <svg class="flowmap" viewBox="0 0 360 420" role="img" aria-label="Схема конвейера: источник, разбор сигнала, две ветки обработки, очередь и оператор">
+        <p class="flow__title">Мультиагентный конвейер</p>
+        <svg class="flowmap" viewBox="0 0 380 520" role="img" aria-label="Схема конвейера: источник, координатор, три агента, свод, очередь и оператор">
           <defs>
-            <path id="fc1" d="M180 62 V 98" fill="none"/>
-            <path id="fc2" d="M180 142 C 180 168, 95 168, 95 193" fill="none"/>
-            <path id="fc3" d="M180 142 C 180 168, 265 168, 265 193" fill="none"/>
-            <path id="fc4" d="M95 237 C 95 262, 180 258, 180 283" fill="none"/>
-            <path id="fc5" d="M265 237 C 265 262, 180 258, 180 283" fill="none"/>
-            <path id="fc6" d="M180 327 V 363" fill="none"/>
+            <path id="g1" d="M190 56 V 96" fill="none"/>
+            <path id="g2" d="M190 140 C 190 166, 68 162, 68 188" fill="none"/>
+            <path id="g3" d="M190 140 V 188" fill="none"/>
+            <path id="g4" d="M190 140 C 190 166, 312 162, 312 188" fill="none"/>
+            <path id="g5" d="M68 232 C 68 262, 190 258, 190 288" fill="none"/>
+            <path id="g6" d="M190 232 V 288" fill="none"/>
+            <path id="g7" d="M312 232 C 312 262, 190 258, 190 288" fill="none"/>
+            <path id="g8" d="M190 332 V 374" fill="none"/>
+            <path id="g9" d="M190 418 V 458" fill="none"/>
           </defs>
 
           <g class="wires">
-            <use href="#fc1"/><use href="#fc2"/><use href="#fc3"/>
-            <use href="#fc4"/><use href="#fc5"/><use href="#fc6"/>
+            <use href="#g1"/><use href="#g2"/><use href="#g3"/><use href="#g4"/>
+            <use href="#g5"/><use href="#g6"/><use href="#g7"/><use href="#g8"/><use href="#g9"/>
           </g>
 
           <g class="pulses">
-            <circle class="pulse" r="3.5"><animateMotion dur="1.6s" begin="0s" repeatCount="indefinite"><mpath href="#fc1"/></animateMotion></circle>
-            <circle class="pulse" r="3.5"><animateMotion dur="1.6s" begin="0.8s" repeatCount="indefinite"><mpath href="#fc1"/></animateMotion></circle>
-            <circle class="pulse" r="3.5"><animateMotion dur="2.2s" begin="0.3s" repeatCount="indefinite"><mpath href="#fc2"/></animateMotion></circle>
-            <circle class="pulse pulse--b" r="3.5"><animateMotion dur="2.2s" begin="0.9s" repeatCount="indefinite"><mpath href="#fc3"/></animateMotion></circle>
-            <circle class="pulse" r="3.5"><animateMotion dur="2s" begin="1.1s" repeatCount="indefinite"><mpath href="#fc4"/></animateMotion></circle>
-            <circle class="pulse pulse--b" r="3.5"><animateMotion dur="2s" begin="1.5s" repeatCount="indefinite"><mpath href="#fc5"/></animateMotion></circle>
-            <circle class="pulse" r="3.5"><animateMotion dur="1.8s" begin="0.5s" repeatCount="indefinite"><mpath href="#fc6"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.4s" begin="0s" repeatCount="indefinite"><mpath href="#g1"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.9s" begin="0.2s" repeatCount="indefinite"><mpath href="#g2"/></animateMotion></circle>
+            <circle class="pulse pulse--b" r="3.2"><animateMotion dur="1.9s" begin="0.7s" repeatCount="indefinite"><mpath href="#g3"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.9s" begin="1.2s" repeatCount="indefinite"><mpath href="#g4"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.7s" begin="0.4s" repeatCount="indefinite"><mpath href="#g5"/></animateMotion></circle>
+            <circle class="pulse pulse--b" r="3.2"><animateMotion dur="1.7s" begin="0.9s" repeatCount="indefinite"><mpath href="#g6"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.7s" begin="1.4s" repeatCount="indefinite"><mpath href="#g7"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.5s" begin="0.6s" repeatCount="indefinite"><mpath href="#g8"/></animateMotion></circle>
+            <circle class="pulse" r="3.2"><animateMotion dur="1.5s" begin="1.1s" repeatCount="indefinite"><mpath href="#g9"/></animateMotion></circle>
           </g>
 
           <g class="node">
-            <rect x="115" y="18" width="130" height="44" rx="4"/>
-            <circle class="node__dot" cx="133" cy="40" r="3"/>
-            <text x="145" y="36">Источник</text>
-            <text class="node__meta" x="145" y="50">форма, почта, API</text>
+            <rect x="120" y="14" width="140" height="42" rx="4"/>
+            <circle class="node__dot" cx="138" cy="35" r="3"/>
+            <text x="150" y="31">Источник</text>
+            <text class="node__meta" x="150" y="45">форма, почта, API</text>
+          </g>
+
+          <g class="node node--hub">
+            <rect x="120" y="98" width="140" height="42" rx="4"/>
+            <circle class="node__dot" cx="138" cy="119" r="3"/>
+            <text x="150" y="115">Координатор</text>
+            <text class="node__meta" x="150" y="129">ставит задачи</text>
+          </g>
+
+          <g class="node node--agent">
+            <rect x="10" y="188" width="116" height="44" rx="4"/>
+            <circle class="node__dot" cx="26" cy="210" r="3"/>
+            <text x="36" y="206">Агент: разбор</text>
+            <text class="node__meta" x="36" y="220">достаёт данные</text>
+          </g>
+
+          <g class="node node--agent">
+            <rect x="132" y="188" width="116" height="44" rx="4"/>
+            <circle class="node__dot" cx="148" cy="210" r="3"/>
+            <text x="158" y="206">Агент: скоринг</text>
+            <text class="node__meta" x="158" y="220">считает приоритет</text>
+          </g>
+
+          <g class="node node--agent">
+            <rect x="254" y="188" width="116" height="44" rx="4"/>
+            <circle class="node__dot" cx="270" cy="210" r="3"/>
+            <text x="280" y="206">Агент: поиск</text>
+            <text class="node__meta" x="280" y="220">похожие случаи</text>
           </g>
 
           <g class="node">
-            <rect x="115" y="98" width="130" height="44" rx="4"/>
-            <circle class="node__dot" cx="133" cy="120" r="3"/>
-            <text x="145" y="116">Разбор</text>
-            <text class="node__meta" x="145" y="130">нормализация</text>
-          </g>
-
-          <g class="node node--branch">
-            <rect x="30" y="193" width="130" height="44" rx="4"/>
-            <circle class="node__dot" cx="48" cy="215" r="3"/>
-            <text x="60" y="211">Скоринг</text>
-            <text class="node__meta" x="60" y="225">оценка лида</text>
-          </g>
-
-          <g class="node node--branch">
-            <rect x="200" y="193" width="130" height="44" rx="4"/>
-            <circle class="node__dot" cx="218" cy="215" r="3"/>
-            <text x="230" y="211">Поиск по базе</text>
-            <text class="node__meta" x="230" y="225">похожие случаи</text>
+            <rect x="120" y="288" width="140" height="44" rx="4"/>
+            <circle class="node__dot" cx="138" cy="310" r="3"/>
+            <text x="150" y="306">Свод</text>
+            <text class="node__meta" x="150" y="320">приоритет и причина</text>
           </g>
 
           <g class="node">
-            <rect x="115" y="283" width="130" height="44" rx="4"/>
-            <circle class="node__dot" cx="133" cy="305" r="3"/>
-            <text x="145" y="301">Очередь</text>
-            <text class="node__meta" x="145" y="315">приоритет</text>
+            <rect x="120" y="374" width="140" height="44" rx="4"/>
+            <circle class="node__dot" cx="138" cy="396" r="3"/>
+            <text x="150" y="392">Очередь</text>
+            <text class="node__meta" x="150" y="406">порядок работы</text>
           </g>
 
           <g class="node">
-            <rect x="115" y="363" width="130" height="44" rx="4"/>
-            <circle class="node__dot" cx="133" cy="385" r="3"/>
-            <text x="145" y="381">Оператор</text>
-            <text class="node__meta" x="145" y="395">решение</text>
+            <rect x="120" y="458" width="140" height="44" rx="4"/>
+            <circle class="node__dot" cx="138" cy="480" r="3"/>
+            <text x="150" y="476">Оператор</text>
+            <text class="node__meta" x="150" y="490">решает по карточке</text>
           </g>
         </svg>
       </div>
@@ -137,7 +154,7 @@
         <p class="offer__badge">Разбор задачи бесплатно</p>
         <p class="offer__text">
           Присылаете два предложения о задаче, получаете критерии приёмки, состав работ и дату сдачи.
-          Если задача не моя, скажу сразу и подскажу, к кому идти.
+          Материалы остаются у вас, даже если работать не будем. Если задача не моя, скажу сразу и подскажу, к кому идти.
         </p>
       </div>
     </div>
@@ -187,19 +204,19 @@
             <div class="cards">
               <article class="mini">
                 <h3>Мультиагентные сценарии</h3>
-                <p>Процесс разбивается на роли, агенты передают работу друг другу. Каждый шаг проверяется отдельно.</p>
+                <p>Процесс разбивается на роли: один агент достаёт данные, второй оценивает, третий ищет похожие случаи в базе знаний. Работу между ними распределяет координатор, и каждый шаг можно проверить отдельно, а не гадать, что случилось внутри одного большого промпта.</p>
               </article>
               <article class="mini">
                 <h3>Интеграции с LLM</h3>
-                <p>OpenAI и Gemini, подключённые к вашим данным. Модель работает по вашим правилам.</p>
+                <p>Подключаю OpenAI и Gemini к вашим данным и правилам: где модель отвечает свободно, где работает по жёсткому шаблону, а где обязана сослаться на источник. Настраиваю лимиты, повторы и поведение при отказе модели.</p>
               </article>
               <article class="mini">
                 <h3>Поиск по своим данным</h3>
-                <p>Индексация документов и ответы со ссылками на источники. Видно, на чём основан ответ.</p>
+                <p>Индексирую документы, регламенты и историю обращений. Ответ приходит со ссылками на фрагменты-источники и оценкой релевантности, поэтому видно, на чём он основан и где мог ошибиться.</p>
               </article>
               <article class="mini">
                 <h3>Надёжность агентов</h3>
-                <p>Тесты промптов и регрессия в CI. Правка промпта не ломает прежние ответы тихо.</p>
+                <p>Промпты и сценарии ломаются тихо: ответ стал хуже, и никто не заметил. Закрываю это набором проверок и регрессией в CI. Правка промпта не проходит дальше, если сломала прежние ответы.</p>
               </article>
             </div>
           </div>
@@ -207,20 +224,20 @@
           <div class="tabs__panel" role="tabpanel" id="panel-web" aria-labelledby="tab-web" tabindex="0" hidden>
             <div class="cards">
               <article class="mini">
-                <h3>Дашборды</h3>
-                <p>Воронки, сроки, загрузка исполнителей, сравнение периодов.</p>
+                <h3>Веб-приложения</h3>
+                <p>Полноценные приложения под процесс: авторизация, роли, база данных, загрузка файлов, экспорт, интеграции с внешними сервисами. Работает в браузере без установки, открывается с телефона.</p>
               </article>
               <article class="mini">
-                <h3>Мини-CRM</h3>
-                <p>Контакты, сделки, этапы, история касаний, права по ролям.</p>
+                <h3>Административные панели</h3>
+                <p>Внутренний инструмент для команды: справочники, модерация, массовые операции, права по ролям, журнал действий. То, что обычно живёт в таблицах и переписке, переезжает в один экран.</p>
               </article>
               <article class="mini">
-                <h3>Трекеры</h3>
-                <p>Задачи, канбан с перетаскиванием, сроки, уведомления, поиск.</p>
+                <h3>Дашборды и отчётность</h3>
+                <p>Воронки, сроки, загрузка исполнителей, сравнение периодов, выгрузка в таблицу. Считаю на стороне сервера, чтобы цифры совпадали у всех, а не зависели от выгрузки в Excel.</p>
               </article>
               <article class="mini">
-                <h3>Роли и права</h3>
-                <p>Администратор, менеджер, исполнитель. Каждый видит только своё.</p>
+                <h3>Мини-CRM и трекеры</h3>
+                <p>Контакты, сделки, этапы, история касаний, задачи и канбан со сроками. Роли администратора, менеджера и исполнителя: каждый видит только своё и не может залезть в чужое.</p>
               </article>
             </div>
           </div>
@@ -229,19 +246,19 @@
             <div class="cards">
               <article class="mini">
                 <h3>Боты</h3>
-                <p>Кэш, логирование, воронки анонсов, уведомления по событиям и срокам.</p>
+                <p>Приём заявок, уведомления по событиям и срокам, воронки анонсов, ответы по базе знаний. С кэшем и логированием, чтобы при сбое было видно, что именно пришло и что ушло.</p>
               </article>
               <article class="mini">
                 <h3>Мини-аппы</h3>
-                <p>Интерфейс внутри Telegram: без установки приложения и без отдельного аккаунта.</p>
+                <p>Интерфейс внутри Telegram: формы, списки, карточки, оплата. Не нужна установка приложения и отдельный аккаунт, а данные приходят с того же бэкенда, что и в вебе.</p>
               </article>
               <article class="mini">
                 <h3>Связка с бэкендом</h3>
-                <p>Бот работает с вашим API, базой и внешними сервисами, а не живёт отдельно.</p>
+                <p>Бот работает с вашим API, базой и внешними сервисами, а не живёт отдельной игрушкой. Один источник правды: изменения в вебе сразу видны в боте.</p>
               </article>
               <article class="mini">
-                <h3>Доступы</h3>
-                <p>Роли и ограничения прямо в боте: кто видит заявки, кто меняет статусы.</p>
+                <h3>Доступы и роли</h3>
+                <p>Кто видит заявки, кто меняет статусы, кто выгружает данные. Ограничения проверяются на сервере, а не спрятаны в кнопках интерфейса.</p>
               </article>
             </div>
           </div>
@@ -250,19 +267,19 @@
             <div class="cards">
               <article class="mini">
                 <h3>Структура под нишу</h3>
-                <p>Порядок блоков и аргументы подбираются под аудиторию, а не берутся одни на всё.</p>
+                <p>Порядок блоков и аргументы собираются под конкретную аудиторию: у психолога, кофейни и платёжного сервиса они разные. Проверено на пяти живых страницах.</p>
               </article>
               <article class="mini">
                 <h3>Форма заявки</h3>
-                <p>Заявка с уведомлением и выгрузкой. Проверено на пяти живых страницах.</p>
+                <p>Заявка с уведомлением, выгрузкой и защитой от спама. Видно, откуда пришёл человек и что он хотел, а не просто «новая заявка».</p>
               </article>
               <article class="mini">
-                <h3>Адаптив</h3>
-                <p>От 320 пикселей, с проверкой в Safari и на реальном телефоне.</p>
+                <h3>Скорость и адаптив</h3>
+                <p>От 320 пикселей, проверка в Safari и на реальном телефоне. Без тяжёлых конструкторов: страница открывается быстро на мобильном интернете.</p>
               </article>
               <article class="mini">
-                <h3>Скорость</h3>
-                <p>Без тяжёлых конструкторов: страница грузится быстро на мобильном интернете.</p>
+                <h3>Аналитика</h3>
+                <p>Цели на отправку формы и переходы, подключение метрики, разметка для поиска. Чтобы было видно, работает ли страница, а не «вроде красиво».</p>
               </article>
             </div>
           </div>
@@ -270,20 +287,28 @@
           <div class="tabs__panel" role="tabpanel" id="panel-infra" aria-labelledby="tab-infra" tabindex="0" hidden>
             <div class="cards">
               <article class="mini">
-                <h3>Контейнеры</h3>
-                <p>Приложение упаковано и запускается одной командой на любом сервере.</p>
+                <h3>Контейнеры и развёртывание</h3>
+                <p>Приложение упаковано в образ и поднимается одной командой на любом сервере. Пересборка и перезапуск скриптом: старый контейнер работает до готовности нового.</p>
               </article>
               <article class="mini">
                 <h3>Домены и сертификаты</h3>
-                <p>Let's Encrypt с автоматическим продлением. HTTPS без ручных шагов.</p>
+                <p>Обратный прокси, маршрутизация по доменам, HTTPS с автоматическим продлением. Плюс перенаправление с http на https и заголовки безопасности.</p>
               </article>
               <article class="mini">
-                <h3>Обновление без простоя</h3>
-                <p>Пересборка и перезапуск скриптом: старый контейнер живёт до готовности нового.</p>
+                <h3>Базы и данные</h3>
+                <p>PostgreSQL с миграциями, регулярные резервные копии, отдельные окружения для разработки и продакшена. Миграции накатываются скриптом, а не руками.</p>
               </article>
               <article class="mini">
-                <h3>Логи и состояние</h3>
-                <p>Эндпоинты здоровья, логи контейнера, резервные копии базы.</p>
+                <h3>Наблюдаемость</h3>
+                <p>Эндпоинты здоровья для базы и приложения, логи контейнеров, сбор метрик и алерты на падение. При сбое видно, что именно упало, а не «сайт не работает».</p>
+              </article>
+              <article class="mini">
+                <h3>Непрерывная поставка</h3>
+                <p>Проверки и тесты в CI на каждый коммит, сборка образа, автоматический деплой. Ошибка ловится до продакшена, а не после.</p>
+              </article>
+              <article class="mini">
+                <h3>Передача и документация</h3>
+                <p>README с запуском, схема данных, описание переменных окружения и инструкция по обновлению. Чтобы проект можно было передать другой команде, а не только мне.</p>
               </article>
             </div>
           </div>
@@ -397,7 +422,7 @@
             <span class="case__more" aria-hidden="true"></span>
           </summary>
           <div class="case__body">
-            <p class="case__what">Сначала разбор веб-страницы, потом генерация постов через OpenAI API по extracted фактам.</p>
+            <p class="case__what">Сначала разбор веб-страницы, потом генерация постов через OpenAI API по извлечённым фактам.</p>
             <p class="case__value"><span class="case__label">Зачем заказчику</span>Меньше правок после того, как клиент прочитал очередные «инновационные решения».</p>
             <ul class="tags"><li>Python</li><li>OpenAI API</li></ul>
             <a class="case__go" href="https://github.com/ai4bordon/aI_web_analysis">Открыть на GitHub</a>
@@ -461,14 +486,14 @@
             <span class="case__more" aria-hidden="true"></span>
           </summary>
           <div class="case__body">
-            <p class="case__what">Психолог и коуч, кофейня с заказом онлайн, приём платежей в LatAm, маркетинговая поддержка на английском, мотошкола в Санкт-Петербурге.</p>
+            <p class="case__what">Психолог и коуч, кофейня с заказом онлайн, платёжный шлюз для LatAm, маркетинговое агентство, мотошкола в Санкт-Петербурге.</p>
             <p class="case__value"><span class="case__label">Зачем заказчику</span>Быстрый способ проверить спрос: страница, форма, заявки. Разные ниши показывают, что структура подбирается под аудиторию.</p>
             <ul class="tags links">
-              <li><a href="https://l1.veynx.xyz/">Психолог</a></li>
-              <li><a href="https://l2.veynx.xyz/">Кофейня</a></li>
-              <li><a href="https://l3.veynx.xyz/">RutaPay</a></li>
-              <li><a href="https://l4.veynx.xyz/">Northern Monkey</a></li>
-              <li><a href="https://l5.veynx.xyz/">Мотошкола</a></li>
+              <li><a href="https://l1.veynx.xyz/">Психолог и коуч</a></li>
+              <li><a href="https://l2.veynx.xyz/">Кофейня «Аромат»</a></li>
+              <li><a href="https://l3.veynx.xyz/">RutaPay, платёжный шлюз в LatAm</a></li>
+              <li><a href="https://l4.veynx.xyz/">Northern Monkey, маркетинговое агентство</a></li>
+              <li><a href="https://l5.veynx.xyz/">Мотошкола «Трек»</a></li>
             </ul>
           </div>
         </details>
@@ -494,8 +519,8 @@
           <li class="slide"><a href="https://tenderpulse.veynx.xyz/"><img src="img/tenderpulse-orders.png" alt="ТендерПульс, список заказов" loading="lazy"><span class="slide__cap"><b>ТендерПульс</b>Заказы: фильтры и просрочка</span></a></li>
           <li class="slide"><a href="https://l1.veynx.xyz/"><img src="img/l1.png" alt="Лендинг психолога" loading="lazy"><span class="slide__cap"><b>Психолог и коуч</b>Личная страница с записью</span></a></li>
           <li class="slide"><a href="https://l2.veynx.xyz/"><img src="img/l2.png" alt="Лендинг кофейни" loading="lazy"><span class="slide__cap"><b>Кофейня «Аромат»</b>Заказ онлайн, забор через 15 минут</span></a></li>
-          <li class="slide"><a href="https://l3.veynx.xyz/"><img src="img/l3.png" alt="Лендинг приёма платежей" loading="lazy"><span class="slide__cap"><b>RutaPay</b>Приём платежей в LatAm</span></a></li>
-          <li class="slide"><a href="https://l4.veynx.xyz/"><img src="img/l4.png" alt="Лендинг Northern Monkey" loading="lazy"><span class="slide__cap"><b>Northern Monkey</b>Англоязычная страница</span></a></li>
+          <li class="slide"><a href="https://l3.veynx.xyz/"><img src="img/l3.png" alt="Лендинг платёжного шлюза" loading="lazy"><span class="slide__cap"><b>RutaPay</b>Платёжный шлюз для LatAm</span></a></li>
+          <li class="slide"><a href="https://l4.veynx.xyz/"><img src="img/l4.png" alt="Лендинг маркетингового агентства" loading="lazy"><span class="slide__cap"><b>Northern Monkey</b>Лендинг маркетингового агентства</span></a></li>
           <li class="slide"><a href="https://l5.veynx.xyz/"><img src="img/l5.png" alt="Лендинг мотошколы" loading="lazy"><span class="slide__cap"><b>Мотошкола «Трек»</b>Набор на обучение</span></a></li>
         </ul>
 
@@ -509,24 +534,6 @@
           </button>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="proof" id="proof">
-    <div class="wrap">
-      <header class="sec">
-        <h2>Чем подтверждается</h2>
-        <p class="sec__lead">Проверяемые факты, а не слова про качество.</p>
-      </header>
-
-      <ul class="facts">
-        <li><b>49 тестов</b> в трёх веб-продуктах, все проходят</li>
-        <li><b>9 проектов</b> открыты по ссылкам с этой страницы</li>
-        <li><b>HTTPS с автоматическим продлением</b> на каждом домене</li>
-        <li><b>Ноль внешних зависимостей</b> в трекерах</li>
-        <li><b>README с запуском одной командой</b> в каждом проекте</li>
-        <li><b>Список того, что не вошло</b> есть в каждом кейсе</li>
-      </ul>
     </div>
   </section>
 
@@ -572,8 +579,8 @@
       <div class="plans">
         <article class="plan">
           <h3>Сценарий или агент</h3>
-          <p class="plan__price">от 130 000 ₽</p>
-          <p class="plan__what">Один агент или конвейер, интеграция LLM в текущий процесс.</p>
+          <p class="plan__price">от 70 000 ₽</p>
+          <p class="plan__what">Один агент, бот или конвейер, интеграция LLM в текущий процесс.</p>
           <ul>
             <li>Роли, оркестрация, промпты</li>
             <li>Интеграция с вашими данными</li>
@@ -585,11 +592,11 @@
 
         <article class="plan">
           <h3>Продукт целиком</h3>
-          <p class="plan__price">от 250 000 ₽</p>
-          <p class="plan__what">Кроме агента нужен интерфейс, база и доступы для команды.</p>
+          <p class="plan__price">от 150 000 ₽</p>
+          <p class="plan__what">Кроме агента нужен интерфейс, база, админ-панель и доступы для команды.</p>
           <ul>
             <li>Архитектура, API, интерфейс, база</li>
-            <li>Роли, права, отчётность</li>
+            <li>Админ-панель, роли, права, отчётность</li>
             <li>Агентный слой внутри продукта</li>
             <li>Инфраструктура, домен, бэкапы</li>
           </ul>
@@ -622,43 +629,99 @@
         </details>
         <details class="qa__item">
           <summary>Что если результат не понравится?</summary>
-          <p>Правки в рамках согласованных критериев входят в цену. Если на прототипе видно, что задумка не работает, мы это признаём и меняем подход.</p>
+          <p>Правки в рамках согласованных критериев входят в цену. Если на прототипе видно, что задумка не работает, мы это признаём и меняем подход, а не доводим до сдачи.</p>
         </details>
         <details class="qa__item">
-          <summary>Нужен дизайн. Вы его делаете?</summary>
-          <p>С нуля не рисую. Собираю по вашему макету, по Figma или по техническому заданию для дизайнера.</p>
+          <summary>Как вы считаете стоимость?</summary>
+          <p>По объёму работ, а не по часам и не «на глаз». После разбора задачи вы видите состав: что входит, что нет, сколько это занимает. Если объём меняется в процессе, вы узнаёте об этом до того, как я приступлю.</p>
         </details>
         <details class="qa__item">
           <summary>Что с поддержкой после сдачи?</summary>
-          <p>Месяц входит: правлю то, что сломалось по моей вине, и отвечаю по запуску. Дальше по часам или подписке.</p>
+          <p>Месяц входит: правлю то, что сломалось по моей вине, и отвечаю по запуску. Дальше по часам или подписке, считаем отдельно и заранее.</p>
         </details>
         <details class="qa__item">
           <summary>Работаете по NDA?</summary>
-          <p>Да. Коммерческие проекты и работы под NDA покажу по запросу, публично не выкладываю.</p>
+          <p>Да. NDA подписываю до начала разбора, если это нужно. Коммерческие проекты и работы под NDA покажу по запросу, публично не выкладываю.</p>
+        </details>
+        <details class="qa__item">
+          <summary>Что будет с моими данными?</summary>
+          <p>Данные для прототипа беру только те, что вы передали, и не использую их в других проектах. После сдачи доступы отзываются, копии у меня не остаются.</p>
+        </details>
+        <details class="qa__item">
+          <summary>Можно начать с маленькой задачи?</summary>
+          <p>Да, и это разумно. Первым шагом часто идёт один сценарий или один экран: проверяем подход на живом прототипе, потом расширяем. Так риск меньше у обеих сторон.</p>
         </details>
         <details class="qa__item">
           <summary>Как быстро начнёте?</summary>
-          <p>Готов начать на этой неделе. Дату сдачи называю после разбора задачи и не двигаю молча.</p>
+          <p>Готов начать на этой неделе. Дату сдачи называю после разбора задачи и не двигаю молча: если срок поедет, вы узнаете об этом сразу.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <section class="contact" id="contact">
+  <section class="brief" id="brief">
     <div class="wrap">
       <header class="sec">
-        <h2>Опишите задачу</h2>
-        <p class="sec__lead">Двух предложений достаточно: что нужно и для кого.</p>
+        <h2>Заявка на бесплатный разбор</h2>
+        <p class="sec__lead">
+          Опишите задачу своими словами, без технических терминов. Получите критерии приёмки,
+          состав работ, оценку и дату. Материалы остаются у вас, даже если работать не будем.
+        </p>
       </header>
 
-      <div class="contact__row">
-        <a class="btn btn--primary" href="https://t.me/bordon_ai">
-          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M21.6 4.3 2.9 11.5c-.8.3-.8 1.4.1 1.6l4.4 1.4 1.7 5.2c.2.7 1.1.9 1.6.3l2.4-2.6 4.5 3.3c.6.4 1.4.1 1.6-.6l3.1-14.6c.2-.9-.7-1.6-1.7-1.2Zm-3.4 3.1-7.4 6.6c-.2.2-.3.4-.3.6l-.3 2.6-1.2-3.7 9-6.7c.4-.3.6.2.2.6Z"/>
-          </svg>
-          Написать в Telegram
-        </a>
-        <a class="link" href="https://github.com/ai4bordon">github.com/ai4bordon</a>
+      <div class="brief__grid">
+        <form class="brief__form" id="brief-form" novalidate>
+          <div class="field">
+            <label for="b-contact">Как с вами связаться</label>
+            <input id="b-contact" name="contact" type="text" autocomplete="email" placeholder="Telegram, почта или телефон" required>
+          </div>
+
+          <div class="field">
+            <label for="b-task">Что нужно сделать</label>
+            <textarea id="b-task" name="task" rows="3" placeholder="Например: разобрать входящие заявки и расставить приоритеты" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="b-pain">Что сейчас не работает</label>
+            <textarea id="b-pain" name="pain" rows="3" placeholder="Например: менеджер разбирает почту вручную, часть заявок теряется"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="b-limits">Сроки и бюджет, если уже понятны</label>
+            <input id="b-limits" name="limits" type="text" placeholder="Например: до конца месяца, до 100 000 ₽">
+          </div>
+
+          <p class="brief__err" id="b-err" hidden></p>
+
+          <div class="brief__actions">
+            <button class="btn btn--primary" type="submit">Собрать заявку и открыть Telegram</button>
+            <p class="brief__hint">Заявка собирается в вашем браузере и никуда не отправляется сама.</p>
+          </div>
+
+          <div class="brief__next" id="b-fallback" hidden>
+            <p class="brief__next-title">Заявка готова</p>
+            <p class="brief__next-text">Текст скопирован. Откройте Telegram, вставьте его в чат и отправьте.</p>
+            <p><a class="btn btn--primary" href="https://t.me/bordon_ai">Открыть Telegram</a></p>
+            <label class="brief__next-label" for="b-text">Текст заявки, если понадобится скопировать вручную</label>
+            <textarea id="b-text" rows="7" readonly></textarea>
+          </div>
+        </form>
+
+        <aside class="brief__side">
+          <h3>Что вы получите</h3>
+          <ul class="ticks">
+            <li>Критерии приёмки: что именно должно работать</li>
+            <li>Состав работ и границы того, что не входит</li>
+            <li>Оценку по объёму и дату сдачи</li>
+            <li>Подсказку по стеку, если решение неочевидно</li>
+          </ul>
+          <p class="brief__note">
+            Если задача не моя, скажу сразу и подскажу, к кому идти. NDA подписываю до начала разбора.
+          </p>
+          <p class="brief__note">
+            Отвечаю в тот же день. Начать можно с маленькой задачи: один сценарий или один экран.
+          </p>
+        </aside>
       </div>
     </div>
   </section>
@@ -668,7 +731,8 @@
 <footer class="foot">
   <div class="wrap foot__inner">
     <span>© 2026 Bordon</span>
-    <span>Удалённо, часовой пояс EU</span>
+    <span>Удалённо, часовой пояс GMT+12</span>
+    <a href="en.html" hreflang="en" lang="en">English version</a>
     <a href="#top">Наверх</a>
   </div>
 </footer>

@@ -4,8 +4,6 @@
    Содержимое видно всегда: анимируются только фон и микродвижения в блоках. */
 
 (() => {
-  
-
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var hasGsap = window.gsap !== undefined;
   var hasFlip = window.Flip !== undefined;
@@ -39,7 +37,8 @@
       tab.addEventListener("keydown", (event) => {
         var step = 0;
         if (event.key === "ArrowDown" || event.key === "ArrowRight") step = 1;
-        else if (event.key === "ArrowUp" || event.key === "ArrowLeft") step = -1;
+        else if (event.key === "ArrowUp" || event.key === "ArrowLeft")
+          step = -1;
         else if (event.key === "Home") step = -99;
         else if (event.key === "End") step = 99;
         else return;
@@ -61,7 +60,8 @@
     if (!chips.length || !cases.length) return;
 
     function apply(cat) {
-      var state = hasGsap && hasFlip && !reduced ? window.Flip.getState(cases) : null;
+      var state =
+        hasGsap && hasFlip && !reduced ? window.Flip.getState(cases) : null;
 
       cases.forEach((item) => {
         var show = cat === "all" || item.dataset.cat === cat;
@@ -82,11 +82,11 @@
 
     chips.forEach((chip) => {
       chip.addEventListener("click", () => {
-        chips.forEach((other) => {
-          var on = other === chip;
+        for (const other of chips) {
+          const on = other === chip;
           other.classList.toggle("is-on", on);
           other.setAttribute("aria-pressed", on ? "true" : "false");
-        });
+        }
         apply(chip.dataset.filter);
       });
     });
@@ -151,7 +151,8 @@
         else dot.removeAttribute("aria-current");
       });
       prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+      next.disabled =
+        track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
     }
 
     function advance() {
@@ -189,21 +190,14 @@
       hold();
     });
 
-    track.addEventListener("scroll", () => {
-      window.requestAnimationFrame(sync);
-    }, { passive: true });
-    track.addEventListener("pointerenter", () => {
-      paused = true;
-    });
-    track.addEventListener("pointerleave", () => {
-      paused = false;
-    });
-    track.addEventListener("focusin", () => {
-      paused = true;
-    });
-    track.addEventListener("focusout", () => {
-      paused = false;
-    });
+    track.addEventListener(
+      "scroll",
+      () => {
+        window.requestAnimationFrame(sync);
+      },
+      { passive: true },
+    );
+    /* наведение мыши ленту не останавливает: она должна ехать всегда */
 
     track.addEventListener("keydown", (event) => {
       if (event.key === "ArrowRight") {
@@ -245,7 +239,10 @@
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && button.getAttribute("aria-expanded") === "true") {
+      if (
+        event.key === "Escape" &&
+        button.getAttribute("aria-expanded") === "true"
+      ) {
         setOpen(false);
         button.focus();
       }
@@ -331,8 +328,8 @@
           var dy = a.y - b.y;
           var dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < LINK) {
-            var alpha = (1 - dist / LINK) * 0.14;
-            ctx.strokeStyle = "rgba(233, 231, 224, " + alpha.toFixed(3) + ")";
+            const alpha = (1 - dist / LINK) * 0.14;
+            ctx.strokeStyle = `rgba(233, 231, 224, ${alpha.toFixed(3)})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -344,7 +341,8 @@
 
       for (var k = 0; k < nodes.length; k += 1) {
         var n = nodes[k];
-        ctx.fillStyle = n.r > 1.4 ? "rgba(201, 242, 78, 0.34)" : "rgba(233, 231, 224, 0.16)";
+        ctx.fillStyle =
+          n.r > 1.4 ? "rgba(201, 242, 78, 0.34)" : "rgba(233, 231, 224, 0.16)";
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
         ctx.fill();
@@ -437,6 +435,65 @@
     }
   }
 
+  /* --------------------------------------------- заявка на разбор */
+
+  function initBrief() {
+    var form = document.querySelector("#brief-form");
+    if (!form) return;
+
+    var err = document.querySelector("#b-err");
+    var fallback = document.querySelector("#b-fallback");
+    var out = document.querySelector("#b-text");
+
+    function fail(message, field) {
+      if (err) {
+        err.textContent = message;
+        err.removeAttribute("hidden");
+      }
+      if (field) field.focus();
+    }
+
+    function showText(value) {
+      if (!fallback || !out) return;
+      out.value = value;
+      fallback.removeAttribute("hidden");
+      out.focus();
+      out.select();
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      var contact = form.elements.contact.value.trim();
+      var task = form.elements.task.value.trim();
+      var pain = form.elements.pain.value.trim();
+      var limits = form.elements.limits.value.trim();
+
+      if (err) err.setAttribute("hidden", "");
+      if (fallback) fallback.setAttribute("hidden", "");
+
+      if (!contact) {
+        fail("Напишите, как с вами связаться.", form.elements.contact);
+        return;
+      }
+      if (!task) {
+        fail("Опишите задачу хотя бы одним предложением.", form.elements.task);
+        return;
+      }
+
+      var lines = ["Заявка на разбор", "Контакт: " + contact, "Задача: " + task];
+      if (pain) lines.push("Что не работает: " + pain);
+      if (limits) lines.push("Сроки и бюджет: " + limits);
+      var text = lines.join("\n");
+
+      /* панель показываем сразу, копирование идёт бонусом и ни на чём не висит */
+      showText(text);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => {});
+      }
+    });
+  }
+
   function boot() {
     initTabs();
     initFilter();
@@ -446,6 +503,7 @@
     initNetwork();
     initTicker();
     initScroll();
+    initBrief();
   }
 
   if (document.readyState === "loading") {
