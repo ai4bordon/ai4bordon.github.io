@@ -12,6 +12,12 @@ PORT_IN=3000
 
 cd "$APP_DIR"
 
+# AUD-12, SSOT: фронт (app.js API_BASE) обязан указывать на этот же домен.
+if ! grep -q "https://$DOMAIN" app.js; then
+  echo "app.js не ссылается на https://$DOMAIN — обновите API_BASE" >&2
+  exit 1
+fi
+
 if [ ! -f .env ]; then
   echo "нет $APP_DIR/.env — создайте его с TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID" >&2
   exit 1

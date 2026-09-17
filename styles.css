@@ -192,17 +192,6 @@ main,
   border-radius: 50%;
   background: var(--acid);
 }
-.bar__tg {
-  color: var(--fg);
-  text-decoration: none;
-  border-bottom: 1px solid var(--line-2);
-  padding-bottom: 1px;
-  white-space: nowrap;
-}
-.bar__tg:hover {
-  border-color: var(--acid);
-}
-
 .lang {
   font-family: "Martian Mono", ui-monospace, monospace;
   font-size: 0.72rem;
@@ -291,6 +280,9 @@ main,
   letter-spacing: -0.03em;
   margin: 0 0 var(--s4);
 }
+.hero__accent {
+  color: var(--acid);
+}
 .hero__lead {
   margin: 0 0 var(--s4);
   max-width: 46ch;
@@ -360,12 +352,6 @@ main,
   stroke: var(--line-2);
   stroke-width: 1;
 }
-.flowmap .node--branch rect {
-  fill: var(--bg-2);
-}
-.flowmap .node__dot {
-  fill: var(--acid);
-}
 .flowmap text {
   fill: var(--fg);
   font-family: "Golos Text", system-ui, sans-serif;
@@ -379,9 +365,6 @@ main,
 }
 .flowmap .pulse {
   fill: var(--acid);
-}
-.flowmap .pulse--b {
-  fill: var(--dim);
 }
 
 /* бегущая строка: один ряд */
@@ -1026,13 +1009,6 @@ main,
   animation: reveal 200ms ease-out;
 }
 
-/* контакты */
-.contact__row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--s4) var(--s6);
-}
 .link {
   color: var(--dim);
   text-decoration: none;
@@ -1061,12 +1037,6 @@ main,
     background 150ms ease-out,
     color 150ms ease-out,
     transform 100ms ease-out;
-}
-.btn__icon {
-  width: 1.15rem;
-  height: 1.15rem;
-  fill: currentColor;
-  flex: 0 0 auto;
 }
 .btn--primary {
   background: var(--acid);
@@ -1418,9 +1388,6 @@ main,
     padding-right: 0;
   }
 
-  .hero__stats {
-    gap: var(--s4) var(--s6);
-  }
   .slide {
     flex: 0 0 80%;
   }

@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bordon. ИИ-агенты, LLM и продукты под ключ</title>
 <meta name="description" content="Проектирую мультиагентные сценарии и LLM-интеграции. Собираю веб-приложения, админ-панели, трекеры, Telegram-боты и мини-аппы, лендинги. Бесплатный разбор задачи.">
+<meta property="og:title" content="Bordon. ИИ-агенты, LLM и продукты под ключ">
+<meta property="og:description" content="Проектирую мультиагентные сценарии и LLM-интеграции. Собираю веб-приложения, админ-панели, трекеры, Telegram-боты и мини-аппы, лендинги. Бесплатный разбор задачи.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
 <link rel="alternate" hreflang="en" href="en.html">
 
 <link rel="icon" href="img/icon.svg" type="image/svg+xml">
@@ -52,7 +57,7 @@
   <section class="hero">
     <div class="hero__inner">
       <div class="hero__left">
-        <h1 class="hero__title">ИИ-агенты<br>и продукты,<br>которые работают</h1>
+        <h1 class="hero__title">ИИ-агенты<br>и <span class="hero__accent">продукты</span>,<br>которые работают</h1>
         <p class="hero__lead">
           Мультиагентные сценарии, интеграции с LLM и продукт:<br>
           веб-приложения, админ-панели, трекеры, Telegram-боты и мини-аппы, лендинги.
@@ -673,30 +678,30 @@
       </header>
 
       <div class="brief__grid">
-        <form class="brief__form" id="brief-form" novalidate>
+        <form class="brief__form" id="brief-form" action="https://t.me/bordon_ai" method="get" novalidate>
           <div class="field">
             <label for="b-name">Ваше имя</label>
-            <input id="b-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required>
+            <input id="b-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" maxlength="1200" required>
           </div>
 
           <div class="field">
             <label for="b-contact">Как с вами связаться</label>
-            <input id="b-contact" name="contact" type="text" autocomplete="email" placeholder="Telegram, почта или телефон" required>
+            <input id="b-contact" name="contact" type="text" autocomplete="off" placeholder="Telegram, почта или телефон" maxlength="1200" required>
           </div>
 
           <div class="field">
             <label for="b-task">Что нужно сделать</label>
-            <textarea id="b-task" name="task" rows="3" placeholder="Например: разобрать входящие заявки и расставить приоритеты" required></textarea>
+            <textarea id="b-task" name="task" rows="3" placeholder="Например: разобрать входящие заявки и расставить приоритеты" maxlength="1200" required></textarea>
           </div>
 
           <div class="field">
             <label for="b-pain">Что сейчас не работает</label>
-            <textarea id="b-pain" name="pain" rows="3" placeholder="Например: менеджер разбирает почту вручную, часть заявок теряется"></textarea>
+            <textarea id="b-pain" name="pain" rows="3" placeholder="Например: менеджер разбирает почту вручную, часть заявок теряется" maxlength="1200"></textarea>
           </div>
 
           <div class="field">
             <label for="b-limits">Сроки и бюджет, если уже понятны</label>
-            <input id="b-limits" name="limits" type="text" placeholder="Например: до конца месяца, до 100 000 ₽">
+            <input id="b-limits" name="limits" type="text" placeholder="Например: до конца месяца, до 100 000 ₽" maxlength="1200">
           </div>
 
           <div class="field field--trap" aria-hidden="true">

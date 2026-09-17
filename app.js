@@ -5,7 +5,9 @@
 
 (() => {
   /* На GitHub Pages бэкенда нет, поэтому форма идёт на сервер по адресу.
-     На самом сервере используется относительный путь. */
+     На самом сервере используется относительный путь.
+     AUD-12, SSOT: домен живёт здесь и в deploy.sh (DOMAIN) — deploy.sh
+     падает, если они разошлись. */
   var API_BASE = "";
   if (location.hostname.endsWith("github.io")) {
     API_BASE = "https://bordon.digitai.icu";

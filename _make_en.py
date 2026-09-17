@@ -36,8 +36,8 @@ PAIRS = [
   '<a class="lang" href="index.html" hreflang="ru" lang="ru">RU</a>',
  ),
  (
-  '<h1 class="hero__title">ИИ-агенты<br>и продукты,<br>которые работают</h1>',
-  '<h1 class="hero__title">AI agents<br>and products<br>that ship</h1>',
+  '<h1 class="hero__title">ИИ-агенты<br>и <span class="hero__accent">продукты</span>,<br>которые работают</h1>',
+  '<h1 class="hero__title">AI agents<br>and <span class="hero__accent">products</span><br>that ship</h1>',
  ),
  (
   """          Мультиагентные сценарии, интеграции с LLM и продукт:<br>
@@ -568,8 +568,8 @@ CASE_PAIRS = [
  ),
  ('<label for="b-name">Ваше имя</label>', '<label for="b-name">Your name</label>'),
  (
-  '<input id="b-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required>',
-  '<input id="b-name" name="name" type="text" autocomplete="name" placeholder="What should I call you" required>',
+  '<input id="b-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" maxlength="1200" required>',
+  '<input id="b-name" name="name" type="text" autocomplete="name" placeholder="What should I call you" maxlength="1200" required>',
  ),
  (
   '<label for="b-contact">Как с вами связаться</label>',
@@ -675,6 +675,15 @@ PAIRS += [
   'name="description" content="Проектирую мультиагентные сценарии и LLM-интеграции. Собираю веб-приложения, админ-панели, трекеры, Telegram-боты и мини-аппы, лендинги. Бесплатный разбор задачи."',
   'name="description" content="I design multi-agent pipelines and LLM integrations, and build the product around them: web apps, admin panels, trackers, Telegram bots and mini apps, landing pages. Free task review."',
  ),
+ (
+  '<meta property="og:title" content="Bordon. ИИ-агенты, LLM и продукты под ключ">',
+  '<meta property="og:title" content="Bordon. AI agents, LLM and products end to end">',
+ ),
+ (
+  '<meta property="og:description" content="Проектирую мультиагентные сценарии и LLM-интеграции. Собираю веб-приложения, админ-панели, трекеры, Telegram-боты и мини-аппы, лендинги. Бесплатный разбор задачи.">',
+  '<meta property="og:description" content="I design multi-agent pipelines and LLM integrations, and build the product around them: web apps, admin panels, trackers, Telegram bots and mini apps, landing pages. Free task review.">',
+ ),
+ ('<meta property="og:locale" content="ru_RU">', '<meta property="og:locale" content="en_US">'),
 ]
 
 PAIRS += [
@@ -689,19 +698,10 @@ ALL = PAIRS + CASE_PAIRS
 src = SRC.read_text(encoding="utf-8")
 missing = []
 for ru, en in ALL:
- if src.count(ru) < 1:
-  missing.append(ru[:70])
-  continue
- src = src.replace(ru, en)
-
-if missing:
- print("НЕ НАЙДЕНО (проверь якоря):")
- for text in missing:
-  print(f"  {text!r}")
- raise SystemExit(1)
-
-OUT.write_text(src, encoding="utf-8")
-print(f"записано: {OUT}")
+    if src.count(ru) < 1:
+        missing.append(ru[:70])
+        continue
+    src = src.replace(ru, en)
 
 # --- финальный проход: подписи схемы и заголовок блока
 FINAL = {
@@ -721,8 +721,8 @@ FINAL = {
  ">Оператор</text>": ">Operator</text>",
  ">решает по карточке</text>": ">decides from the card</text>",
  '<p class="flow__title">Пример мультиагентного конвейера</p>': '<p class="flow__title">Example of a multi-agent pipeline</p>',
- 'aria-label="Схема конвейера: источник, координатор, три агента, свод, очередь и оператор"': 'aria-label="Pipeline diagram: source, coordinator, three agents, merge, queue and operator"',
- '<p class="cta-row"><a class="btn btn--primary" href="#brief">Заявка на бесплатный разбор</a></p>': '<p class="cta-row"><a class="btn btn--primary" href="#brief">Request a free review</a></p>',
+  'aria-label="Схема конвейера: источник, координатор, три агента, свод, очередь и оператор"': 'aria-label="Pipeline diagram: source, coordinator, three agents, merge, queue and operator"',
+  # cta-row уже переведён в PAIRS выше — дубль здесь был бы вечным «НЕ НАЙДЕНО».
  ">Отправить заявку</button>": ">Send the request</button>",
  '<p class="brief__hint">Уходит мне в Telegram.</p>': '<p class="brief__hint">Goes straight to my Telegram.</p>',
  '<p class="brief__next-title">Заявка отправлена</p>': '<p class="brief__next-title">Request sent</p>',
@@ -732,22 +732,29 @@ FINAL = {
  '<button class="btn btn--primary" type="submit">Понятно</button>': '<button class="btn btn--primary" type="submit">Got it</button>',
  '<a class="link" href="https://t.me/bordon_ai">Открыть Telegram</a>': '<a class="link" href="https://t.me/bordon_ai">Open Telegram</a>',
 }
+# AUD-17: у FINAL те же ворота, что у PAIRS — молчаливых замен больше нет.
 for ru, en in FINAL.items():
- src = src.replace(ru, en)
+    if src.count(ru) < 1:
+        missing.append(ru[:70])
+        continue
+    src = src.replace(ru, en)
 
-left2 = re.findall(r"[А-Яа-яЁё]+", src)
-if left2:
- print("осталось после финального прохода:", sorted(set(left2))[:20])
-else:
- print("после финального прохода кириллицы нет")
+if missing:
+    print("НЕ НАЙДЕНО (проверь якоря):")
+    for text in missing:
+        print(f"  {text!r}")
+    raise SystemExit(1)
+
+# Законная кириллица: ссылка на русскую версию на EN-странице.
+ALLOWED_CYRILLIC = {"Русская", "версия"}
 
 OUT.write_text(src, encoding="utf-8")
-print("перезаписано:", OUT)
+print("записано:", OUT)
 
-left = re.findall(r"[А-Яа-яЁё]+", src)
+left = sorted(set(re.findall(r"[А-Яа-яЁё]+", src)) - ALLOWED_CYRILLIC)
 if left:
- print(f"\nосталась кириллица: {len(left)} фрагментов")
- for word in sorted(set(left))[:60]:
-  print("  ", word)
-else:
- print("кириллицы не осталось")
+    print(f"\nосталась кириллица: {len(left)} фрагментов")
+    for word in left[:60]:
+        print("  ", word)
+    raise SystemExit(1)
+print("кириллицы не осталось")

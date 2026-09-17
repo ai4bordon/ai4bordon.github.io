@@ -1,2 +1,6 @@
 _shots/
 _probe_*.js
+# AUD-09/13: рантайм с секретами и PII + незакрытые черновики — не коммитим
+data/
+.env
+_icon_preview.html

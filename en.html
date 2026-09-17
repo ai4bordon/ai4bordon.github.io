@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bordon. AI agents, LLM and products end to end</title>
 <meta name="description" content="I design multi-agent pipelines and LLM integrations, and build the product around them: web apps, admin panels, trackers, Telegram bots and mini apps, landing pages. Free task review.">
+<meta property="og:title" content="Bordon. AI agents, LLM and products end to end">
+<meta property="og:description" content="I design multi-agent pipelines and LLM integrations, and build the product around them: web apps, admin panels, trackers, Telegram bots and mini apps, landing pages. Free task review.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
 <link rel="alternate" hreflang="ru" href="index.html">
 
 <link rel="icon" href="img/icon.svg" type="image/svg+xml">
@@ -52,7 +57,7 @@
   <section class="hero">
     <div class="hero__inner">
       <div class="hero__left">
-        <h1 class="hero__title">AI agents<br>and products<br>that ship</h1>
+        <h1 class="hero__title">AI agents<br>and <span class="hero__accent">products</span><br>that ship</h1>
         <p class="hero__lead">
           Multi-agent pipelines, LLM integrations and the product:<br>
           web apps, admin panels, trackers, Telegram bots and mini apps, landing pages.
@@ -673,30 +678,30 @@
       </header>
 
       <div class="brief__grid">
-        <form class="brief__form" id="brief-form" novalidate>
+        <form class="brief__form" id="brief-form" action="https://t.me/bordon_ai" method="get" novalidate>
           <div class="field">
             <label for="b-name">Your name</label>
-            <input id="b-name" name="name" type="text" autocomplete="name" placeholder="What should I call you" required>
+            <input id="b-name" name="name" type="text" autocomplete="name" placeholder="What should I call you" maxlength="1200" required>
           </div>
 
           <div class="field">
             <label for="b-contact">How to reach you</label>
-            <input id="b-contact" name="contact" type="text" autocomplete="email" placeholder="Telegram, email or phone" required>
+            <input id="b-contact" name="contact" type="text" autocomplete="off" placeholder="Telegram, email or phone" maxlength="1200" required>
           </div>
 
           <div class="field">
             <label for="b-task">What needs to be done</label>
-            <textarea id="b-task" name="task" rows="3" placeholder="For example: process incoming requests and set priorities" required></textarea>
+            <textarea id="b-task" name="task" rows="3" placeholder="For example: process incoming requests and set priorities" maxlength="1200" required></textarea>
           </div>
 
           <div class="field">
             <label for="b-pain">What is not working now</label>
-            <textarea id="b-pain" name="pain" rows="3" placeholder="For example: a manager sorts email by hand and some requests get lost"></textarea>
+            <textarea id="b-pain" name="pain" rows="3" placeholder="For example: a manager sorts email by hand and some requests get lost" maxlength="1200"></textarea>
           </div>
 
           <div class="field">
             <label for="b-limits">Timeline and budget, if already known</label>
-            <input id="b-limits" name="limits" type="text" placeholder="For example: by the end of the month, up to €1 000">
+            <input id="b-limits" name="limits" type="text" placeholder="For example: by the end of the month, up to €1 000" maxlength="1200">
           </div>
 
           <div class="field field--trap" aria-hidden="true">
