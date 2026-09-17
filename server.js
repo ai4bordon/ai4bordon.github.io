@@ -124,7 +124,12 @@ function composeBrief(fields) {
   ];
   if (fields.pain) lines.push(`Что не работает: ${fields.pain}`);
   if (fields.limits) lines.push(`Сроки и бюджет: ${fields.limits}`);
-  lines.push("", `Когда: ${new Date().toISOString()}`);
+  const now = new Date();
+  const gmt12 = new Date(now.getTime() + 12 * 60 * 60 * 1000)
+    .toISOString()
+    .replace("T", " ")
+    .slice(0, 16);
+  lines.push("", `Когда: ${gmt12} (GMT+12)`);
   return lines.join("\n");
 }
 

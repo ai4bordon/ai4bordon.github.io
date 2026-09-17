@@ -21,8 +21,24 @@
     var list = document.querySelector(".tabs__list");
     if (!list) return;
     var tabs = Array.prototype.slice.call(list.querySelectorAll(".tabs__tab"));
+    var panelsBox = document.querySelector(".tabs__panels");
+
+    /* панели разной высоты: переводим высоту плавно, иначе нижний блок скачет */
+    function softenHeight(before) {
+      if (!panelsBox || reduced || !panelsBox.animate) return;
+      var after = panelsBox.getBoundingClientRect().height;
+      if (!before || Math.abs(before - after) < 2) return;
+      panelsBox.animate(
+        [{ height: before + "px" }, { height: after + "px" }],
+        { duration: 260, easing: "ease-out" },
+      );
+    }
 
     function select(index) {
+      var before =
+        panelsBox && panelsBox.getBoundingClientRect
+          ? panelsBox.getBoundingClientRect().height
+          : 0;
       tabs.forEach((tab, i) => {
         var on = i === index;
         tab.classList.toggle("is-on", on);
@@ -35,6 +51,7 @@
         if (on) panel.removeAttribute("hidden");
         else panel.setAttribute("hidden", "");
       });
+      softenHeight(before);
     }
 
     tabs.forEach((tab, i) => {
