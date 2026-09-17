@@ -1369,6 +1369,11 @@ main,
     display: none;
   }
 
+  /* навигация уходит в fixed, поэтому правую группу толкаем сами */
+  .bar__side {
+    margin-inline-start: auto;
+  }
+
   .case__head {
     grid-template-columns: minmax(0, 1fr) var(--s6);
     gap: var(--s1) 0;
