@@ -547,7 +547,12 @@
         err.textContent = message;
         err.removeAttribute("hidden");
       }
-      if (field) field.focus();
+      if (field) {
+        /* рамку помечаем явно: программный фокус после клика мышью не даёт :focus-visible */
+        var box = field.closest ? field.closest(".field") : null;
+        if (box) box.classList.add("is-bad");
+        field.focus();
+      }
     }
 
     function showText(value) {
@@ -572,6 +577,12 @@
         done(false);
       }
     }
+
+    /* человек начал править — снимаем пометку */
+    form.addEventListener("input", (event) => {
+      var box = event.target.closest ? event.target.closest(".field") : null;
+      if (box) box.classList.remove("is-bad");
+    });
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();

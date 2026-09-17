@@ -14,6 +14,7 @@
   --dim-2: #5c5e59;
   --acid: #c9f24e;
   --acid-2: #a9d63c;
+  --err: #c05a3a;
 
   /* шкала отступов */
   --s1: 0.25rem;
@@ -1103,6 +1104,11 @@ main,
   border-color: var(--acid);
   outline: none;
 }
+/* невалидное поле после ответа сервера: видно всегда, а не только по фокусу */
+.field.is-bad input,
+.field.is-bad textarea {
+  border-color: var(--err);
+}
 
 .field--trap {
   position: absolute;
@@ -1133,7 +1139,7 @@ main,
 .brief__err {
   margin: 0;
   padding: var(--s3) var(--s4);
-  border-left: 2px solid #c05a3a;
+  border-left: 2px solid var(--err);
   background: #1a1210;
   color: #e8b6a4;
   font-size: 0.92rem;
