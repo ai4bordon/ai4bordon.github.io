@@ -397,6 +397,8 @@ main,
   display: flex;
   align-items: center;
   gap: var(--s8);
+  /* зазор на стыке копий: входит в offsetWidth, поэтому цикл остаётся бесшовным */
+  padding-inline-end: var(--s8);
   width: max-content;
   font-family: "Martian Mono", ui-monospace, monospace;
   font-size: 0.74rem;
