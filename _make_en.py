@@ -86,8 +86,8 @@ PAIRS = [
  ),
  ("<h3>Надёжность агентов</h3>", "<h3>Agent reliability</h3>"),
  (
-  "<p>Промпты и сценарии ломаются тихо: ответ стал хуже, и никто не заметил. Закрываю это набором проверок и регрессией в CI. Правка промпта не проходит дальше, если сломала прежние ответы.</p>",
-  "<p>Prompts and pipelines break quietly: answers get worse and nobody notices. I close that gap with a test set and regression checks in CI. A prompt change does not pass if it broke earlier answers.</p>",
+  "<p>Промпты и сценарии ломаются тихо: ответ стал хуже, и никто не заметил. Закрываю это набором проверок и сравнением версий промпта на одном наборе задач. Правка не проходит дальше, если сломала прежние ответы.</p>",
+  "<p>Prompts and pipelines break quietly: answers get worse and nobody notices. I close that gap with a test set and by comparing prompt versions on the same task set. A change does not pass if it broke earlier answers.</p>",
  ),
  ("<h3>Веб-приложения</h3>", "<h3>Web applications</h3>"),
  (
@@ -240,8 +240,8 @@ CASE_PAIRS = [
   "Incoming requests become a prioritised queue with a decision history",
  ),
  (
-  "Конвейер обработки лидов: источники, сырые сигналы, скоринг, очередь и операторские действия на одном API. Отдельный слой поиска по базе знаний с выдачей источников.",
-  "A lead processing pipeline: sources, raw signals, scoring, queue and operator actions behind one API. A separate knowledge search layer that returns its sources.",
+  "Конвейер обработки лидов: источники, сырые сигналы, скоринг, очередь и операторские действия на одном API. Слой поиска по базе знаний с выдачей источников написан отдельным модулем и включается настройкой, на текущем стенде он выключен.",
+  "A lead processing pipeline: sources, raw signals, scoring, queue and operator actions behind one API. The knowledge search layer that returns its sources is a separate module switched on by config, and it is off on the current stand.",
  ),
  (
   "Не нужно листать почту и таблицы, чтобы понять, что делать первым. Решения оператора фиксируются в истории.",
@@ -253,12 +253,12 @@ CASE_PAIRS = [
  ),
  (">Надёжность LLM</span>", ">LLM reliability</span>"),
  (
-  "Стенд сравнения промптов: регрессии ловятся в CI, а не клиентом",
-  "A prompt comparison bench: regressions are caught in CI, not by your customer",
+  "Стенд сравнения промптов: регрессии видны до клиента",
+  "A prompt comparison bench: regressions show up before your customer sees them",
  ),
  (
-  "Ответы сохраняются и сравниваются между версиями промпта. Проверка идёт автоматически, при каждом изменении.",
-  "Answers are stored and compared between prompt versions. The check runs automatically on every change.",
+  "Ответы сохраняются и сравниваются между версиями промпта. Прогон запускается скриптом, а результаты и метрики остаются для сравнения версий.",
+  "Answers are stored and compared between prompt versions. The run is started by a script, and the results and metrics stay for comparing versions.",
  ),
  (
   "Правка промпта не ломает прежние ответы тихо. Поломка видна до выката.",
@@ -318,6 +318,7 @@ CASE_PAIRS = [
  ),
  ("<li>18 тестов</li>", "<li>18 tests</li>"),
  ("<li>тесты</li>", "<li>tests</li>"),
+ ("<li>метрики</li>", "<li>metrics</li>"),
  (">Страницы под услугу</span>", ">Pages for a service</span>"),
  (
   "Разные ниши: от психолога до мотошколы. У каждой своя структура",
@@ -683,7 +684,10 @@ PAIRS += [
   '<meta property="og:description" content="Проектирую мультиагентные сценарии и LLM-интеграции. Собираю веб-приложения, админ-панели, трекеры, Telegram-боты и мини-аппы, лендинги. Бесплатный разбор задачи.">',
   '<meta property="og:description" content="I design multi-agent pipelines and LLM integrations, and build the product around them: web apps, admin panels, trackers, Telegram bots and mini apps, landing pages. Free task review.">',
  ),
- ('<meta property="og:locale" content="ru_RU">', '<meta property="og:locale" content="en_US">'),
+ (
+  '<meta property="og:locale" content="ru_RU">',
+  '<meta property="og:locale" content="en_US">',
+ ),
 ]
 
 PAIRS += [
@@ -698,10 +702,10 @@ ALL = PAIRS + CASE_PAIRS
 src = SRC.read_text(encoding="utf-8")
 missing = []
 for ru, en in ALL:
-    if src.count(ru) < 1:
-        missing.append(ru[:70])
-        continue
-    src = src.replace(ru, en)
+ if src.count(ru) < 1:
+  missing.append(ru[:70])
+  continue
+ src = src.replace(ru, en)
 
 # --- финальный проход: подписи схемы и заголовок блока
 FINAL = {
@@ -721,8 +725,8 @@ FINAL = {
  ">Оператор</text>": ">Operator</text>",
  ">решает по карточке</text>": ">decides from the card</text>",
  '<p class="flow__title">Пример мультиагентного конвейера</p>': '<p class="flow__title">Example of a multi-agent pipeline</p>',
-  'aria-label="Схема конвейера: источник, координатор, три агента, свод, очередь и оператор"': 'aria-label="Pipeline diagram: source, coordinator, three agents, merge, queue and operator"',
-  # cta-row уже переведён в PAIRS выше — дубль здесь был бы вечным «НЕ НАЙДЕНО».
+ 'aria-label="Схема конвейера: источник, координатор, три агента, свод, очередь и оператор"': 'aria-label="Pipeline diagram: source, coordinator, three agents, merge, queue and operator"',
+ # cta-row уже переведён в PAIRS выше — дубль здесь был бы вечным «НЕ НАЙДЕНО».
  ">Отправить заявку</button>": ">Send the request</button>",
  '<p class="brief__hint">Уходит мне в Telegram.</p>': '<p class="brief__hint">Goes straight to my Telegram.</p>',
  '<p class="brief__next-title">Заявка отправлена</p>': '<p class="brief__next-title">Request sent</p>',
@@ -734,16 +738,16 @@ FINAL = {
 }
 # AUD-17: у FINAL те же ворота, что у PAIRS — молчаливых замен больше нет.
 for ru, en in FINAL.items():
-    if src.count(ru) < 1:
-        missing.append(ru[:70])
-        continue
-    src = src.replace(ru, en)
+ if src.count(ru) < 1:
+  missing.append(ru[:70])
+  continue
+ src = src.replace(ru, en)
 
 if missing:
-    print("НЕ НАЙДЕНО (проверь якоря):")
-    for text in missing:
-        print(f"  {text!r}")
-    raise SystemExit(1)
+ print("НЕ НАЙДЕНО (проверь якоря):")
+ for text in missing:
+  print(f"  {text!r}")
+ raise SystemExit(1)
 
 # Законная кириллица: ссылка на русскую версию на EN-странице.
 ALLOWED_CYRILLIC = {"Русская", "версия"}
@@ -753,8 +757,8 @@ print("записано:", OUT)
 
 left = sorted(set(re.findall(r"[А-Яа-яЁё]+", src)) - ALLOWED_CYRILLIC)
 if left:
-    print(f"\nосталась кириллица: {len(left)} фрагментов")
-    for word in left[:60]:
-        print("  ", word)
-    raise SystemExit(1)
+ print(f"\nосталась кириллица: {len(left)} фрагментов")
+ for word in left[:60]:
+  print("  ", word)
+ raise SystemExit(1)
 print("кириллицы не осталось")

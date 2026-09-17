@@ -222,7 +222,7 @@
               </article>
               <article class="mini">
                 <h3>Agent reliability</h3>
-                <p>Prompts and pipelines break quietly: answers get worse and nobody notices. I close that gap with a test set and regression checks in CI. A prompt change does not pass if it broke earlier answers.</p>
+                <p>Prompts and pipelines break quietly: answers get worse and nobody notices. I close that gap with a test set and by comparing prompt versions on the same task set. A change does not pass if it broke earlier answers.</p>
               </article>
             </div>
           </div>
@@ -396,7 +396,7 @@
             <span class="case__more" aria-hidden="true"></span>
           </summary>
           <div class="case__body">
-            <p class="case__what">A lead processing pipeline: sources, raw signals, scoring, queue and operator actions behind one API. A separate knowledge search layer that returns its sources.</p>
+            <p class="case__what">A lead processing pipeline: sources, raw signals, scoring, queue and operator actions behind one API. The knowledge search layer that returns its sources is a separate module switched on by config, and it is off on the current stand.</p>
             <p class="case__value"><span class="case__label">Why it matters</span>No need to scroll through email and spreadsheets to decide what comes first. Operator decisions are recorded in the history.</p>
             <p class="case__note">The stand runs on a separate server and is closed to the public. I show it on a call or send access on request.</p>
             <ul class="tags"><li>NestJS</li><li>Prisma</li><li>PostgreSQL</li><li>LightRAG</li><li>Docker</li></ul>
@@ -408,13 +408,13 @@
             <span class="case__year">2025</span>
             <span class="case__title">Prompt Test Lab</span>
             <span class="case__cat">LLM reliability</span>
-            <span class="case__sum">A prompt comparison bench: regressions are caught in CI, not by your customer</span>
+            <span class="case__sum">A prompt comparison bench: regressions show up before your customer sees them</span>
             <span class="case__more" aria-hidden="true"></span>
           </summary>
           <div class="case__body">
-            <p class="case__what">Answers are stored and compared between prompt versions. The check runs automatically on every change.</p>
+            <p class="case__what">Answers are stored and compared between prompt versions. The run is started by a script, and the results and metrics stay for comparing versions.</p>
             <p class="case__value"><span class="case__label">Why it matters</span>A prompt change does not silently break earlier answers. The break is visible before release.</p>
-            <ul class="tags"><li>Python</li><li>GitHub Actions</li><li>tests</li></ul>
+            <ul class="tags"><li>Python</li><li>LLM</li><li>metrics</li></ul>
             <a class="case__go" href="https://github.com/ai4bordon/prompt_test">Open on GitHub</a>
           </div>
         </details>
