@@ -58,9 +58,9 @@ PAIRS = [
   '<p class="offer__badge">Free task review</p>',
  ),
  (
-  """            Присылаете два предложения о задаче, получаете критерии приёмки, состав работ и дату.
+  """            Кратко описывайте задачу своими словами, получаете критерии приёмки, состав работ и дату.
             Материалы остаются у вас. Если задача не моя, скажу сразу.""",
-  """            Send two sentences about your task and get acceptance criteria, scope and a delivery date.
+  """            Describe the task in your own words and get acceptance criteria, scope and a delivery date.
             The material stays with you. If the task is not mine, I say so up front.""",
  ),
  ("<h2>Что делаю</h2>", "<h2>What I do</h2>"),
