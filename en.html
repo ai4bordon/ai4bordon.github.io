@@ -376,12 +376,12 @@
             <span class="case__year">2026</span>
             <span class="case__title">Hermes Context Optimizer</span>
             <span class="case__cat">Agent tooling</span>
-            <span class="case__sum">Deterministic context optimisation: the agent stops wasting its window on noise</span>
+            <span class="case__sum">Plugin for Hermes Agent: the right fragments are selected before the model call</span>
             <span class="case__more" aria-hidden="true"></span>
           </summary>
           <div class="case__body">
-            <p class="case__what">A plugin for Hermes Agent. It optimises the tool context so the same input produces the same output.</p>
-            <p class="case__value"><span class="case__label">Why it matters</span>This is exactly why agents in production behave differently on identical requests. Here the behaviour is reproducible.</p>
+            <p class="case__what">An experimental plugin for Hermes Agent. It shrinks large read-only tool results before the model call, and finds mandatory records deterministically: an ambiguous record goes to a conservative fallback instead of a guess. Secrets are not stored and mutating tools pass through unchanged.</p>
+            <p class="case__value"><span class="case__label">Why it matters</span>The plugin pays for itself twice: the context is cheaper and the agent behaves reproducibly. In one measurement on a single model the answer quality did not change while the provider bill fell by 93.5%. That is one corpus, not a promise for every project.</p>
             <ul class="tags"><li>Python</li><li>Hermes Agent</li><li>Apache-2.0</li><li>tests</li></ul>
             <a class="case__go" href="https://github.com/ai4bordon/hermes-context-optimizer">Open on GitHub</a>
           </div>
@@ -512,7 +512,7 @@
     <div class="wrap">
       <header class="sec">
         <h2>Product interfaces</h2>
-        <p class="sec__lead">Screenshots from live stands. The reel moves on its own, or you can scroll it yourself.</p>
+        <p class="sec__lead">Screenshots from live stands.</p>
       </header>
 
       <div class="carousel" id="carousel">

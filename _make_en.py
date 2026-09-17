@@ -223,16 +223,16 @@ CASE_PAIRS = [
  ),
  (">Инструмент для агентов</span>", ">Agent tooling</span>"),
  (
-  "Детерминированная оптимизация контекста: агент не тратит окно на мусор",
-  "Deterministic context optimisation: the agent stops wasting its window on noise",
+  "Плагин к Hermes Agent: отбор нужных фрагментов до вызова модели",
+  "Plugin for Hermes Agent: the right fragments are selected before the model call",
  ),
  (
-  "Плагин для Hermes Agent. Оптимизирует контекст инструментов так, что одинаковый вход даёт одинаковый результат.",
-  "A plugin for Hermes Agent. It optimises the tool context so the same input produces the same output.",
+  "Экспериментальный плагин к Hermes Agent. Сжимает большие результаты read-only инструментов до вызова модели, а обязательные записи находит детерминированно: неоднозначная запись уводит в консервативный откат, а не в догадку. Секреты не сохраняются, изменяющие инструменты идут без изменений.",
+  "An experimental plugin for Hermes Agent. It shrinks large read-only tool results before the model call, and finds mandatory records deterministically: an ambiguous record goes to a conservative fallback instead of a guess. Secrets are not stored and mutating tools pass through unchanged.",
  ),
  (
-  "Именно из-за этого агенты в проде ведут себя по-разному на одинаковых запросах. Здесь поведение воспроизводимо.",
-  "This is exactly why agents in production behave differently on identical requests. Here the behaviour is reproducible.",
+  "Плагин платит за себя дважды: контекст дешевле, а поведение агента воспроизводимо. В замере на одной модели качество ответов не изменилось, а оплата провайдера упала на 93,5%. Это измерение на одном корпусе, а не обещание для любого проекта.",
+  "The plugin pays for itself twice: the context is cheaper and the agent behaves reproducibly. In one measurement on a single model the answer quality did not change while the provider bill fell by 93.5%. That is one corpus, not a promise for every project.",
  ),
  (">Продукт на агентах</span>", ">Product built on agents</span>"),
  (
@@ -346,8 +346,8 @@ CASE_PAIRS = [
  (">Открыть живой стенд</a>", ">Open the live stand</a>"),
  ("<h2>Интерфейсы продуктов</h2>", "<h2>Product interfaces</h2>"),
  (
-  '<p class="sec__lead">Скриншоты с работающих стендов. Лента листается сама, но можно и вручную.</p>',
-  '<p class="sec__lead">Screenshots from live stands. The reel moves on its own, or you can scroll it yourself.</p>',
+  '<p class="sec__lead">Скриншоты с работающих стендов.</p>',
+  '<p class="sec__lead">Screenshots from live stands.</p>',
  ),
  ('aria-label="Предыдущий экран"', 'aria-label="Previous screen"'),
  ('aria-label="Следующий экран"', 'aria-label="Next screen"'),

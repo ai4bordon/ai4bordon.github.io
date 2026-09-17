@@ -376,12 +376,12 @@
             <span class="case__year">2026</span>
             <span class="case__title">Hermes Context Optimizer</span>
             <span class="case__cat">Инструмент для агентов</span>
-            <span class="case__sum">Детерминированная оптимизация контекста: агент не тратит окно на мусор</span>
+            <span class="case__sum">Плагин к Hermes Agent: отбор нужных фрагментов до вызова модели</span>
             <span class="case__more" aria-hidden="true"></span>
           </summary>
           <div class="case__body">
-            <p class="case__what">Плагин для Hermes Agent. Оптимизирует контекст инструментов так, что одинаковый вход даёт одинаковый результат.</p>
-            <p class="case__value"><span class="case__label">Зачем заказчику</span>Именно из-за этого агенты в проде ведут себя по-разному на одинаковых запросах. Здесь поведение воспроизводимо.</p>
+            <p class="case__what">Экспериментальный плагин к Hermes Agent. Сжимает большие результаты read-only инструментов до вызова модели, а обязательные записи находит детерминированно: неоднозначная запись уводит в консервативный откат, а не в догадку. Секреты не сохраняются, изменяющие инструменты идут без изменений.</p>
+            <p class="case__value"><span class="case__label">Зачем заказчику</span>Плагин платит за себя дважды: контекст дешевле, а поведение агента воспроизводимо. В замере на одной модели качество ответов не изменилось, а оплата провайдера упала на 93,5%. Это измерение на одном корпусе, а не обещание для любого проекта.</p>
             <ul class="tags"><li>Python</li><li>Hermes Agent</li><li>Apache-2.0</li><li>тесты</li></ul>
             <a class="case__go" href="https://github.com/ai4bordon/hermes-context-optimizer">Открыть на GitHub</a>
           </div>
@@ -512,7 +512,7 @@
     <div class="wrap">
       <header class="sec">
         <h2>Интерфейсы продуктов</h2>
-        <p class="sec__lead">Скриншоты с работающих стендов. Лента листается сама, но можно и вручную.</p>
+        <p class="sec__lead">Скриншоты с работающих стендов.</p>
       </header>
 
       <div class="carousel" id="carousel">
