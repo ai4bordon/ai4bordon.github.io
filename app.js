@@ -114,7 +114,9 @@
 
     function apply(cat) {
       var before =
-        box && box.getBoundingClientRect ? box.getBoundingClientRect().height : 0;
+        box && box.getBoundingClientRect
+          ? box.getBoundingClientRect().height
+          : 0;
       var state =
         hasGsap && hasFlip && !reduced ? window.Flip.getState(cases) : null;
 
@@ -343,7 +345,7 @@
     var height = 0;
     var nodes = [];
     var running = true;
-    var LINK = 150;
+    var LINK = 190;
 
     function resize() {
       var ratio = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -356,16 +358,16 @@
     }
 
     function seed() {
-      var count = Math.round((width * height) / 42000);
-      count = Math.max(18, Math.min(count, 70));
+      var count = Math.round((width * height) / 15000);
+      count = Math.max(40, Math.min(count, 170));
       nodes = [];
       for (var i = 0; i < count; i += 1) {
         nodes.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.22,
-          vy: (Math.random() - 0.5) * 0.22,
-          r: Math.random() < 0.16 ? 1.7 : 1,
+          vx: (Math.random() - 0.5) * 0.26,
+          vy: (Math.random() - 0.5) * 0.26,
+          r: Math.random() < 0.2 ? 2.1 : 1.1,
         });
       }
     }
@@ -388,9 +390,9 @@
           var dy = a.y - b.y;
           var dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < LINK) {
-            const alpha = (1 - dist / LINK) * 0.14;
-            ctx.strokeStyle = `rgba(233, 231, 224, ${alpha.toFixed(3)})`;
-            ctx.lineWidth = 0.6;
+            const alpha = (1 - dist / LINK) * 0.16;
+            ctx.strokeStyle = `rgba(201, 242, 78, ${alpha.toFixed(3)})`;
+            ctx.lineWidth = 0.45;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -402,7 +404,7 @@
       for (var k = 0; k < nodes.length; k += 1) {
         var n = nodes[k];
         ctx.fillStyle =
-          n.r > 1.4 ? "rgba(201, 242, 78, 0.34)" : "rgba(233, 231, 224, 0.16)";
+          n.r > 1.8 ? "rgba(201, 242, 78, 0.5)" : "rgba(201, 242, 78, 0.2)";
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
         ctx.fill();
