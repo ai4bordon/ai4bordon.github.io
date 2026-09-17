@@ -10,8 +10,8 @@
 
 import { createServer } from "node:http";
 import { readFile, appendFile, mkdir } from "node:fs/promises";
-import { existsSync } from "node:fs";
-import { extname, join, normalize, dirname } from "node:path";
+import { statSync } from "node:fs";
+import { extname, join, normalize, dirname, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
@@ -36,6 +36,26 @@ const MIME = {
 };
 
 const MAX_BODY = 16 * 1024; // больше заявке не нужно
+const SECURITY_HEADERS = {
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "X-Frame-Options": "SAMEORIGIN",
+};
+
+/* AUD-01: раздаём только публичное. Всё остальное в корне (.env,
+   data/briefs.jsonl, исходники, генератор) существует, но не отдаётся. */
+const PUBLIC_FILES = new Set([
+  "/index.html",
+  "/en.html",
+  "/styles.css",
+  "/app.js",
+]);
+const PUBLIC_DIRS = ["/img/", "/vendor/"];
+
+function isPublic(urlPath) {
+  if (PUBLIC_FILES.has(urlPath)) return true;
+  return PUBLIC_DIRS.some((dir) => urlPath.startsWith(dir));
+}
 const MAX_FIELD = 1200; // предел на одно поле
 const RATE_WINDOW_MS = 60 * 60 * 1000;
 const RATE_MAX = 5; // заявок с одного адреса в час
@@ -85,6 +105,7 @@ function send(res, code, body, extra = {}) {
         ? "text/plain; charset=utf-8"
         : "application/json; charset=utf-8",
     "Cache-Control": "no-store",
+    ...SECURITY_HEADERS,
     ...extra,
   });
   res.end(payload);
@@ -256,8 +277,22 @@ async function handleBrief(req, res) {
 
 async function serveStatic(req, res, urlPath) {
   const rel = urlPath === "/" ? "/index.html" : urlPath;
+  if (!isPublic(rel)) {
+    send(res, 404, "Не найдено");
+    return;
+  }
   const target = join(ROOT, normalize(rel).replace(/^(\.\.[/\\])+/, ""));
-  if (!target.startsWith(ROOT) || !existsSync(target)) {
+  if (!target.startsWith(ROOT + sep)) {
+    send(res, 404, "Не найдено");
+    return;
+  }
+  let isFile = false;
+  try {
+    isFile = statSync(target).isFile();
+  } catch {
+    isFile = false;
+  }
+  if (!isFile) {
     send(res, 404, "Не найдено");
     return;
   }
@@ -267,6 +302,7 @@ async function serveStatic(req, res, urlPath) {
       "Content-Type":
         MIME[extname(target).toLowerCase()] || "application/octet-stream",
       "Cache-Control": "no-cache",
+      ...SECURITY_HEADERS,
     });
     res.end(file);
   } catch {
