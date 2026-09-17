@@ -28,10 +28,10 @@
       if (!panelsBox || reduced || !panelsBox.animate) return;
       var after = panelsBox.getBoundingClientRect().height;
       if (!before || Math.abs(before - after) < 2) return;
-      panelsBox.animate(
-        [{ height: before + "px" }, { height: after + "px" }],
-        { duration: 260, easing: "ease-out" },
-      );
+      panelsBox.animate([{ height: before + "px" }, { height: after + "px" }], {
+        duration: 260,
+        easing: "ease-out",
+      });
     }
 
     function select(index) {
@@ -81,9 +81,23 @@
   function initFilter() {
     var chips = Array.prototype.slice.call(document.querySelectorAll(".chip"));
     var cases = Array.prototype.slice.call(document.querySelectorAll(".case"));
+    var box = document.querySelector("#cases");
     if (!chips.length || !cases.length) return;
 
+    /* Flip уводит карточки в absolute и контейнер схлопывается — держим высоту */
+    function holdHeight(before) {
+      if (!box || reduced || !box.animate) return;
+      var after = box.getBoundingClientRect().height;
+      if (!before || Math.abs(before - after) < 2) return;
+      box.animate(
+        [{ height: before + "px" }, { height: after + "px" }],
+        { duration: 400, easing: "ease-out" },
+      );
+    }
+
     function apply(cat) {
+      var before =
+        box && box.getBoundingClientRect ? box.getBoundingClientRect().height : 0;
       var state =
         hasGsap && hasFlip && !reduced ? window.Flip.getState(cases) : null;
 
@@ -93,6 +107,8 @@
         else item.setAttribute("hidden", "");
         if (!show) item.removeAttribute("open");
       });
+
+      holdHeight(before);
 
       if (state) {
         window.Flip.from(state, {
