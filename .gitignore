@@ -4,3 +4,4 @@ _probe_*.js
 data/
 .env
 _icon_preview.html
+BUGSAUDIT-*.md
