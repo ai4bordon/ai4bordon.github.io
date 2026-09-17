@@ -41,7 +41,7 @@ PAIRS = [
  ),
  (
   """          Мультиагентные сценарии, интеграции с LLM и продукт:<br>
-          веб-приложения, админ-панели, трекеры, Telegram-боты и ТМА, лендинги.""",
+          веб-приложения, админ-панели, трекеры, Telegram-боты и мини-аппы, лендинги.""",
   """          Multi-agent pipelines, LLM integrations and the product:<br>
           web apps, admin panels, trackers, Telegram bots and mini apps, landing pages.""",
  ),
