@@ -84,15 +84,27 @@
     var box = document.querySelector("#cases");
     if (!chips.length || !cases.length) return;
 
-    /* Flip уводит карточки в absolute и контейнер схлопывается — держим высоту */
+    var hold = null;
+
+    /* Flip уводит карточки в absolute и контейнер схлопывается: держим высоту,
+       пока идёт анимация, иначе нижняя секция дёргается */
     function holdHeight(before) {
-      if (!box || reduced || !box.animate) return;
+      if (!box || reduced || !box.animate || !before) return;
       var after = box.getBoundingClientRect().height;
-      if (!before || Math.abs(before - after) < 2) return;
-      box.animate(
+      box.style.height = before + "px";
+      if (Math.abs(before - after) < 2) return;
+      hold = box.animate(
         [{ height: before + "px" }, { height: after + "px" }],
-        { duration: 400, easing: "ease-out" },
+        { duration: 400, easing: "ease-out", fill: "forwards" },
       );
+    }
+
+    function releaseHeight() {
+      if (hold) {
+        hold.cancel();
+        hold = null;
+      }
+      if (box) box.style.height = "";
     }
 
     function apply(cat) {
@@ -116,7 +128,10 @@
           ease: "power2.out",
           absolute: true,
           stagger: 0.012,
+          onComplete: releaseHeight,
         });
+      } else {
+        releaseHeight();
       }
     }
 
