@@ -151,11 +151,11 @@ main,
   text-decoration: none;
   white-space: nowrap;
 }
-.brand__dot {
-  width: 0.55rem;
-  height: 0.55rem;
-  background: var(--acid);
-  border-radius: 1px;
+.brand__mark {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: block;
+  flex: none;
 }
 
 .nav {

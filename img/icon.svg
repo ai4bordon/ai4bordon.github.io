@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Bordon">
+  <title>Bordon</title>
+  <rect width="64" height="64" rx="14" fill="#0a0a0a"/>
+  <path d="M26 26 L40 40" stroke="#c9f24e" stroke-width="7"/>
+  <rect x="12" y="12" width="24" height="24" rx="2" fill="#c9f24e"/>
+  <circle cx="47" cy="47" r="9" fill="#c9f24e"/>
+</svg>
