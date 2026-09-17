@@ -619,6 +619,8 @@ main,
 .cases {
   display: flex;
   flex-direction: column;
+  /* во время Flip карточки уходят в absolute: не даём им накрыть соседнюю секцию */
+  overflow: clip;
 }
 .case {
   border-bottom: 1px solid var(--line);
@@ -1320,6 +1322,23 @@ main,
     grid-template-rows: auto auto;
     min-height: auto;
     padding-bottom: var(--s12);
+  }
+  .hero__left,
+  .flow {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .flow {
+    align-self: start;
+  }
+  /* на телефоне карточка берёт свою пропорцию, а не тянется по колонке */
+  .flowmap {
+    height: auto;
+    max-width: 20rem;
+    margin-inline: auto;
+  }
+  .brief__grid {
+    grid-template-columns: minmax(0, 1fr);
   }
   .tabs {
     grid-template-columns: minmax(0, 1fr);
