@@ -43,7 +43,7 @@ PAIRS = [
   """          Мультиагентные сценарии, интеграции с LLM и продукт:<br>
           веб-приложения, админ-панели, трекеры, Telegram-боты и ТМА, лендинги.""",
   """          Multi-agent pipelines, LLM integrations and the product:<br>
-          web apps, admin panels, trackers, Telegram bots and TMAs, landing pages.""",
+          web apps, admin panels, trackers, Telegram bots and mini apps, landing pages.""",
  ),
  (
   '<a class="btn btn--primary" href="#brief">Оставить заявку на разбор</a>',
