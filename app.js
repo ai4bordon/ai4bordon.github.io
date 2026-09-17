@@ -86,25 +86,30 @@
 
     var hold = null;
 
-    /* Flip уводит карточки в absolute и контейнер схлопывается: держим высоту,
-       пока идёт анимация, иначе нижняя секция дёргается */
+    /* Flip уводит карточки в absolute и контейнер схлопывается: держим нижнюю границу
+       высоты, пока идёт анимация, иначе нижняя секция дёргается */
     function holdHeight(before) {
       if (!box || reduced || !box.animate || !before) return;
       var after = box.getBoundingClientRect().height;
-      box.style.height = before + "px";
+      box.style.minHeight = before + "px";
       if (Math.abs(before - after) < 2) return;
       hold = box.animate(
-        [{ height: before + "px" }, { height: after + "px" }],
+        [{ minHeight: before + "px" }, { minHeight: after + "px" }],
         { duration: 400, easing: "ease-out", fill: "forwards" },
       );
     }
 
+    /* снимаем фиксацию только когда Flip точно вернул карточки в поток */
     function releaseHeight() {
-      if (hold) {
-        hold.cancel();
-        hold = null;
-      }
-      if (box) box.style.height = "";
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (hold) {
+            hold.cancel();
+            hold = null;
+          }
+          if (box) box.style.minHeight = "";
+        });
+      });
     }
 
     function apply(cat) {
