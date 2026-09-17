@@ -62,6 +62,7 @@ const RATE_MAX = 5; // заявок с одного адреса в час
 
 /** @type {Map<string, number[]>} */
 const hits = new Map();
+const RATE_MAP_CAP = 5000; // больше адресов не храним: окно всё равно час
 
 function rateLimited(ip) {
   const now = Date.now();
@@ -72,12 +73,22 @@ function rateLimited(ip) {
   }
   list.push(now);
   hits.set(ip, list);
+  /* AUD-11: Map живёт вечно — срезаем самые старые ключи */
+  while (hits.size > RATE_MAP_CAP) {
+    const oldest = hits.keys().next().value;
+    hits.delete(oldest);
+  }
   return false;
 }
 
 function clientIp(req) {
+  /* AUD-02: крайнее левое значение пишет сам клиент, доверять ему нельзя.
+     Вправо дописывает только транспорт, поэтому берём последнее. */
   const fwd = req.headers["x-forwarded-for"];
-  if (typeof fwd === "string" && fwd.length) return fwd.split(",")[0].trim();
+  if (typeof fwd === "string" && fwd.length) {
+    const parts = fwd.split(",").map((s) => s.trim()).filter(Boolean);
+    if (parts.length) return parts[parts.length - 1];
+  }
   return req.socket.remoteAddress || "unknown";
 }
 
@@ -133,6 +144,44 @@ function clean(value) {
   return String(value == null ? "" : value)
     .trim()
     .slice(0, MAX_FIELD);
+}
+
+/* AUD-07: сообщения валидации на языке страницы (присылает клиент). */
+function briefStrings(lang) {
+  if (lang === "en") {
+    return {
+      tooBig: "The request is too large.",
+      unreadable: "Could not read the request.",
+      needName: "Tell me what to call you.",
+      needContact: "Tell me how to reach you.",
+      needTask: "Describe the task in at least one sentence.",
+      tooLong: (label) =>
+        `The \u201c${label}\u201d field is too long. Keep it under ${MAX_FIELD} characters.`,
+      labels: {
+        name: "name",
+        contact: "contact",
+        task: "task",
+        pain: "problem",
+        limits: "timeline and budget",
+      },
+    };
+  }
+  return {
+    tooBig: "Заявка слишком большая.",
+    unreadable: "Не удалось прочитать заявку.",
+    needName: "Напишите, как к вам обращаться.",
+    needContact: "Напишите, как с вами связаться.",
+    needTask: "Опишите задачу хотя бы одним предложением.",
+    tooLong: (label) =>
+      `Поле «${label}» слишком длинное. Сократите до ${MAX_FIELD} символов.`,
+    labels: {
+      name: "имя",
+      contact: "контакт",
+      task: "задача",
+      pain: "что не работает",
+      limits: "сроки и бюджет",
+    },
+  };
 }
 
 function composeBrief(fields) {
@@ -205,7 +254,7 @@ async function handleBrief(req, res) {
       res,
       429,
       { error: "Слишком много заявок с одного адреса. Напишите в Telegram." },
-      headers,
+      { ...headers, "Retry-After": "3600" },
     );
     return;
   }
@@ -225,11 +274,25 @@ async function handleBrief(req, res) {
     send(res, 400, { error: "Не удалось прочитать заявку." }, headers);
     return;
   }
+  if (body === null || typeof body !== "object" || Array.isArray(body)) {
+    send(res, 400, { error: "Не удалось прочитать заявку." }, headers);
+    return;
+  }
+  const S = briefStrings(body.lang === "en" ? "en" : "ru");
 
   // ловушка для ботов: поле скрыто от людей
   if (clean(body.trap)) {
     send(res, 200, { ok: true }, headers);
     return;
+  }
+
+  /* AUD-10: молча не режем — отклоняем с названием поля */
+  for (const key of ["name", "contact", "task", "pain", "limits"]) {
+    const value = body[key];
+    if (typeof value === "string" && value.length > MAX_FIELD) {
+      send(res, 400, { error: S.tooLong(S.labels[key]), field: key }, headers);
+      return;
+    }
   }
 
   const fields = {
@@ -241,20 +304,15 @@ async function handleBrief(req, res) {
   };
 
   if (fields.name.length < 2) {
-    send(res, 400, { error: "Напишите, как к вам обращаться." }, headers);
+    send(res, 400, { error: S.needName, field: "name" }, headers);
     return;
   }
   if (fields.contact.length < 2) {
-    send(res, 400, { error: "Напишите, как с вами связаться." }, headers);
+    send(res, 400, { error: S.needContact, field: "contact" }, headers);
     return;
   }
   if (fields.task.length < 5) {
-    send(
-      res,
-      400,
-      { error: "Опишите задачу хотя бы одним предложением." },
-      headers,
-    );
+    send(res, 400, { error: S.needTask, field: "task" }, headers);
     return;
   }
 

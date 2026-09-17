@@ -15,6 +15,38 @@
   var hasGsap = window.gsap !== undefined;
   var hasFlip = window.Flip !== undefined;
 
+  /* AUD-07: строки интерфейса на языке страницы, а не всегда на русском */
+  var TXT =
+    document.documentElement.lang === "en"
+      ? {
+          screen: "Screen ",
+          openMenu: "Open menu",
+          closeMenu: "Close menu",
+          needName: "Tell me what to call you.",
+          needContact: "Tell me how to reach you.",
+          needTask: "Describe the task in at least one sentence.",
+          sending: "Sending",
+          sendFailed: "Could not send.",
+          fallbackCopied:
+            "The text is copied. Open Telegram, paste it into the chat and send.",
+          fallbackManual:
+            "Copy the text below by hand. Open Telegram, paste it into the chat and send.",
+        }
+      : {
+          screen: "Экран ",
+          openMenu: "Открыть меню",
+          closeMenu: "Закрыть меню",
+          needName: "Напишите, как к вам обращаться.",
+          needContact: "Напишите, как с вами связаться.",
+          needTask: "Опишите задачу хотя бы одним предложением.",
+          sending: "Отправляю",
+          sendFailed: "Не получилось отправить.",
+          fallbackCopied:
+            "Текст скопирован. Откройте Telegram, вставьте его в чат и отправьте.",
+          fallbackManual:
+            "Скопируйте текст ниже вручную. Откройте Telegram, вставьте его в чат и отправьте.",
+        };
+
   /* --------------------------------------------------------- вкладки */
 
   function initTabs() {
@@ -174,7 +206,7 @@
       var dot = document.createElement("button");
       dot.type = "button";
       dot.className = "dot";
-      dot.setAttribute("aria-label", "Экран " + (i + 1));
+      dot.setAttribute("aria-label", TXT.screen + (i + 1));
       dot.addEventListener("click", () => {
         go(i);
         hold();
@@ -288,7 +320,7 @@
 
     function setOpen(open) {
       button.setAttribute("aria-expanded", open ? "true" : "false");
-      button.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+      button.setAttribute("aria-label", open ? TXT.closeMenu : TXT.openMenu);
       nav.classList.toggle("is-open", open);
     }
 
@@ -451,14 +483,13 @@
     if (!width) return;
 
     window.gsap.set([track, clone], { x: 0 });
+    /* AUD-05: без ModifiersPlugin свойство modifiers мертво.
+       Повтор −width→0 на двух одинаковых копиях бесшовен сам по себе. */
     window.gsap.to([track, clone], {
       x: -width,
       duration: width / 46,
       ease: "none",
       repeat: -1,
-      modifiers: {
-        x: window.gsap.utils.unitize((value) => parseFloat(value) % width),
-      },
     });
   }
 
@@ -521,8 +552,23 @@
       if (!fallback || !out) return;
       out.value = value;
       fallback.removeAttribute("hidden");
-      out.focus();
-      out.select();
+      /* AUD-04: «скопирован» — только если реально скопировали */
+      var note = fallback.querySelector(".brief__next-text");
+      function done(copied) {
+        if (note) {
+          note.textContent = copied ? TXT.fallbackCopied : TXT.fallbackManual;
+        }
+        out.focus();
+        out.select();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(
+          () => done(true),
+          () => done(false),
+        );
+      } else {
+        done(false);
+      }
     }
 
     form.addEventListener("submit", (event) => {
@@ -540,15 +586,15 @@
       if (sent) sent.setAttribute("hidden", "");
 
       if (!who) {
-        fail("Напишите, как к вам обращаться.", form.elements.name);
+        fail(TXT.needName, form.elements.name);
         return;
       }
       if (!contact) {
-        fail("Напишите, как с вами связаться.", form.elements.contact);
+        fail(TXT.needContact, form.elements.contact);
         return;
       }
       if (!task) {
-        fail("Опишите задачу хотя бы одним предложением.", form.elements.task);
+        fail(TXT.needTask, form.elements.task);
         return;
       }
 
@@ -566,7 +612,7 @@
       const label = button ? button.textContent : "";
       if (button) {
         button.disabled = true;
-        button.textContent = "Отправляю";
+        button.textContent = TXT.sending;
       }
 
       const restore = () => {
@@ -578,12 +624,27 @@
       fetch(API_BASE + "/api/brief", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: who, contact, task, pain, limits, trap }),
+        body: JSON.stringify({
+          name: who,
+          contact,
+          task,
+          pain,
+          limits,
+          trap,
+          lang: document.documentElement.lang,
+        }),
       })
         .then(async (response) => {
           const data = await response.json().catch(() => ({}));
+          /* AUD-03: 400 — actionable-ошибка валидации, показываем в форме.
+             Остальное (429/5xx/сеть) — ручной путь как раньше. */
+          if (response.status === 400) {
+            const err = new Error(data.error || TXT.sendFailed);
+            err.field = typeof data.field === "string" ? data.field : null;
+            throw err;
+          }
           if (!response.ok)
-            throw new Error(data.error || "Не получилось отправить.");
+            throw new Error(data.error || TXT.sendFailed);
           return data;
         })
         .then(() => {
@@ -591,7 +652,14 @@
           form.reset();
           if (ok && ok.showModal) ok.showModal();
         })
-        .catch(() => {
+        .catch((err) => {
+          if (err && typeof err.field === "string" && err.field) {
+            fail(
+              err.message,
+              form.elements[err.field] ? form.elements[err.field] : null,
+            );
+            return;
+          }
           /* сервер недоступен: отдаём текст, чтобы человек отправил сам */
           showText(text);
         })
