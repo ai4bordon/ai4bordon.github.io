@@ -451,6 +451,8 @@
     var err = document.querySelector("#b-err");
     var fallback = document.querySelector("#b-fallback");
     var out = document.querySelector("#b-text");
+    var sent = document.querySelector("#b-sent");
+    var ok = document.querySelector("#b-ok");
 
     function fail(message, field) {
       if (err) {
@@ -532,6 +534,7 @@
         .then(() => {
           if (sent) sent.removeAttribute("hidden");
           form.reset();
+          if (ok && ok.showModal) ok.showModal();
         })
         .catch(() => {
           /* сервер недоступен: отдаём текст, чтобы человек отправил сам */

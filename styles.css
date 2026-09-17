@@ -1266,6 +1266,54 @@ main,
   display: none;
 }
 
+/* всплывающее окно после отправки заявки */
+.modal {
+  width: min(30rem, calc(100vw - 2rem));
+  padding: var(--s6);
+  background: var(--bg-2);
+  color: var(--fg);
+  border: 1px solid var(--line-2);
+  border-top: 2px solid var(--acid);
+  border-radius: var(--r);
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.modal__title {
+  font-family: "Unbounded", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 1.15rem;
+  margin: 0 0 var(--s3);
+}
+
+.modal__text {
+  margin: 0 0 var(--s6);
+  color: var(--dim);
+}
+
+.modal__acts {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  flex-wrap: wrap;
+}
+
+.modal__acts form {
+  margin: 0;
+}
+
+/* автозаполнение Chrome не должно красить поля в белый */
+.field input:-webkit-autofill,
+.field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus,
+.field textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--fg);
+  box-shadow: 0 0 0 1000px var(--bg-3) inset;
+  transition: background-color 9999s ease-out 0s;
+}
+
 @media (max-width: 62rem) {
   .hero__inner {
     grid-template-columns: minmax(0, 1fr);

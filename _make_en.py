@@ -727,6 +727,10 @@ FINAL = {
  '<p class="brief__hint">Уходит мне в Telegram.</p>': '<p class="brief__hint">Goes straight to my Telegram.</p>',
  '<p class="brief__next-title">Заявка отправлена</p>': '<p class="brief__next-title">Request sent</p>',
  '<p class="brief__next-text">Разберу её и отвечу в тот же день. Если удобнее в Telegram, напишите туда же.</p>': '<p class="brief__next-text">I will review it and reply the same day. If Telegram is easier, message me there.</p>',
+ '<h3 class="modal__title" id="b-ok-title">Заявка отправлена</h3>': '<h3 class="modal__title" id="b-ok-title">Request sent</h3>',
+ '<p class="modal__text">Спасибо, заявка у меня. Свяжусь с вами в ближайшее время, обычно в тот же день. Если срочно, напишите в Telegram.</p>': '<p class="modal__text">Thanks, I have your request. I will get back to you shortly, usually the same day. If it is urgent, message me on Telegram.</p>',
+ '<button class="btn btn--primary" type="submit">Понятно</button>': '<button class="btn btn--primary" type="submit">Got it</button>',
+ '<a class="link" href="https://t.me/bordon_ai">Открыть Telegram</a>': '<a class="link" href="https://t.me/bordon_ai">Open Telegram</a>',
 }
 for ru, en in FINAL.items():
  src = src.replace(ru, en)
