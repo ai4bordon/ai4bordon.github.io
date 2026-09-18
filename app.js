@@ -656,8 +656,7 @@
             err.field = typeof data.field === "string" ? data.field : null;
             throw err;
           }
-          if (!response.ok)
-            throw new Error(data.error || TXT.sendFailed);
+          if (!response.ok) throw new Error(data.error || TXT.sendFailed);
           return data;
         })
         .then(() => {
